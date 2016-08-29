@@ -165,7 +165,7 @@
               <host>sandbox.electrum.io</host>
               <basePath>/prepaidutility/v1</basePath>
               <info>
-                <title>iPrepaid Utility Service Interface</title>
+                <title>Prepaid Utility Service Interface</title>
                 <version>${project.version}</version>
                 <description>The Electrum Prepaid Utility Service describes an interface for facilitating the purchase of prepaid 
 			tokens for utilities such as electricity and water. One or more tokens for a requested value are issued by 
