@@ -16,6 +16,7 @@ import javax.ws.rs.core.UriInfo;
 
 import io.electrum.prepaidutility.model.PurchaseResponse;
 import io.electrum.prepaidutility.model.TokenReprintRequest;
+import io.electrum.vas.model.ErrorDetail;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -36,10 +37,10 @@ public abstract class TokenReprintsResource {
    @Produces({ "application/json" })
    @ApiOperation(value = "Requests a reprint of a token", notes = "Requests a reprint of a token that was previously issued for a specified meter. The request can be for either the last token issued for that meter, or for a specific transaction reference, depending on what the provider supports.")
    @ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = PurchaseResponse.class),
-         @ApiResponse(code = 400, message = "Bad request", response = PurchaseResponse.class),
-         @ApiResponse(code = 500, message = "Internal Server Error", response = PurchaseResponse.class),
-         @ApiResponse(code = 503, message = "Service Unavailable", response = PurchaseResponse.class),
-         @ApiResponse(code = 504, message = "Gateway Timeout", response = PurchaseResponse.class) })
+         @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
+         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
+         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
+         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void requestTokenReprint(
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("reprintId") String reprintId,
          @ApiParam(value = "A token reprint request.", required = true) TokenReprintRequest body,
@@ -50,7 +51,10 @@ public abstract class TokenReprintsResource {
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo) {
 
-      getResourceImplementetion().requestTokenReprint(reprintId, body, securityContext,
+      getResourceImplementetion().requestTokenReprint(
+            reprintId,
+            body,
+            securityContext,
             asyncResponse,
             request,
             httpServletRequest,
