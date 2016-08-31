@@ -20,3 +20,14 @@ It is sometimes useful for service implementations to have clients send data pre
 The use of linkData is optional for service implementations.
 
 Client implementations should ensure that if linkData is present in the response to the original request, it is placed into the matching confirmation request unaltered.
+
+## Store-and-forward
+
+To ensure that loss of transactional data is minimized, it is required that clients store advice messages (see [Transaction flows](/transaction-flows)) in persistent storage and queue them until a _final_ status type is received. A final response is one of either the _successful_ or _failed_ status types. If no response is received, or a response with an _unknown_ status type is received, advice messages shall be queued and the message at the head of queue repeated on an interval until a final status type is received. For high throughput systems it shall be acceptable to send several advice messages in parallel, and as such, advices may be received out of order at the server.
+
+The above applies to the following operations:
+
+* confirmTokenPurchase
+* reverseTokenPurchase
+
+Note that not all implementations of this service will support these operations. Refer to [Transaction flows](/transaction-flows) for more details.

@@ -9,6 +9,8 @@ The Prepaid Utility Interface is intended to facilitate transactions between ret
 
 This service is aimed at two groups of users: a) a retailer wishing to develop a point-of-sale client application to access the Electrum Prepaid Utility Service, or b) a prepaid utility service provider or aggregator wishing to develop a server application to integrate directly with the Electrum service. If you fall into one of these categories, then this is the solution for you!
 
+Details of the business process of prepaid utility transactions can be found in the [Transaction Flows](/transaction-flows) section.
+
 ## Supported languages
 
 # Java
