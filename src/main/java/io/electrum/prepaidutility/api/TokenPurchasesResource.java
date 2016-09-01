@@ -25,10 +25,8 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/tokenPurchases")
-
+@Path("/prepaidutility/v1/tokenPurchases")
 @Api(description = "the tokenPurchases API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
 public abstract class TokenPurchasesResource {
 
    protected abstract ITokenPurchasesResource getResourceImplementetion();

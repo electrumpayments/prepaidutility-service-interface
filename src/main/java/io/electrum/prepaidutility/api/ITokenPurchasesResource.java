@@ -12,7 +12,6 @@ import io.electrum.prepaidutility.model.ConfirmationRequest;
 import io.electrum.prepaidutility.model.PurchaseRequest;
 import io.electrum.prepaidutility.model.ReversalRequest;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
 public interface ITokenPurchasesResource {
 
    public abstract Response confirmTokenPurchase(

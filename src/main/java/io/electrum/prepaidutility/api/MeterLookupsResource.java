@@ -24,10 +24,8 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 
-@Path("/meterLookups")
-
+@Path("/prepaidutility/v1/meterLookups")
 @Api(description = "the meterLookups API", authorizations = { @Authorization("httpBasic") })
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
 public abstract class MeterLookupsResource {
 
    protected abstract IMeterLookupsResource getResourceImplementation();

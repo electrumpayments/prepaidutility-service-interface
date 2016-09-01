@@ -23,10 +23,8 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/tokenReprints")
-
+@Path("/prepaidutility/v1/tokenReprints")
 @Api(description = "the tokenReprints API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
 public abstract class TokenReprintsResource {
 
    protected abstract ITokenReprintsResource getResourceImplementetion();

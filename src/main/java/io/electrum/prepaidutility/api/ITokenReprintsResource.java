@@ -10,7 +10,6 @@ import javax.ws.rs.core.UriInfo;
 
 import io.electrum.prepaidutility.model.TokenReprintRequest;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
 public interface ITokenReprintsResource {
 
    public abstract Response requestTokenReprint(
