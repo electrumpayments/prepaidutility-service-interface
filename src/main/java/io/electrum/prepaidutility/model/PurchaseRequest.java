@@ -81,6 +81,7 @@ public class PurchaseRequest extends Transaction {
     * @return track2Data
     **/
    @ApiModelProperty(value = "Track 2 data stored on the magnetic stripe of a card that is supplied with certain meters. This data contains all meter details. It can be used as an alternative means of input at PoS and may be required by some provders.")
+   @Pattern(regexp = "[a-zA-Z0-9=]{34}")
    public String getTrack2Data() {
       return track2Data;
    }

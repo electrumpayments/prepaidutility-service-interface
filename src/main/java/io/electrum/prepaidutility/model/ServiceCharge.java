@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -69,6 +71,7 @@ public class ServiceCharge {
     **/
    @ApiModelProperty(required = true, value = "Description of this service charge (e.g. connection fee).")
    @NotNull
+   @Length(max = 40)
    public String getDescription() {
       return description;
    }

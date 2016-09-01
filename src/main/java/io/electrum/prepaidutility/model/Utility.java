@@ -2,6 +2,8 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -32,6 +34,7 @@ public class Utility {
     * @return name
     **/
    @ApiModelProperty(value = "Name of the utility.")
+   @Length(max = 40)
    public String getName() {
       return name;
    }
@@ -51,6 +54,7 @@ public class Utility {
     * @return address
     **/
    @ApiModelProperty(value = "Physical address of the utility.")
+   @Length(max = 80)
    public String getAddress() {
       return address;
    }
@@ -70,6 +74,7 @@ public class Utility {
     * @return vatRegNum
     **/
    @ApiModelProperty(value = "VAT registration number of the utility.")
+   @Length(max = 10)
    public String getVatRegNum() {
       return vatRegNum;
    }
@@ -89,6 +94,7 @@ public class Utility {
     * @return clientId
     **/
    @ApiModelProperty(value = "Identifier assigned by the utility to the client connecting to the utility's token issuing service.")
+   @Length(max = 20)
    public String getClientId() {
       return clientId;
    }
@@ -108,6 +114,7 @@ public class Utility {
     * @return message
     **/
    @ApiModelProperty(value = "Message send by the utility to be displayed on the customer receipt.")
+   @Length(max = 80)
    public String getMessage() {
       return message;
    }

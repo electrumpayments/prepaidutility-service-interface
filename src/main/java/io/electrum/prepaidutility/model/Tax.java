@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -50,6 +52,7 @@ public class Tax {
     **/
    @ApiModelProperty(required = true, value = "Description of the type of tax (e.g. VAT).")
    @NotNull
+   @Length(max = 10)
    public String getDescription() {
       return description;
    }

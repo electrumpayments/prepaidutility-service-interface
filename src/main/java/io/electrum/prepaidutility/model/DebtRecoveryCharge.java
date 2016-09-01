@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -75,6 +77,7 @@ public class DebtRecoveryCharge {
     **/
    @ApiModelProperty(required = true, value = "Description of this debt recovery charge (e.g. municipal rates arrears).")
    @NotNull
+   @Length(max = 40)
    public String getDescription() {
       return description;
    }
@@ -114,6 +117,7 @@ public class DebtRecoveryCharge {
     * @return receiptNum
     **/
    @ApiModelProperty(value = "Receipt number for this charge.")
+   @Length(max = 30)
    public String getReceiptNum() {
       return receiptNum;
    }

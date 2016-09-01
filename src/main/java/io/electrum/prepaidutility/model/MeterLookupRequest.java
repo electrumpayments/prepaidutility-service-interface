@@ -16,6 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class MeterLookupRequest extends Transaction {
 
    private String meterId = null;
+   private String track2Data = null;
 
    public MeterLookupRequest meterId(String meterId) {
       this.meterId = meterId;
@@ -36,6 +37,22 @@ public class MeterLookupRequest extends Transaction {
 
    public void setMeterId(String meterId) {
       this.meterId = meterId;
+   }
+
+   /**
+    * Track 2 data stored on the magnetic stripe of a card that is supplied with certain meters. This data contains all
+    * meter details. It can be used as an alternative means of input at PoS and may be required by some provders.
+    * 
+    * @return track2Data
+    **/
+   @ApiModelProperty(value = "Track 2 data stored on the magnetic stripe of a card that is supplied with certain meters. This data contains all meter details. It can be used as an alternative means of input at PoS and may be required by some provders.")
+   @Pattern(regexp = "[a-zA-Z0-9=]{34}")
+   public String getTrack2Data() {
+      return track2Data;
+   }
+
+   public void setTrack2Data(String track2Data) {
+      this.track2Data = track2Data;
    }
 
    @Override
