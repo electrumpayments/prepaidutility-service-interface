@@ -4,22 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import io.electrum.vas.model.Tender;
+import io.electrum.vas.model.Transaction;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * PurchaseRequest
+ * Represents a token purchase request
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
-public class PurchaseRequest {
+@ApiModel(description = "Represents a token purchase request")
+@JsonInclude(Include.NON_NULL)
+public class PurchaseRequest extends Transaction {
+
    private String meterId = null;
-
    private Amount purchaseAmount = null;
-
    private String track2Data = null;
-
    private String utilityType = null;
-
    private List<Tender> tenders = new ArrayList<Tender>();
 
    public PurchaseRequest meterId(String meterId) {
@@ -33,6 +38,7 @@ public class PurchaseRequest {
     * @return meterId
     **/
    @ApiModelProperty(required = true, value = "Unique identifier (e.g. serial number) of the meter against which token purchase is requested.")
+   @Pattern(regexp = "[a-zA-Z0-9]{0,20}")
    public String getMeterId() {
       return meterId;
    }

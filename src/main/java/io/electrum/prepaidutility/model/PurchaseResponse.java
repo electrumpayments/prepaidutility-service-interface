@@ -4,26 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import io.electrum.vas.model.Customer;
+import io.electrum.vas.model.Transaction;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * PurchaseResponse
+ * Represents the response to a token purchase request
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
-public class PurchaseResponse {
+@ApiModel(description = "Represents the response to a token purchase request")
+@JsonInclude(Include.NON_NULL)
+public class PurchaseResponse extends Transaction {
+
    private Meter meter = null;
-
    private Customer customer = null;
-
    private Utility utility = null;
-
    private String utilityType = null;
-
    private List<Token> tokens = new ArrayList<Token>();
-
    private List<DebtRecoveryCharge> debtRecoveryCharges = new ArrayList<DebtRecoveryCharge>();
-
    private List<ServiceCharge> serviceCharges = new ArrayList<ServiceCharge>();
 
    public PurchaseResponse meter(Meter meter) {

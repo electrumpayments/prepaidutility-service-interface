@@ -2,15 +2,16 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Amount
+ * Represents a monetary amount
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
+@ApiModel(description = "Represents a monetary amount")
 public class Amount {
-   private Long amount = null;
 
+   private Long amount = null;
    private String currency = null;
 
    public Amount amount(Long amount) {

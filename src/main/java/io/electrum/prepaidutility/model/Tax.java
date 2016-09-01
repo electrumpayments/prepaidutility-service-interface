@@ -3,17 +3,17 @@ package io.electrum.prepaidutility.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Tax
+ * Represents a tax levied on the transaction
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
+@ApiModel(description = "Represents a tax levied on the transaction")
 public class Tax {
+
    private Amount amount = null;
-
    private String description = null;
-
    private BigDecimal rate = null;
 
    public Tax amount(Amount amount) {

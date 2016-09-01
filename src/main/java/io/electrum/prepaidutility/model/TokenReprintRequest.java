@@ -2,17 +2,22 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+import io.electrum.vas.model.Transaction;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * TokenReprintRequest
+ * Represents a request for a token reprint
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
-public class TokenReprintRequest {
+@ApiModel(description = "Represents a request for a token reprint")
+@JsonInclude(Include.NON_NULL)
+public class TokenReprintRequest extends Transaction {
+
    private String meterId = null;
-
    private String track2Data = null;
-
    private String originalRef = null;
 
    public TokenReprintRequest meterId(String meterId) {

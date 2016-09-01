@@ -2,21 +2,23 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * DebtRecoveryCharge
+ * Represents a charge deducted from the purchase to recover outstanding debt
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
+@ApiModel(description = "Represents a charge deducted from the purchase to recover outstanding debt")
+@JsonInclude(Include.NON_NULL)
 public class DebtRecoveryCharge {
+
    private Amount amount = null;
-
    private Tax tax = null;
-
    private String description = null;
-
    private Amount balance = null;
-
    private String receiptNum = null;
 
    public DebtRecoveryCharge amount(Amount amount) {

@@ -5,13 +5,16 @@ import java.util.List;
 import java.util.Objects;
 
 import io.electrum.vas.model.Tender;
+import io.electrum.vas.model.Transaction;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * ConfirmationRequest
+ * The data required to finalise a purchase
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
-public class ConfirmationRequest {
+@ApiModel(description = "The data required to finalise a purchase")
+public class ConfirmationRequest extends Transaction {
+
    private List<Tender> tenders = new ArrayList<Tender>();
 
    public ConfirmationRequest tenders(List<Tender> tenders) {

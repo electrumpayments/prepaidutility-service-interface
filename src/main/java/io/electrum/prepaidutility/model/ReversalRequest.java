@@ -2,13 +2,15 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * ReversalRequest
+ * Data required to request the reversal of a purchase request
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
+@ApiModel(description = "Data required to request the reversal of a purchase request")
 public class ReversalRequest {
+
    private PurchaseRequest originalRequest = null;
 
    public ReversalRequest originalRequest(PurchaseRequest originalRequest) {

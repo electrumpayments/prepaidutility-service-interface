@@ -2,13 +2,18 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.Pattern;
+
+import io.electrum.vas.model.Transaction;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * MeterLookupRequest
+ * Represents a request for information about a meter
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
-public class MeterLookupRequest {
+@ApiModel(description = "Represents a request for information about a meter")
+public class MeterLookupRequest extends Transaction {
+
    private String meterId = null;
 
    public MeterLookupRequest meterId(String meterId) {
@@ -22,6 +27,7 @@ public class MeterLookupRequest {
     * @return meterId
     **/
    @ApiModelProperty(required = true, value = "Unique identifier (e.g. serial number) of the meter for which information is requested.")
+   @Pattern(regexp = "[a-zA-Z0-9]{0,20}")
    public String getMeterId() {
       return meterId;
    }

@@ -2,31 +2,30 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Meter
+ * Data associated with a prepaid utility meter
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
+@ApiModel(description = "Data associated with a prepaid utility meter")
+@JsonInclude(Include.NON_NULL)
 public class Meter {
+
    private String meterId = null;
-
    private String serviceType = null;
-
    private String supplyGroupCode = null;
-
    private String keyRevisionNum = null;
-
    private String tariffIndex = null;
-
    private String tokenTechCode = null;
-
    private String algorithmCode = null;
-
    private String newSupplyGroupCode = null;
-
    private String newKeyRevisionNumber = null;
-
    private String newTariffIndex = null;
 
    public Meter meterId(String meterId) {
@@ -40,6 +39,7 @@ public class Meter {
     * @return meterId
     **/
    @ApiModelProperty(required = true, value = "Unique identifier for the meter (e.g. serial number).")
+   @Pattern(regexp = "[a-zA-Z0-9]{0,20}")
    public String getMeterId() {
       return meterId;
    }
@@ -59,6 +59,7 @@ public class Meter {
     * @return serviceType
     **/
    @ApiModelProperty(value = "Type of service dispensed by this meter (e.g. electricity, water or gas).")
+   @Pattern(regexp = "[a-zA-Z0-9]{0,12}")
    public String getServiceType() {
       return serviceType;
    }
@@ -78,6 +79,7 @@ public class Meter {
     * @return supplyGroupCode
     **/
    @ApiModelProperty(value = "Code used to identify a group of suppliers.")
+   @Pattern(regexp = "[0-9]{6}")
    public String getSupplyGroupCode() {
       return supplyGroupCode;
    }
@@ -97,6 +99,7 @@ public class Meter {
     * @return keyRevisionNum
     **/
    @ApiModelProperty(value = "Key revision number of the meter.")
+   @Pattern(regexp = "[0-9]{1}")
    public String getKeyRevisionNum() {
       return keyRevisionNum;
    }
@@ -116,6 +119,7 @@ public class Meter {
     * @return tariffIndex
     **/
    @ApiModelProperty(value = "Code representing the tariff associated with this meter.")
+   @Pattern(regexp = "[0-9]{2}")
    public String getTariffIndex() {
       return tariffIndex;
    }
@@ -135,6 +139,7 @@ public class Meter {
     * @return tokenTechCode
     **/
    @ApiModelProperty(value = "The means by which tokens are supplied for this meter (typically either numeric token or magnetic track).")
+   @Pattern(regexp = "[0-9]{2}")
    public String getTokenTechCode() {
       return tokenTechCode;
    }
@@ -154,6 +159,7 @@ public class Meter {
     * @return algorithmCode
     **/
    @ApiModelProperty(value = "Code used to identify token encryption algorithm used by the meter.")
+   @Pattern(regexp = "[0-9]{2}")
    public String getAlgorithmCode() {
       return algorithmCode;
    }
@@ -174,6 +180,7 @@ public class Meter {
     * @return newSupplyGroupCode
     **/
    @ApiModelProperty(value = "New supply group code. Only relevant if this has been changed by the utility and a key change token has been issued.")
+   @Pattern(regexp = "[0-9]{6}")
    public String getNewSupplyGroupCode() {
       return newSupplyGroupCode;
    }
@@ -194,6 +201,7 @@ public class Meter {
     * @return newKeyRevisionNumber
     **/
    @ApiModelProperty(value = "New key revision number. Only relevant if this has been changed by the utility and a key change token has been issued.")
+   @Pattern(regexp = "[0-9]{1}")
    public String getNewKeyRevisionNumber() {
       return newKeyRevisionNumber;
    }
@@ -213,6 +221,7 @@ public class Meter {
     * @return newTariffIndex
     **/
    @ApiModelProperty(value = "New tariff index. Only relevant if this has been changed by the utility and a key change token has been issued.")
+   @Pattern(regexp = "[0-9]{2}")
    public String getNewTariffIndex() {
       return newTariffIndex;
    }

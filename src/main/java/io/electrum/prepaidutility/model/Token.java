@@ -5,23 +5,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Token
+ * Represents a prepaid utility token
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
+@ApiModel(description = "Represents a prepaid utility token")
+@JsonInclude(Include.NON_NULL)
 public class Token {
    /**
     * Type of token, namely standard (STD), basic service support tariff (BSST), refund (REFUND), key change (KC).
     */
    public enum TokenTypeEnum {
       STD("STD"),
-
       BSST("BSST"),
-
       REFUND("REFUND"),
-
       KC("KC");
 
       private String value;
@@ -37,17 +39,11 @@ public class Token {
    }
 
    private TokenTypeEnum tokenType = null;
-
    private BigDecimal units = null;
-
    private Amount amount = null;
-
    private Tax tax = null;
-
    private String receiptNum = null;
-
    private String token = null;
-
    private List<TariffBlock> tariffCalc = new ArrayList<TariffBlock>();
 
    public Token tokenType(TokenTypeEnum tokenType) {
@@ -136,7 +132,7 @@ public class Token {
     * 
     * @return receiptNum
     **/
-   @ApiModelProperty(required = true, value = "Receipt number issued for the transaction.")
+   @ApiModelProperty(value = "Receipt number issued for the transaction.")
    public String getReceiptNum() {
       return receiptNum;
    }
@@ -179,7 +175,7 @@ public class Token {
     * 
     * @return tariffCalc
     **/
-   @ApiModelProperty(required = true, value = "List of tariff blocks determining how the overall tariff is calculated.")
+   @ApiModelProperty(value = "List of tariff blocks determining how the overall tariff is calculated.")
    public List<TariffBlock> getTariffCalc() {
       return tariffCalc;
    }

@@ -2,21 +2,23 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Utility
+ * Represents a utility with whom a meter is registered
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
+@ApiModel(description = "Represents a utility with whom a meter is registered")
+@JsonInclude(Include.NON_NULL)
 public class Utility {
+
    private String name = null;
-
    private String address = null;
-
    private String vatRegNum = null;
-
    private String clientId = null;
-
    private String message = null;
 
    public Utility name(String name) {

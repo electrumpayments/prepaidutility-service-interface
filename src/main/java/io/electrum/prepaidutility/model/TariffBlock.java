@@ -3,15 +3,16 @@ package io.electrum.prepaidutility.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * TariffBlock
+ * Represents a block of units charged at a specific tariffO
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
+@ApiModel(description = "Represents a block of units charged at a specific tariff")
 public class TariffBlock {
-   private BigDecimal units = null;
 
+   private BigDecimal units = null;
    private BigDecimal rate = null;
 
    public TariffBlock units(BigDecimal units) {

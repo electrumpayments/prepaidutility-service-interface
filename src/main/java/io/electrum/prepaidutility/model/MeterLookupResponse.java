@@ -2,24 +2,26 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import io.electrum.vas.model.Customer;
+import io.electrum.vas.model.Transaction;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * MeterLookupResponse
+ * Represents a response to a meter lookup request
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaJerseyServerCodegen", date = "2016-08-26T07:31:58.129Z")
-public class MeterLookupResponse {
+@ApiModel(description = "Represents a response to a meter lookup request")
+@JsonInclude(Include.NON_NULL)
+public class MeterLookupResponse extends Transaction {
+
    private Meter meter = null;
-
    private Customer customer = null;
-
    private Utility utility = null;
-
    private Amount minAmount = null;
-
    private Amount maxAmount = null;
-
    private Boolean bsstDue = null;
 
    public MeterLookupResponse meter(Meter meter) {
