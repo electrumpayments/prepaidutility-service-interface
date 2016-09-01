@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -37,7 +39,8 @@ public class PurchaseResponse extends Transaction {
     * 
     * @return meter
     **/
-   @ApiModelProperty(value = "Details of the meter.")
+   @ApiModelProperty(required = true, value = "Details of the meter.")
+   @NotNull
    public Meter getMeter() {
       return meter;
    }
@@ -56,7 +59,8 @@ public class PurchaseResponse extends Transaction {
     * 
     * @return customer
     **/
-   @ApiModelProperty(value = "Details of the person or organization to whom the meter belongs.")
+   @ApiModelProperty(required = true, value = "Details of the person or organization to whom the meter belongs.")
+   @NotNull
    public Customer getCustomer() {
       return customer;
    }
@@ -75,7 +79,8 @@ public class PurchaseResponse extends Transaction {
     * 
     * @return utility
     **/
-   @ApiModelProperty(value = "Details of the utility which manages this meter's account.")
+   @ApiModelProperty(required = true, value = "Details of the utility which manages this meter's account.")
+   @NotNull
    public Utility getUtility() {
       return utility;
    }

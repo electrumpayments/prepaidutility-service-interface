@@ -2,6 +2,7 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,6 +40,7 @@ public class Meter {
     * @return meterId
     **/
    @ApiModelProperty(required = true, value = "Unique identifier for the meter (e.g. serial number).")
+   @NotNull
    @Pattern(regexp = "[a-zA-Z0-9]{0,20}")
    public String getMeterId() {
       return meterId;

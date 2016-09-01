@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -38,6 +39,7 @@ public class PurchaseRequest extends Transaction {
     * @return meterId
     **/
    @ApiModelProperty(required = true, value = "Unique identifier (e.g. serial number) of the meter against which token purchase is requested.")
+   @NotNull
    @Pattern(regexp = "[a-zA-Z0-9]{0,20}")
    public String getMeterId() {
       return meterId;
@@ -58,6 +60,7 @@ public class PurchaseRequest extends Transaction {
     * @return purchaseAmount
     **/
    @ApiModelProperty(required = true, value = "Monetary amount, in minor denomination, of the requested token purchase.")
+   @NotNull
    public Amount getPurchaseAmount() {
       return purchaseAmount;
    }

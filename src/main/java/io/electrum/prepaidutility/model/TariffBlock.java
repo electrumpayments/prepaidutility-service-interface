@@ -3,6 +3,8 @@ package io.electrum.prepaidutility.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -26,6 +28,7 @@ public class TariffBlock {
     * @return units
     **/
    @ApiModelProperty(required = true, value = "Number of units in this tariff block.")
+   @NotNull
    public BigDecimal getUnits() {
       return units;
    }
@@ -45,6 +48,7 @@ public class TariffBlock {
     * @return rate
     **/
    @ApiModelProperty(required = true, value = "Tariff rate for this block in minor denomination.")
+   @NotNull
    public BigDecimal getRate() {
       return rate;
    }

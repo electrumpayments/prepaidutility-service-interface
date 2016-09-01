@@ -2,6 +2,8 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -25,6 +27,7 @@ public class Amount {
     * @return amount
     **/
    @ApiModelProperty(required = true, value = "Amount in minor denomination (e.g. cents).")
+   @NotNull
    public Long getAmount() {
       return amount;
    }
@@ -44,6 +47,7 @@ public class Amount {
     * @return currency
     **/
    @ApiModelProperty(required = true, value = "Three digit numeric ISO 4217 currency code (e.g. South African Rand is encoded as 710).")
+   @NotNull
    public String getCurrency() {
       return currency;
    }

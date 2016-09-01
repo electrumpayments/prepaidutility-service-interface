@@ -2,6 +2,8 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -32,6 +34,7 @@ public class DebtRecoveryCharge {
     * @return amount
     **/
    @ApiModelProperty(required = true, value = "Amount charged for debt recovery, in minor denomination.")
+   @NotNull
    public Amount getAmount() {
       return amount;
    }
@@ -51,6 +54,7 @@ public class DebtRecoveryCharge {
     * @return tax
     **/
    @ApiModelProperty(required = true, value = "Tax levied on this charge.")
+   @NotNull
    public Tax getTax() {
       return tax;
    }
@@ -70,6 +74,7 @@ public class DebtRecoveryCharge {
     * @return description
     **/
    @ApiModelProperty(required = true, value = "Description of this debt recovery charge (e.g. municipal rates arrears).")
+   @NotNull
    public String getDescription() {
       return description;
    }
@@ -89,6 +94,7 @@ public class DebtRecoveryCharge {
     * @return balance
     **/
    @ApiModelProperty(required = true, value = "Remaining balance on this account.")
+   @NotNull
    public Amount getBalance() {
       return balance;
    }

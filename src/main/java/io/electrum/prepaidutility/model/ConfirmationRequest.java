@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import io.electrum.vas.model.Tender;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
@@ -33,6 +35,7 @@ public class ConfirmationRequest extends Transaction {
     * @return tenders
     **/
    @ApiModelProperty(required = true, value = "Details of method(s) of payment and amount(s) tendered")
+   @NotNull
    public List<Tender> getTenders() {
       return tenders;
    }

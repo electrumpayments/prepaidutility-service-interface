@@ -2,6 +2,9 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
+import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -9,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Data required to request the reversal of a purchase request
  */
 @ApiModel(description = "Data required to request the reversal of a purchase request")
-public class ReversalRequest {
+public class ReversalRequest extends Transaction {
 
    private PurchaseRequest originalRequest = null;
 
@@ -24,6 +27,7 @@ public class ReversalRequest {
     * @return originalRequest
     **/
    @ApiModelProperty(required = true, value = "The purchase request for which this reversal has been generated.")
+   @NotNull
    public PurchaseRequest getOriginalRequest() {
       return originalRequest;
    }

@@ -3,6 +3,8 @@ package io.electrum.prepaidutility.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -27,6 +29,7 @@ public class Tax {
     * @return amount
     **/
    @ApiModelProperty(required = true, value = "Amount of tax levied in minor denomination.")
+   @NotNull
    public Amount getAmount() {
       return amount;
    }
@@ -46,6 +49,7 @@ public class Tax {
     * @return description
     **/
    @ApiModelProperty(required = true, value = "Description of the type of tax (e.g. VAT).")
+   @NotNull
    public String getDescription() {
       return description;
    }
@@ -64,7 +68,8 @@ public class Tax {
     * 
     * @return rate
     **/
-   @ApiModelProperty(value = "Rate at which tax is levied, expressed as a percentage.")
+   @ApiModelProperty(required = true, value = "Rate at which tax is levied, expressed as a percentage.")
+   @NotNull
    public BigDecimal getRate() {
       return rate;
    }

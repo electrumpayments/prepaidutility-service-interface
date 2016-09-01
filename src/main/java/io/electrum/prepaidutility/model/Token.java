@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -57,6 +59,7 @@ public class Token {
     * @return tokenType
     **/
    @ApiModelProperty(required = true, value = "Type of token, namely standard (STD), basic service support tariff (BSST), refund (REFUND), key change (KC).")
+   @NotNull
    public TokenTypeEnum getTokenType() {
       return tokenType;
    }
@@ -76,6 +79,7 @@ public class Token {
     * @return units
     **/
    @ApiModelProperty(required = true, value = "Number of units redeemable by this token.")
+   @NotNull
    public BigDecimal getUnits() {
       return units;
    }
@@ -95,6 +99,7 @@ public class Token {
     * @return amount
     **/
    @ApiModelProperty(required = true, value = "Monetary value of the token, exclusive of tax (value set to 0 for free token).")
+   @NotNull
    public Amount getAmount() {
       return amount;
    }
@@ -114,6 +119,7 @@ public class Token {
     * @return tax
     **/
    @ApiModelProperty(required = true, value = "Tax component of this token purchase (value set to 0 for free token).")
+   @NotNull
    public Tax getTax() {
       return tax;
    }
@@ -152,6 +158,7 @@ public class Token {
     * @return token
     **/
    @ApiModelProperty(required = true, value = "Numeric sequence to be entered into the meter to redeem the token's value.")
+   @NotNull
    public String getToken() {
       return token;
    }

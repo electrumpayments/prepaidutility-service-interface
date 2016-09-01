@@ -2,6 +2,8 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -26,6 +28,7 @@ public class ServiceCharge {
     * @return amount
     **/
    @ApiModelProperty(required = true, value = "Amount charged for the service.")
+   @NotNull
    public Amount getAmount() {
       return amount;
    }
@@ -45,6 +48,7 @@ public class ServiceCharge {
     * @return tax
     **/
    @ApiModelProperty(required = true, value = "Tax levied on this charge.")
+   @NotNull
    public Tax getTax() {
       return tax;
    }
@@ -64,6 +68,7 @@ public class ServiceCharge {
     * @return description
     **/
    @ApiModelProperty(required = true, value = "Description of this service charge (e.g. connection fee).")
+   @NotNull
    public String getDescription() {
       return description;
    }

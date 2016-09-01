@@ -2,6 +2,7 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import io.electrum.vas.model.Transaction;
@@ -27,6 +28,7 @@ public class MeterLookupRequest extends Transaction {
     * @return meterId
     **/
    @ApiModelProperty(required = true, value = "Unique identifier (e.g. serial number) of the meter for which information is requested.")
+   @NotNull
    @Pattern(regexp = "[a-zA-Z0-9]{0,20}")
    public String getMeterId() {
       return meterId;
