@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
+import io.electrum.vas.Utils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -79,19 +80,9 @@ public class TariffBlock {
       StringBuilder sb = new StringBuilder();
       sb.append("class TariffBlock {\n");
 
-      sb.append("    units: ").append(toIndentedString(units)).append("\n");
-      sb.append("    rate: ").append(toIndentedString(rate)).append("\n");
+      sb.append("    units: ").append(Utils.toIndentedString(units)).append("\n");
+      sb.append("    rate: ").append(Utils.toIndentedString(rate)).append("\n");
       sb.append("}");
       return sb.toString();
-   }
-
-   /**
-    * Convert the given object to string with each line indented by 4 spaces (except the first line).
-    */
-   private String toIndentedString(java.lang.Object o) {
-      if (o == null) {
-         return "null";
-      }
-      return o.toString().replace("\n", "\n    ");
    }
 }

@@ -8,16 +8,16 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
-import io.electrum.prepaidutility.model.ConfirmationRequest;
 import io.electrum.prepaidutility.model.PurchaseRequest;
 import io.electrum.prepaidutility.model.ReversalRequest;
+import io.electrum.vas.model.TenderAdvice;
 
 public interface ITokenPurchasesResource {
 
    public abstract Response confirmTokenPurchase(
          String purchaseId,
          String confirmationId,
-         ConfirmationRequest body,
+         TenderAdvice body,
          SecurityContext securityContext,
          AsyncResponse asyncResponse,
          Request request,

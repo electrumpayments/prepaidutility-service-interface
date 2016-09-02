@@ -2,13 +2,13 @@ package io.electrum.prepaidutility.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import io.electrum.vas.Utils;
 import io.electrum.vas.model.Customer;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
@@ -181,51 +181,25 @@ public class PurchaseResponse extends Transaction {
    }
 
    @Override
-   public boolean equals(java.lang.Object o) {
-      if (this == o) {
-         return true;
-      }
-      if (o == null || getClass() != o.getClass()) {
-         return false;
-      }
-      PurchaseResponse purchaseResponse = (PurchaseResponse) o;
-      return Objects.equals(this.meter, purchaseResponse.meter)
-            && Objects.equals(this.customer, purchaseResponse.customer)
-            && Objects.equals(this.utility, purchaseResponse.utility)
-            && Objects.equals(this.utilityType, purchaseResponse.utilityType)
-            && Objects.equals(this.tokens, purchaseResponse.tokens)
-            && Objects.equals(this.debtRecoveryCharges, purchaseResponse.debtRecoveryCharges)
-            && Objects.equals(this.serviceCharges, purchaseResponse.serviceCharges);
-   }
-
-   @Override
-   public int hashCode() {
-      return Objects.hash(meter, customer, utility, utilityType, tokens, debtRecoveryCharges, serviceCharges);
-   }
-
-   @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class PurchaseResponse {\n");
 
-      sb.append("    meter: ").append(toIndentedString(meter)).append("\n");
-      sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
-      sb.append("    utility: ").append(toIndentedString(utility)).append("\n");
-      sb.append("    utilityType: ").append(toIndentedString(utilityType)).append("\n");
-      sb.append("    tokens: ").append(toIndentedString(tokens)).append("\n");
-      sb.append("    debtRecoveryCharges: ").append(toIndentedString(debtRecoveryCharges)).append("\n");
-      sb.append("    serviceCharges: ").append(toIndentedString(serviceCharges)).append("\n");
+      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
+      sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
+      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append("\n");
+      sb.append("    client: ").append(Utils.toIndentedString(client)).append("\n");
+      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
+      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
+      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
+      sb.append("    meter: ").append(Utils.toIndentedString(meter)).append("\n");
+      sb.append("    customer: ").append(Utils.toIndentedString(customer)).append("\n");
+      sb.append("    utility: ").append(Utils.toIndentedString(utility)).append("\n");
+      sb.append("    utilityType: ").append(Utils.toIndentedString(utilityType)).append("\n");
+      sb.append("    tokens: ").append(Utils.toIndentedString(tokens)).append("\n");
+      sb.append("    debtRecoveryCharges: ").append(Utils.toIndentedString(debtRecoveryCharges)).append("\n");
+      sb.append("    serviceCharges: ").append(Utils.toIndentedString(serviceCharges)).append("\n");
       sb.append("}");
       return sb.toString();
-   }
-
-   /**
-    * Convert the given object to string with each line indented by 4 spaces (except the first line).
-    */
-   private String toIndentedString(java.lang.Object o) {
-      if (o == null) {
-         return "null";
-      }
-      return o.toString().replace("\n", "\n    ");
    }
 }

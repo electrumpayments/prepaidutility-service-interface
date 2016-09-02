@@ -1,10 +1,9 @@
 package io.electrum.prepaidutility.model;
 
-import java.util.Objects;
-
 import javax.validation.constraints.NotNull;
 
-import io.electrum.vas.model.Transaction;
+import io.electrum.vas.Utils;
+import io.electrum.vas.model.BasicReversal;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -12,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Data required to request the reversal of a purchase request
  */
 @ApiModel(description = "Data required to request the reversal of a purchase request")
-public class ReversalRequest extends Transaction {
+public class ReversalRequest extends BasicReversal {
 
    private PurchaseRequest originalRequest = null;
 
@@ -37,39 +36,17 @@ public class ReversalRequest extends Transaction {
    }
 
    @Override
-   public boolean equals(java.lang.Object o) {
-      if (this == o) {
-         return true;
-      }
-      if (o == null || getClass() != o.getClass()) {
-         return false;
-      }
-      ReversalRequest reversalRequest = (ReversalRequest) o;
-      return Objects.equals(this.originalRequest, reversalRequest.originalRequest);
-   }
-
-   @Override
-   public int hashCode() {
-      return Objects.hash(originalRequest);
-   }
-
-   @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class ReversalRequest {\n");
 
-      sb.append("    originalRequest: ").append(toIndentedString(originalRequest)).append("\n");
+      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
+      sb.append("    requestId: ").append(Utils.toIndentedString(requestId)).append("\n");
+      sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
+      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
+      sb.append("    reversalReason: ").append(Utils.toIndentedString(reversalReason)).append("\n");
+      sb.append("    originalRequest: ").append(Utils.toIndentedString(originalRequest)).append("\n");
       sb.append("}");
       return sb.toString();
-   }
-
-   /**
-    * Convert the given object to string with each line indented by 4 spaces (except the first line).
-    */
-   private String toIndentedString(java.lang.Object o) {
-      if (o == null) {
-         return "null";
-      }
-      return o.toString().replace("\n", "\n    ");
    }
 }

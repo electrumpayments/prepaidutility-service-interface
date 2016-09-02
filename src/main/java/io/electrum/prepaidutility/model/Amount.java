@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
+import io.electrum.vas.Utils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -78,19 +79,9 @@ public class Amount {
       StringBuilder sb = new StringBuilder();
       sb.append("class Amount {\n");
 
-      sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-      sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+      sb.append("    amount: ").append(Utils.toIndentedString(amount)).append("\n");
+      sb.append("    currency: ").append(Utils.toIndentedString(currency)).append("\n");
       sb.append("}");
       return sb.toString();
-   }
-
-   /**
-    * Convert the given object to string with each line indented by 4 spaces (except the first line).
-    */
-   private String toIndentedString(java.lang.Object o) {
-      if (o == null) {
-         return "null";
-      }
-      return o.toString().replace("\n", "\n    ");
    }
 }

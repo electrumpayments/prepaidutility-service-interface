@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import io.electrum.vas.Utils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -23,10 +24,7 @@ public class Token {
     * Type of token, namely standard (STD), basic service support tariff (BSST), refund (REFUND), key change (KC).
     */
    public enum TokenTypeEnum {
-      STD("STD"),
-      BSST("BSST"),
-      REFUND("REFUND"),
-      KC("KC");
+      STD("STD"), BSST("BSST"), REFUND("REFUND"), KC("KC");
 
       private String value;
 
@@ -216,24 +214,14 @@ public class Token {
       StringBuilder sb = new StringBuilder();
       sb.append("class Token {\n");
 
-      sb.append("    tokenType: ").append(toIndentedString(tokenType)).append("\n");
-      sb.append("    units: ").append(toIndentedString(units)).append("\n");
-      sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-      sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
-      sb.append("    receiptNum: ").append(toIndentedString(receiptNum)).append("\n");
-      sb.append("    token: ").append(toIndentedString(token)).append("\n");
-      sb.append("    tariffCalc: ").append(toIndentedString(tariffCalc)).append("\n");
+      sb.append("    tokenType: ").append(Utils.toIndentedString(tokenType)).append("\n");
+      sb.append("    units: ").append(Utils.toIndentedString(units)).append("\n");
+      sb.append("    amount: ").append(Utils.toIndentedString(amount)).append("\n");
+      sb.append("    tax: ").append(Utils.toIndentedString(tax)).append("\n");
+      sb.append("    receiptNum: ").append(Utils.toIndentedString(receiptNum)).append("\n");
+      sb.append("    token: ").append(Utils.toIndentedString(token)).append("\n");
+      sb.append("    tariffCalc: ").append(Utils.toIndentedString(tariffCalc)).append("\n");
       sb.append("}");
       return sb.toString();
-   }
-
-   /**
-    * Convert the given object to string with each line indented by 4 spaces (except the first line).
-    */
-   private String toIndentedString(java.lang.Object o) {
-      if (o == null) {
-         return "null";
-      }
-      return o.toString().replace("\n", "\n    ");
    }
 }

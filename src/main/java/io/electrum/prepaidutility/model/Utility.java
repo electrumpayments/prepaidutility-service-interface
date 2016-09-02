@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import io.electrum.vas.Utils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -147,22 +148,12 @@ public class Utility {
       StringBuilder sb = new StringBuilder();
       sb.append("class Utility {\n");
 
-      sb.append("    name: ").append(toIndentedString(name)).append("\n");
-      sb.append("    address: ").append(toIndentedString(address)).append("\n");
-      sb.append("    vatRegNum: ").append(toIndentedString(vatRegNum)).append("\n");
-      sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
-      sb.append("    message: ").append(toIndentedString(message)).append("\n");
+      sb.append("    name: ").append(Utils.toIndentedString(name)).append("\n");
+      sb.append("    address: ").append(Utils.toIndentedString(address)).append("\n");
+      sb.append("    vatRegNum: ").append(Utils.toIndentedString(vatRegNum)).append("\n");
+      sb.append("    clientId: ").append(Utils.toIndentedString(clientId)).append("\n");
+      sb.append("    message: ").append(Utils.toIndentedString(message)).append("\n");
       sb.append("}");
       return sb.toString();
-   }
-
-   /**
-    * Convert the given object to string with each line indented by 4 spaces (except the first line).
-    */
-   private String toIndentedString(java.lang.Object o) {
-      if (o == null) {
-         return "null";
-      }
-      return o.toString().replace("\n", "\n    ");
    }
 }

@@ -14,11 +14,11 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
-import io.electrum.prepaidutility.model.ConfirmationRequest;
 import io.electrum.prepaidutility.model.PurchaseRequest;
 import io.electrum.prepaidutility.model.PurchaseResponse;
 import io.electrum.prepaidutility.model.ReversalRequest;
 import io.electrum.vas.model.ErrorDetail;
+import io.electrum.vas.model.TenderAdvice;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -44,7 +44,7 @@ public abstract class TokenPurchasesResource {
    public void confirmTokenPurchase(
          @ApiParam(value = "The randomly generated UUID of the original purchase request.", required = true) @PathParam("purchaseId") String purchaseId,
          @ApiParam(value = "The randomly generated UUID of this confirmation.", required = true) @PathParam("confirmationId") String confirmationId,
-         @ApiParam(value = "A token purchase confirmation", required = true) ConfirmationRequest body,
+         @ApiParam(value = "A token purchase confirmation", required = true) TenderAdvice body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
          @Context Request request,

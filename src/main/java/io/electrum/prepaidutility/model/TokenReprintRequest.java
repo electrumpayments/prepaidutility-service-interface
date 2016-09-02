@@ -1,13 +1,11 @@
 package io.electrum.prepaidutility.model;
 
-import java.util.Objects;
-
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import io.electrum.vas.Utils;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -19,49 +17,27 @@ import io.swagger.annotations.ApiModelProperty;
 @JsonInclude(Include.NON_NULL)
 public class TokenReprintRequest extends Transaction {
 
-   private String meterId = null;
-   private String track2Data = null;
+   private Meter meter = null;
    private String originalRef = null;
 
-   public TokenReprintRequest meterId(String meterId) {
-      this.meterId = meterId;
+   public TokenReprintRequest meterId(Meter meter) {
+      this.meter = meter;
       return this;
    }
 
    /**
-    * Unique identifier (e.g. serial number) of the meter for which token reprint is requested.
+    * Details of the meter for which a token reprint is requested. The object must include at least a value for meterId.
     * 
-    * @return meterId
+    * @return meter
     **/
-   @ApiModelProperty(required = true, value = "Unique identifier (e.g. serial number) of the meter for which token reprint is requested.")
+   @ApiModelProperty(required = true, value = "Details of the meter for which a token reprint is requested. The object must include at least a value for meterId.")
    @NotNull
-   public String getMeterId() {
-      return meterId;
+   public Meter getMeter() {
+      return meter;
    }
 
-   public void setMeterId(String meterId) {
-      this.meterId = meterId;
-   }
-
-   public TokenReprintRequest track2Data(String track2Data) {
-      this.track2Data = track2Data;
-      return this;
-   }
-
-   /**
-    * Track 2 data stored on the magnetic stripe of a card that is supplied with certain meters. This data contains all
-    * meter details. It can be used as an alternative means of input at PoS and may be required by some provders.
-    * 
-    * @return track2Data
-    **/
-   @ApiModelProperty(value = "Track 2 data stored on the magnetic stripe of a card that is supplied with certain meters. This data contains all meter details. It can be used as an alternative means of input at PoS and may be required by some provders.")
-   @Pattern(regexp = "[a-zA-Z0-9=]{34}")
-   public String getTrack2Data() {
-      return track2Data;
-   }
-
-   public void setTrack2Data(String track2Data) {
-      this.track2Data = track2Data;
+   public void setMeter(Meter meter) {
+      this.meter = meter;
    }
 
    public TokenReprintRequest originalRef(String originalRef) {
@@ -85,43 +61,20 @@ public class TokenReprintRequest extends Transaction {
    }
 
    @Override
-   public boolean equals(java.lang.Object o) {
-      if (this == o) {
-         return true;
-      }
-      if (o == null || getClass() != o.getClass()) {
-         return false;
-      }
-      TokenReprintRequest tokenReprintRequest = (TokenReprintRequest) o;
-      return Objects.equals(this.meterId, tokenReprintRequest.meterId)
-            && Objects.equals(this.track2Data, tokenReprintRequest.track2Data)
-            && Objects.equals(this.originalRef, tokenReprintRequest.originalRef);
-   }
-
-   @Override
-   public int hashCode() {
-      return Objects.hash(meterId, track2Data, originalRef);
-   }
-
-   @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class TokenReprintRequest {\n");
 
-      sb.append("    meterId: ").append(toIndentedString(meterId)).append("\n");
-      sb.append("    track2Data: ").append(toIndentedString(track2Data)).append("\n");
-      sb.append("    originalRef: ").append(toIndentedString(originalRef)).append("\n");
+      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
+      sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
+      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append("\n");
+      sb.append("    client: ").append(Utils.toIndentedString(client)).append("\n");
+      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
+      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
+      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
+      sb.append("    meter: ").append(Utils.toIndentedString(meter)).append("\n");
+      sb.append("    originalRef: ").append(Utils.toIndentedString(originalRef)).append("\n");
       sb.append("}");
       return sb.toString();
-   }
-
-   /**
-    * Convert the given object to string with each line indented by 4 spaces (except the first line).
-    */
-   private String toIndentedString(java.lang.Object o) {
-      if (o == null) {
-         return "null";
-      }
-      return o.toString().replace("\n", "\n    ");
    }
 }

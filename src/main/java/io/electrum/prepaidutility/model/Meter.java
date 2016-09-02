@@ -8,6 +8,7 @@ import javax.validation.constraints.Pattern;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import io.electrum.vas.Utils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -19,15 +20,14 @@ import io.swagger.annotations.ApiModelProperty;
 public class Meter {
 
    private String meterId = null;
+   private String track2Data = null;
    private String serviceType = null;
    private String supplyGroupCode = null;
    private String keyRevisionNum = null;
    private String tariffIndex = null;
    private String tokenTechCode = null;
    private String algorithmCode = null;
-   private String newSupplyGroupCode = null;
-   private String newKeyRevisionNumber = null;
-   private String newTariffIndex = null;
+   private KeyChangeData keyChangeData = null;
 
    public Meter meterId(String meterId) {
       this.meterId = meterId;
@@ -48,6 +48,27 @@ public class Meter {
 
    public void setMeterId(String meterId) {
       this.meterId = meterId;
+   }
+
+   public Meter track2Data(String track2Data) {
+      this.track2Data = track2Data;
+      return this;
+   }
+
+   /**
+    * Track 2 data stored on the magnetic stripe of a card that is supplied with certain meters. This data contains all
+    * meter details. It can be used as an alternative means of input at PoS and may be required by some providers.
+    * 
+    * @return track2Data
+    **/
+   @ApiModelProperty(value = "Track 2 data stored on the magnetic stripe of a card that is supplied with certain meters. This data contains all meter details. It can be used as an alternative means of input at PoS and may be required by some providers.")
+   @Pattern(regexp = "[a-zA-Z0-9=]{34}")
+   public String getTrack2Data() {
+      return track2Data;
+   }
+
+   public void setTrack2Data(String track2Data) {
+      this.track2Data = track2Data;
    }
 
    public Meter serviceType(String serviceType) {
@@ -170,66 +191,24 @@ public class Meter {
       this.algorithmCode = algorithmCode;
    }
 
-   public Meter newSupplyGroupCode(String newSupplyGroupCode) {
-      this.newSupplyGroupCode = newSupplyGroupCode;
+   public Meter keyChangeData(KeyChangeData keyChangeData) {
+      this.keyChangeData = keyChangeData;
       return this;
    }
 
    /**
-    * New supply group code. Only relevant if this has been changed by the utility and a key change token has been
-    * issued.
+    * Represents new meter data in the case that these these have been updated.
     * 
-    * @return newSupplyGroupCode
+    * @return keyChangeData
     **/
-   @ApiModelProperty(value = "New supply group code. Only relevant if this has been changed by the utility and a key change token has been issued.")
-   @Pattern(regexp = "[0-9]{6}")
-   public String getNewSupplyGroupCode() {
-      return newSupplyGroupCode;
-   }
-
-   public void setNewSupplyGroupCode(String newSupplyGroupCode) {
-      this.newSupplyGroupCode = newSupplyGroupCode;
-   }
-
-   public Meter newKeyRevisionNumber(String newKeyRevisionNumber) {
-      this.newKeyRevisionNumber = newKeyRevisionNumber;
-      return this;
-   }
-
-   /**
-    * New key revision number. Only relevant if this has been changed by the utility and a key change token has been
-    * issued.
-    * 
-    * @return newKeyRevisionNumber
-    **/
-   @ApiModelProperty(value = "New key revision number. Only relevant if this has been changed by the utility and a key change token has been issued.")
-   @Pattern(regexp = "[0-9]{1}")
-   public String getNewKeyRevisionNumber() {
-      return newKeyRevisionNumber;
-   }
-
-   public void setNewKeyRevisionNumber(String newKeyRevisionNumber) {
-      this.newKeyRevisionNumber = newKeyRevisionNumber;
-   }
-
-   public Meter newTariffIndex(String newTariffIndex) {
-      this.newTariffIndex = newTariffIndex;
-      return this;
-   }
-
-   /**
-    * New tariff index. Only relevant if this has been changed by the utility and a key change token has been issued.
-    * 
-    * @return newTariffIndex
-    **/
-   @ApiModelProperty(value = "New tariff index. Only relevant if this has been changed by the utility and a key change token has been issued.")
+   @ApiModelProperty(value = "Represents new meter data in the case that these these have been updated.")
    @Pattern(regexp = "[0-9]{2}")
-   public String getNewTariffIndex() {
-      return newTariffIndex;
+   public KeyChangeData getKeyChangeData() {
+      return keyChangeData;
    }
 
-   public void setNewTariffIndex(String newTariffIndex) {
-      this.newTariffIndex = newTariffIndex;
+   public void setKeyChangeData(KeyChangeData keyChangeData) {
+      this.keyChangeData = keyChangeData;
    }
 
    @Override
@@ -242,29 +221,27 @@ public class Meter {
       }
       Meter meter = (Meter) o;
       return Objects.equals(this.meterId, meter.meterId) && Objects.equals(this.serviceType, meter.serviceType)
+            && Objects.equals(this.track2Data, meter.track2Data)
             && Objects.equals(this.supplyGroupCode, meter.supplyGroupCode)
             && Objects.equals(this.keyRevisionNum, meter.keyRevisionNum)
             && Objects.equals(this.tariffIndex, meter.tariffIndex)
             && Objects.equals(this.tokenTechCode, meter.tokenTechCode)
             && Objects.equals(this.algorithmCode, meter.algorithmCode)
-            && Objects.equals(this.newSupplyGroupCode, meter.newSupplyGroupCode)
-            && Objects.equals(this.newKeyRevisionNumber, meter.newKeyRevisionNumber)
-            && Objects.equals(this.newTariffIndex, meter.newTariffIndex);
+            && Objects.equals(this.keyChangeData, meter.keyChangeData);
    }
 
    @Override
    public int hashCode() {
       return Objects.hash(
             meterId,
+            track2Data,
             serviceType,
             supplyGroupCode,
             keyRevisionNum,
             tariffIndex,
             tokenTechCode,
             algorithmCode,
-            newSupplyGroupCode,
-            newKeyRevisionNumber,
-            newTariffIndex);
+            keyChangeData);
    }
 
    @Override
@@ -272,27 +249,16 @@ public class Meter {
       StringBuilder sb = new StringBuilder();
       sb.append("class Meter {\n");
 
-      sb.append("    meterId: ").append(toIndentedString(meterId)).append("\n");
-      sb.append("    serviceType: ").append(toIndentedString(serviceType)).append("\n");
-      sb.append("    supplyGroupCode: ").append(toIndentedString(supplyGroupCode)).append("\n");
-      sb.append("    keyRevisionNum: ").append(toIndentedString(keyRevisionNum)).append("\n");
-      sb.append("    tariffIndex: ").append(toIndentedString(tariffIndex)).append("\n");
-      sb.append("    tokenTechCode: ").append(toIndentedString(tokenTechCode)).append("\n");
-      sb.append("    algorithmCode: ").append(toIndentedString(algorithmCode)).append("\n");
-      sb.append("    newSupplyGroupCode: ").append(toIndentedString(newSupplyGroupCode)).append("\n");
-      sb.append("    newKeyRevisionNumber: ").append(toIndentedString(newKeyRevisionNumber)).append("\n");
-      sb.append("    newTariffIndex: ").append(toIndentedString(newTariffIndex)).append("\n");
+      sb.append("    meterId: ").append(Utils.toIndentedString(meterId)).append("\n");
+      sb.append("    track2Data: ").append(Utils.toIndentedString(track2Data)).append("\n");
+      sb.append("    serviceType: ").append(Utils.toIndentedString(serviceType)).append("\n");
+      sb.append("    supplyGroupCode: ").append(Utils.toIndentedString(supplyGroupCode)).append("\n");
+      sb.append("    keyRevisionNum: ").append(Utils.toIndentedString(keyRevisionNum)).append("\n");
+      sb.append("    tariffIndex: ").append(Utils.toIndentedString(tariffIndex)).append("\n");
+      sb.append("    tokenTechCode: ").append(Utils.toIndentedString(tokenTechCode)).append("\n");
+      sb.append("    algorithmCode: ").append(Utils.toIndentedString(algorithmCode)).append("\n");
+      sb.append("    keyChangeData: ").append(Utils.toIndentedString(keyChangeData)).append("\n");
       sb.append("}");
       return sb.toString();
-   }
-
-   /**
-    * Convert the given object to string with each line indented by 4 spaces (except the first line).
-    */
-   private String toIndentedString(java.lang.Object o) {
-      if (o == null) {
-         return "null";
-      }
-      return o.toString().replace("\n", "\n    ");
    }
 }
