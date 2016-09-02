@@ -3,6 +3,8 @@ package io.electrum.prepaidutility.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -25,6 +27,7 @@ public class PurchaseRequest extends Transaction {
    private Meter meter = null;
    private Amount purchaseAmount = null;
    private String utilityType = null;
+   private Integer slipWidth = null;
    private List<Tender> tenders = new ArrayList<Tender>();
 
    public PurchaseRequest meterId(Meter meter) {
@@ -87,6 +90,27 @@ public class PurchaseRequest extends Transaction {
       this.utilityType = utilityType;
    }
 
+   public PurchaseRequest slipWidth(Integer slipWidth) {
+      this.slipWidth = slipWidth;
+      return this;
+   }
+
+   /**
+    * Width of the slip on which POS prints the transaction receipt.
+    * 
+    * @return slipWidth
+    */
+   @ApiModelProperty(value = "Width of the slip on which POS prints the transaction receipt.")
+   @Min(21)
+   @Max(80)
+   public Integer getSlipWidth() {
+      return slipWidth;
+   }
+
+   public void setSlipWidth(Integer slipWidth) {
+      this.slipWidth = slipWidth;
+   }
+
    public PurchaseRequest tenders(List<Tender> tenders) {
       this.tenders = tenders;
       return this;
@@ -127,6 +151,7 @@ public class PurchaseRequest extends Transaction {
       sb.append("    meterId: ").append(Utils.toIndentedString(meter)).append("\n");
       sb.append("    purchaseAmount: ").append(Utils.toIndentedString(purchaseAmount)).append("\n");
       sb.append("    utilityType: ").append(Utils.toIndentedString(utilityType)).append("\n");
+      sb.append("    slipWidth: ").append(Utils.toIndentedString(slipWidth)).append("\n");
       sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
       sb.append("}");
       return sb.toString();
