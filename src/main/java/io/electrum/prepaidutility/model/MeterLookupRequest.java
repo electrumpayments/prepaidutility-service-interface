@@ -15,7 +15,7 @@ public class MeterLookupRequest extends Transaction {
 
    private Meter meter = null;
 
-   public MeterLookupRequest meterId(Meter meter) {
+   public MeterLookupRequest meter(Meter meter) {
       this.meter = meter;
       return this;
    }
