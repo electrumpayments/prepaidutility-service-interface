@@ -23,6 +23,7 @@ public class KeyChangeTokenResponse extends Transaction {
 
    private Meter meter = null;
    private List<Token> tokens = new ArrayList<Token>();
+   private PrintableSlip printableSlip = null;
 
    public KeyChangeTokenResponse meter(Meter meter) {
       this.meter = meter;
@@ -66,6 +67,26 @@ public class KeyChangeTokenResponse extends Transaction {
 
    public void setMeter(Meter meter) {
       this.meter = meter;
+   }
+
+   public KeyChangeTokenResponse printableSlip(PrintableSlip printableSlip) {
+      this.printableSlip = printableSlip;
+      return this;
+   }
+
+   /**
+    * A ready-to-print till slip. This is supplied by some providers either in addition to or in place of individual
+    * message elements. Where present, it must be used by POS to print the slip.
+    * 
+    * @return printableSlip
+    */
+   @ApiModelProperty(value = "A ready-to-print till slipA ready-to-print till slip. This is supplied by some providers either in addition to or in place of individual message elements. Where present, it must be used by POS to print the slip.")
+   public PrintableSlip getPrintableSlip() {
+      return printableSlip;
+   }
+
+   public void setPrintableSlip(PrintableSlip printableSlip) {
+      this.printableSlip = printableSlip;
    }
 
    @Override

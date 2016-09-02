@@ -28,6 +28,7 @@ public class PurchaseResponse extends Transaction {
    private List<Token> tokens = new ArrayList<Token>();
    private List<DebtRecoveryCharge> debtRecoveryCharges = new ArrayList<DebtRecoveryCharge>();
    private List<ServiceCharge> serviceCharges = new ArrayList<ServiceCharge>();
+   private PrintableSlip printableSlip = null;
 
    public PurchaseResponse meter(Meter meter) {
       this.meter = meter;
@@ -180,6 +181,26 @@ public class PurchaseResponse extends Transaction {
       this.serviceCharges = serviceCharges;
    }
 
+   public PurchaseResponse printableSlip(PrintableSlip printableSlip) {
+      this.printableSlip = printableSlip;
+      return this;
+   }
+
+   /**
+    * A ready-to-print till slip. This is supplied by some providers either in addition to or in place of individual
+    * message elements. Where present, it must be used by POS to print the slip.
+    * 
+    * @return printableSlip
+    */
+   @ApiModelProperty(value = "A ready-to-print till slipA ready-to-print till slip. This is supplied by some providers either in addition to or in place of individual message elements. Where present, it must be used by POS to print the slip.")
+   public PrintableSlip getPrintableSlip() {
+      return printableSlip;
+   }
+
+   public void setPrintableSlip(PrintableSlip printableSlip) {
+      this.printableSlip = printableSlip;
+   }
+
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
@@ -199,6 +220,7 @@ public class PurchaseResponse extends Transaction {
       sb.append("    tokens: ").append(Utils.toIndentedString(tokens)).append("\n");
       sb.append("    debtRecoveryCharges: ").append(Utils.toIndentedString(debtRecoveryCharges)).append("\n");
       sb.append("    serviceCharges: ").append(Utils.toIndentedString(serviceCharges)).append("\n");
+      sb.append("    printableSlip: ").append(Utils.toIndentedString(printableSlip)).append("\n");
       sb.append("}");
       return sb.toString();
    }
