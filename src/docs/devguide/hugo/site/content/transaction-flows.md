@@ -23,19 +23,13 @@ Certain non-financial service functions are also supported by the specification.
 ### Single message pair
 In single-pair messaging, a purchase request/response pair contains all the information necessary for the transaction to be finalised. In this case, the request should contain details confirming that payment was successfully tendered at POS. This is required for reconciliation and settlement between the merchant and electricity provider.
 
-_[If the POS does not receive a response to a purchase request because of a connection timeout, but the provider this poses a problem if the request had in fact been received and processed by the provider and if the provider does not support reversals (i.e. the provider cannot cancel the transaction). There are ways through which a merchant can account for this which are discussed the Transaction sequence examples section.]_
-
 ### Dual message pair
 In dual-pair messaging, a financial request/response pair is followed by a confirmation (or advice) message. The confirmation contains details of the payment tendered at POS which are used for reconciliation and settlement. A transaction is only considered final once the provider has acknowledged receipt of a positive confirmation sent by the merchant. This implies that a request can be reversed (either through a timeout reversal or POS-generated void) before it has been finalised and thus have no financial impact.
 
 The confirmation or reversal advice is a "must deliver" message and so needs to be repeatedly sent until receipt has been acknowledged from upstream.
 
-_This is most often not an appropriate procedure for PPE given the way in which tokens are issued and delivered. More on this below._
-
 ### Which messaging logic to implement?
-The specification supports both single and dual message pair transaction processing. In the case of PPE, however, providers typically do not support confirmation or reversal messages (i.e. they operate on a single message pair basis). The reason for this is that once a token has been issued, it cannot (in most cases, at least) be revoked, and the merchant becomes liable for its cost. This essentially renders a confirmation meaningless and a reversal not possible, as from the perspective of the token issuer the transaction is complete. Despite this, it is still preferable for implementations of this service operate on dual-pair messaging and for the server to include business rules for the handling of confirmations or reversals in the case that an upstream provider does not support these.
-
-Providers do offer measures to limit the financial impact of failed transactions, including a) preceeding the purchase request with a meter lookup request to verify customer details and avoid erroneous meter number input at POS, and b) allowing for the purchase request to be retried multiple times in the case of a connection timeout on the original request.
+The specification supports both single and dual message pair transaction processing. In the case of PPE, however, providers typically do not support confirmation or reversal messages (i.e. they operate on a single message pair basis). The reason for this is that once a token has been issued, it cannot (in most cases, at least) be revoked, and the merchant becomes liable for its cost. This essentially renders a confirmation meaningless and a reversal not possible, as from the perspective of the token issuer the transaction is complete. Despite this, it is still possible for implementations of this service operate on dual-pair messaging and for the server to include business rules for the handling of confirmations or reversals in the case that an upstream provider does not support these.
 
 # Transaction sequence examples
 ### Meter lookup
