@@ -11,8 +11,8 @@ To include the service interface into your maven project, include the below depe
 ```xml
 <dependency>
     <groupId>io.electrum</groupId>
-    <artifactId>billpay-service-interface</artifactId>
-    <version>${project.version}</version>
+    <artifactId>prepaidutility-service-interface</artifactId>
+    <version>1.0.0</version>
 </dependency>
 ```
 
