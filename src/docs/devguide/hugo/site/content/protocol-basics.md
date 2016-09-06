@@ -5,15 +5,15 @@ menu:
     weight: 10
 ---
 
-The Prepaid Utility Service Interface is an HTTP-based protocol. A detailed description of the supported operations and definitions can be found in the [Specification](/specification/introduction) section.
+The Prepaid Utility Service Interface is an HTTP-based protocol. A detailed description of the supported operations and definitions can be found in the [Specification](/specification/introduction) section. Requests and responses contain information in the HTTP header and - depending on the operation - a JSON message body.
 
 ## Security
 
-All communication shall be secured by establishing an SSL encrypted transport. Basic HTTP authentication shall be used to authenticate clients with the service, and is required for all requests.
+All communication must be secured by establishing an SSL encrypted transport. Basic HTTP authentication is be used to authenticate clients with the service, and is required for all requests.
 
 ## Failures
 
-The outcome of a request is determined by examining the HTTP status code of the response.
+The outcome of a request is determined by examining the HTTP status code of the response and, in the case of an error, a description contained in a JSON body.
 
 ### Status type
 
@@ -29,5 +29,4 @@ A timeout occurs when the client has not received a response to a request after 
 
 ### ErrorDetail
 
-In addition to the HTTP status code, non-successful response bodies shall contain an [ErrorDetail](/specification/definitions/#errordetail) object, if possible, to describe the failure in more detail. It should be noted though, that responses in some failure scenarios will contain an empty response body, and therefore no ErrorDetail object will be present.
-
+In addition to the HTTP status code, non-successful response bodies contain an [ErrorDetail](/specification/definitions/#errordetail) object, if possible, to describe the failure in more detail. It should be noted though, that responses in some failure scenarios will contain an empty response body, and therefore no ErrorDetail object will be present.
