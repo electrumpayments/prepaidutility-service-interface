@@ -33,14 +33,14 @@ This specification supports both single and dual message pair transaction proces
 
 # Transaction sequence examples
 ### Meter lookup
-The [createMeterLookup](/specification/operations/#createMeterLookup) operation allows for information about a specific meter to be queried. The client posts a request with a [MeterLookupRequest](/specification/definitions/#MeterLookupRequest) in the message body containing the relevant meter identifier. A successful response will contain in its body a [MeterLookupResponse](/specification/definitions/#MeterLookupResponse) supplying the information registered against this meter.
+The [createMeterLookup](/specification/operations/#createmeterlookup) operation allows for information about a specific meter to be queried. The client posts a request with a [MeterLookupRequest](/specification/definitions/#meterlookuprequest) in the message body containing the relevant meter identifier. A successful response will contain in its body a [MeterLookupResponse](/specification/definitions/#meterlookupresponse) supplying the information registered against this meter.
 
 This operation can be utilised as a stand-alone information query, but it is more commonly used by the merchant as a validation check prior to proceeding with a purchase request.
 
 ![Successful meter lookup](/images/sequence-meter-lookup.png "Successful meter lookup")
 
 ### Successful token purchase
-The recommended sequence for implementing a token purchase is to first post a [createMeterLookup](/specification/operations/#createMeterLookup) request. If this operation returns a successful response and the details contained in the response are deemed to be correct by the customer, then a [createPurchaseRequest](/specification/operations/#createPurchaseRequest) call can be made. In the case of a single message pair transaction where payment is received at POS prior to the request being generated, no confirmation is sent, but where dual message pair logic is used, the purchase request is followed by a [confirmTokenPurchase](/specification/operations/#confirmTokenPurchase) call.
+The recommended sequence for implementing a token purchase is to first post a [createMeterLookup](/specification/operations/#createmeterlookup) request. If this operation returns a successful response and the details contained in the response are deemed to be correct by the customer, then a [createPurchaseRequest](/specification/operations/#createpurchaserequest) call can be made. In the case of a single message pair transaction where payment is received at POS prior to the request being generated, no confirmation is sent, but where dual message pair logic is used, the purchase request is followed by a [confirmTokenPurchase](/specification/operations/#confirmtokenpurchase) call.
 
 ##### Single message pair
 
@@ -51,7 +51,7 @@ The recommended sequence for implementing a token purchase is to first post a [c
 ![Successful token purchase - Dual message pair](/images/sequence_successful-purchase-dual.png "Successful token purchase - Dual message pair")
 
 ### Request timeout, followed by retry
-Should the transaction time out before a response to a purchase request is received, the recommended approach is to retry the original purchase request via the [retryPurchaseRequest](specification/definitions/#retryPurchaseRequest) operation. This will resend the original request and the expected response will contain a [PurchaseResponse](specification/definitions/#PurchaseResponse) body. It is possible to submit multiple retries for the same transaction until a response is received.
+Should the transaction time out before a response to a purchase request is received, the recommended approach is to retry the original purchase request via the [retryPurchaseRequest](specification/definitions/#retrypurchaserequest) operation. This will resend the original request and the expected response will contain a [PurchaseResponse](specification/definitions/#purchaseresponse) body. It is possible to submit multiple retries for the same transaction until a response is received.
 
 ![Purchase request timeout with retry](/images/sequence_purchase-timeout-retry.png "Purchase request timeout with retry")
 

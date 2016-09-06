@@ -1,4 +1,4 @@
-# Prepaid Utility Service Interface  [![CircleCI](https://circleci.com/gh/electrumpayments/prepaidutility-service-interface/tree/master.svg?style=shield)](https://circleci.com/gh/electrumpayments/prepaidutility-service-interface/tree/master)
+# Prepaid Utility Service Interface  
 
 The Prepaid Utility Service Interface documents the messaging interface used by Electrum to connect acquirers, processors, and issuers together for performing prepaid utility transactions.
 
@@ -20,4 +20,4 @@ Alternatively, you can download the jar from [Bintray](https://bintray.com/elect
 
 ## Other languages
 
-The interface is also available as a Swagger (OpenApi) definition, which can be used to generate starter projects in many languages. See more info [here](https://electrumpayments.github.io/prepaidutility-service-interface-docs/specification/swagger).
+The interface is also available as a Swagger (OpenApi) definition, which can be used to generate starter projects in many languages. See more info [here](https://electrumpayments.github.io/prepaidutility-service-interface-docs/specification/swagger/).

@@ -13,7 +13,7 @@ This service is aimed at two groups of users: a) a retailer wishing to develop a
 
 Basics of the connection protocol are described in [Protocol Basics](/protocol-basics); some specifics related to the transaction messaging are presented in [Advanced Topics](/advanced-topics); details of the business process behind prepaid utility transactions can be found under [Transaction Flows](/transaction-flows); jargon is demystified in the [Terminology](/terminology) section.
 
-The full interface specification is found [here](/specification), including definitions of all resources, operations and data types.
+The full interface specification is found [here](/specification/introduction), including definitions of all resources, operations and data types.
 
 ## Supported languages
 
