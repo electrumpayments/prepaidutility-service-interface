@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.model.LedgerAmount;
 import io.electrum.vas.model.Tender;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
@@ -25,7 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class PurchaseRequest extends Transaction {
 
    private Meter meter = null;
-   private Amount purchaseAmount = null;
+   private LedgerAmount purchaseAmount = null;
    private String utilityType = null;
    private Integer slipWidth = null;
    private List<Tender> tenders = new ArrayList<Tender>();
@@ -51,7 +52,7 @@ public class PurchaseRequest extends Transaction {
       this.meter = meter;
    }
 
-   public PurchaseRequest purchaseAmount(Amount purchaseAmount) {
+   public PurchaseRequest purchaseAmount(LedgerAmount purchaseAmount) {
       this.purchaseAmount = purchaseAmount;
       return this;
    }
@@ -63,11 +64,11 @@ public class PurchaseRequest extends Transaction {
     **/
    @ApiModelProperty(required = true, value = "Monetary amount, in minor denomination, of the requested token purchase.")
    @NotNull
-   public Amount getPurchaseAmount() {
+   public LedgerAmount getPurchaseAmount() {
       return purchaseAmount;
    }
 
-   public void setPurchaseAmount(Amount purchaseAmount) {
+   public void setPurchaseAmount(LedgerAmount purchaseAmount) {
       this.purchaseAmount = purchaseAmount;
    }
 

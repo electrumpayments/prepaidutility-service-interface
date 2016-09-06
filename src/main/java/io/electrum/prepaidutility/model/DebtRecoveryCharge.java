@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.model.LedgerAmount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -20,50 +21,29 @@ import io.swagger.annotations.ApiModelProperty;
 @JsonInclude(Include.NON_NULL)
 public class DebtRecoveryCharge {
 
-   private Amount amount = null;
-   private Tax tax = null;
+   private TaxableAmount amount = null;
    private String description = null;
-   private Amount balance = null;
+   private LedgerAmount balance = null;
    private String receiptNum = null;
 
-   public DebtRecoveryCharge amount(Amount amount) {
+   public DebtRecoveryCharge amount(TaxableAmount amount) {
       this.amount = amount;
       return this;
    }
 
    /**
-    * Amount charged for debt recovery, in minor denomination.
+    * Amount charged and tax levied for debt recovery, in minor denomination.
     * 
     * @return amount
     **/
-   @ApiModelProperty(required = true, value = "Amount charged for debt recovery, in minor denomination.")
+   @ApiModelProperty(required = true, value = "Amount charged and tax levied for debt recovery, in minor denomination.")
    @NotNull
-   public Amount getAmount() {
+   public LedgerAmount getAmount() {
       return amount;
    }
 
-   public void setAmount(Amount amount) {
+   public void setAmount(TaxableAmount amount) {
       this.amount = amount;
-   }
-
-   public DebtRecoveryCharge tax(Tax tax) {
-      this.tax = tax;
-      return this;
-   }
-
-   /**
-    * Tax levied on this charge.
-    * 
-    * @return tax
-    **/
-   @ApiModelProperty(required = true, value = "Tax levied on this charge.")
-   @NotNull
-   public Tax getTax() {
-      return tax;
-   }
-
-   public void setTax(Tax tax) {
-      this.tax = tax;
    }
 
    public DebtRecoveryCharge description(String description) {
@@ -87,7 +67,7 @@ public class DebtRecoveryCharge {
       this.description = description;
    }
 
-   public DebtRecoveryCharge balance(Amount balance) {
+   public DebtRecoveryCharge balance(LedgerAmount balance) {
       this.balance = balance;
       return this;
    }
@@ -99,11 +79,11 @@ public class DebtRecoveryCharge {
     **/
    @ApiModelProperty(required = true, value = "Remaining balance on this account.")
    @NotNull
-   public Amount getBalance() {
+   public LedgerAmount getBalance() {
       return balance;
    }
 
-   public void setBalance(Amount balance) {
+   public void setBalance(LedgerAmount balance) {
       this.balance = balance;
    }
 
@@ -136,7 +116,7 @@ public class DebtRecoveryCharge {
          return false;
       }
       DebtRecoveryCharge debtRecoveryCharge = (DebtRecoveryCharge) o;
-      return Objects.equals(this.amount, debtRecoveryCharge.amount) && Objects.equals(this.tax, debtRecoveryCharge.tax)
+      return Objects.equals(this.amount, debtRecoveryCharge.amount)
             && Objects.equals(this.description, debtRecoveryCharge.description)
             && Objects.equals(this.balance, debtRecoveryCharge.balance)
             && Objects.equals(this.receiptNum, debtRecoveryCharge.receiptNum);
@@ -144,7 +124,7 @@ public class DebtRecoveryCharge {
 
    @Override
    public int hashCode() {
-      return Objects.hash(amount, tax, description, balance, receiptNum);
+      return Objects.hash(amount, description, balance, receiptNum);
    }
 
    @Override
@@ -153,7 +133,6 @@ public class DebtRecoveryCharge {
       sb.append("class DebtRecoveryCharge {\n");
 
       sb.append("    amount: ").append(Utils.toIndentedString(amount)).append("\n");
-      sb.append("    tax: ").append(Utils.toIndentedString(tax)).append("\n");
       sb.append("    description: ").append(Utils.toIndentedString(description)).append("\n");
       sb.append("    balance: ").append(Utils.toIndentedString(balance)).append("\n");
       sb.append("    receiptNum: ").append(Utils.toIndentedString(receiptNum)).append("\n");

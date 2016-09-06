@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.model.LedgerAmount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -16,48 +17,27 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "Represents a service charge deducted from the purchase amount")
 public class ServiceCharge {
 
-   private Amount amount = null;
-   private Tax tax = null;
+   private TaxableAmount amount = null;
    private String description = null;
 
-   public ServiceCharge amount(Amount amount) {
+   public ServiceCharge amount(TaxableAmount amount) {
       this.amount = amount;
       return this;
    }
 
    /**
-    * Amount charged for the service.
+    * Amount charged and tax levied for the service.
     * 
     * @return amount
     **/
-   @ApiModelProperty(required = true, value = "Amount charged for the service.")
+   @ApiModelProperty(required = true, value = "Amount charged and tax levied for the service.")
    @NotNull
-   public Amount getAmount() {
+   public LedgerAmount getAmount() {
       return amount;
    }
 
-   public void setAmount(Amount amount) {
+   public void setAmount(TaxableAmount amount) {
       this.amount = amount;
-   }
-
-   public ServiceCharge tax(Tax tax) {
-      this.tax = tax;
-      return this;
-   }
-
-   /**
-    * Tax levied on this charge.
-    * 
-    * @return tax
-    **/
-   @ApiModelProperty(required = true, value = "Tax levied on this charge.")
-   @NotNull
-   public Tax getTax() {
-      return tax;
-   }
-
-   public void setTax(Tax tax) {
-      this.tax = tax;
    }
 
    public ServiceCharge description(String description) {
@@ -90,13 +70,13 @@ public class ServiceCharge {
          return false;
       }
       ServiceCharge serviceCharge = (ServiceCharge) o;
-      return Objects.equals(this.amount, serviceCharge.amount) && Objects.equals(this.tax, serviceCharge.tax)
+      return Objects.equals(this.amount, serviceCharge.amount)
             && Objects.equals(this.description, serviceCharge.description);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(amount, tax, description);
+      return Objects.hash(amount, description);
    }
 
    @Override
@@ -105,7 +85,6 @@ public class ServiceCharge {
       sb.append("class ServiceCharge {\n");
 
       sb.append("    amount: ").append(Utils.toIndentedString(amount)).append("\n");
-      sb.append("    tax: ").append(Utils.toIndentedString(tax)).append("\n");
       sb.append("    description: ").append(Utils.toIndentedString(description)).append("\n");
       sb.append("}");
       return sb.toString();

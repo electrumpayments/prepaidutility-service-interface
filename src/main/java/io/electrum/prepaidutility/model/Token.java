@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.model.LedgerAmount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -40,8 +41,7 @@ public class Token {
 
    private TokenTypeEnum tokenType = null;
    private BigDecimal units = null;
-   private Amount amount = null;
-   private Tax tax = null;
+   private TaxableAmount amount = null;
    private String receiptNum = null;
    private String token = null;
    private List<TariffBlock> tariffCalc = new ArrayList<TariffBlock>();
@@ -86,44 +86,24 @@ public class Token {
       this.units = units;
    }
 
-   public Token amount(Amount amount) {
+   public Token amount(TaxableAmount amount) {
       this.amount = amount;
       return this;
    }
 
    /**
-    * Monetary value of the token, exclusive of tax (value set to 0 for free token).
+    * Monetary value of the token.
     * 
     * @return amount
     **/
-   @ApiModelProperty(required = true, value = "Monetary value of the token, exclusive of tax (value set to 0 for free token).")
+   @ApiModelProperty(required = true, value = "Monetary value of the token")
    @NotNull
-   public Amount getAmount() {
+   public LedgerAmount getAmount() {
       return amount;
    }
 
-   public void setAmount(Amount amount) {
+   public void setAmount(TaxableAmount amount) {
       this.amount = amount;
-   }
-
-   public Token tax(Tax tax) {
-      this.tax = tax;
-      return this;
-   }
-
-   /**
-    * Tax component of this token purchase (value set to 0 for free token).
-    * 
-    * @return tax
-    **/
-   @ApiModelProperty(required = true, value = "Tax component of this token purchase (value set to 0 for free token).")
-   @NotNull
-   public Tax getTax() {
-      return tax;
-   }
-
-   public void setTax(Tax tax) {
-      this.tax = tax;
    }
 
    public Token receiptNum(String receiptNum) {
@@ -199,14 +179,13 @@ public class Token {
       }
       Token token = (Token) o;
       return Objects.equals(this.tokenType, token.tokenType) && Objects.equals(this.units, token.units)
-            && Objects.equals(this.amount, token.amount) && Objects.equals(this.tax, token.tax)
-            && Objects.equals(this.receiptNum, token.receiptNum) && Objects.equals(this.token, token.token)
-            && Objects.equals(this.tariffCalc, token.tariffCalc);
+            && Objects.equals(this.amount, token.amount) && Objects.equals(this.receiptNum, token.receiptNum)
+            && Objects.equals(this.token, token.token) && Objects.equals(this.tariffCalc, token.tariffCalc);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(tokenType, units, amount, tax, receiptNum, token, tariffCalc);
+      return Objects.hash(tokenType, units, amount, receiptNum, token, tariffCalc);
    }
 
    @Override
@@ -217,7 +196,6 @@ public class Token {
       sb.append("    tokenType: ").append(Utils.toIndentedString(tokenType)).append("\n");
       sb.append("    units: ").append(Utils.toIndentedString(units)).append("\n");
       sb.append("    amount: ").append(Utils.toIndentedString(amount)).append("\n");
-      sb.append("    tax: ").append(Utils.toIndentedString(tax)).append("\n");
       sb.append("    receiptNum: ").append(Utils.toIndentedString(receiptNum)).append("\n");
       sb.append("    token: ").append(Utils.toIndentedString(token)).append("\n");
       sb.append("    tariffCalc: ").append(Utils.toIndentedString(tariffCalc)).append("\n");

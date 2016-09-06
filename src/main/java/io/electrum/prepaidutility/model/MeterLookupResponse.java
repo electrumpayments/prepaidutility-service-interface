@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Customer;
+import io.electrum.vas.model.LedgerAmount;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -21,8 +22,8 @@ public class MeterLookupResponse extends Transaction {
    private Meter meter = null;
    private Customer customer = null;
    private Utility utility = null;
-   private Amount minAmount = null;
-   private Amount maxAmount = null;
+   private LedgerAmount minAmount = null;
+   private LedgerAmount maxAmount = null;
    private Boolean bsstDue = null;
 
    public MeterLookupResponse meter(Meter meter) {
@@ -85,7 +86,7 @@ public class MeterLookupResponse extends Transaction {
       this.utility = utility;
    }
 
-   public MeterLookupResponse minAmount(Amount minAmount) {
+   public MeterLookupResponse minAmount(LedgerAmount minAmount) {
       this.minAmount = minAmount;
       return this;
    }
@@ -96,15 +97,15 @@ public class MeterLookupResponse extends Transaction {
     * @return minAmount
     **/
    @ApiModelProperty(value = "Minimum purchase amount that can be requested by the customer.")
-   public Amount getMinAmount() {
+   public LedgerAmount getMinAmount() {
       return minAmount;
    }
 
-   public void setMinAmount(Amount minAmount) {
+   public void setMinAmount(LedgerAmount minAmount) {
       this.minAmount = minAmount;
    }
 
-   public MeterLookupResponse maxAmount(Amount maxAmount) {
+   public MeterLookupResponse maxAmount(LedgerAmount maxAmount) {
       this.maxAmount = maxAmount;
       return this;
    }
@@ -115,11 +116,11 @@ public class MeterLookupResponse extends Transaction {
     * @return maxAmount
     **/
    @ApiModelProperty(value = "Maximum purchase amount that can be requested by the customer.")
-   public Amount getMaxAmount() {
+   public LedgerAmount getMaxAmount() {
       return maxAmount;
    }
 
-   public void setMaxAmount(Amount maxAmount) {
+   public void setMaxAmount(LedgerAmount maxAmount) {
       this.maxAmount = maxAmount;
    }
 
