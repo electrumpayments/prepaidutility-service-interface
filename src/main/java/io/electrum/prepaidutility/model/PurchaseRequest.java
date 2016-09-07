@@ -1,8 +1,5 @@
 package io.electrum.prepaidutility.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -13,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.LedgerAmount;
-import io.electrum.vas.model.Tender;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -29,7 +25,6 @@ public class PurchaseRequest extends Transaction {
    private LedgerAmount purchaseAmount = null;
    private String utilityType = null;
    private Integer slipWidth = null;
-   private List<Tender> tenders = new ArrayList<Tender>();
 
    public PurchaseRequest meterId(Meter meter) {
       this.meter = meter;
@@ -112,31 +107,6 @@ public class PurchaseRequest extends Transaction {
       this.slipWidth = slipWidth;
    }
 
-   public PurchaseRequest tenders(List<Tender> tenders) {
-      this.tenders = tenders;
-      return this;
-   }
-
-   public PurchaseRequest addTendersItem(Tender tendersItem) {
-      this.tenders.add(tendersItem);
-      return this;
-   }
-
-   /**
-    * Details of method(s) of payment and amount(s) tendered. Only present if the PoS implementation is for
-    * single-message pair transactions (i.e. no confirmation request is sent).
-    * 
-    * @return tenders
-    **/
-   @ApiModelProperty(value = "Details of method(s) of payment and amount(s) tendered. Only present if the PoS implementation is for single-message pair transactions (i.e. no confirmation request is sent).")
-   public List<Tender> getTenders() {
-      return tenders;
-   }
-
-   public void setTenders(List<Tender> tenders) {
-      this.tenders = tenders;
-   }
-
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
@@ -153,7 +123,6 @@ public class PurchaseRequest extends Transaction {
       sb.append("    purchaseAmount: ").append(Utils.toIndentedString(purchaseAmount)).append("\n");
       sb.append("    utilityType: ").append(Utils.toIndentedString(utilityType)).append("\n");
       sb.append("    slipWidth: ").append(Utils.toIndentedString(slipWidth)).append("\n");
-      sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
       sb.append("}");
       return sb.toString();
    }
