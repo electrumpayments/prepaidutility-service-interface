@@ -5,7 +5,7 @@ menu:
     weight: 30
 ---
 
-# Overview of prepaid utility purchases
+## Overview of prepaid utility purchases
 _Note: The description and examples presented here are for electricity purchases, as this represents most prevalent type of prepaid utility transaction. The same principles apply for other services (e.g. gas and water), with just minor differences in the values of certain message fields._
 
 ### Token purchase and free tokens
@@ -19,7 +19,7 @@ Where the electricity is issued by a municipality and the customer has an outsta
 ### Service requests
 Certain non-financial service functions are also supported by the specification. These include fault reporting and requests for the encryption key for a meter, should the key have been changed by the provider.
 
-# Messaging protocols
+## Messaging protocols
 ### Single message pair
 In single-pair messaging, a purchase request/response pair contains all the information necessary for the transaction to be finalised. In this case, the request should contain details confirming that payment was successfully tendered at POS. This is required for reconciliation and settlement between the merchant and electricity provider.
 
@@ -28,10 +28,10 @@ In dual-pair messaging, a financial request/response pair is followed by a confi
 
 The confirmation or reversal advice is a "must deliver" message and so needs to be repeatedly sent until receipt has been acknowledged from upstream.
 
-### Which messaging logic to implement?
-This specification supports both single and dual message pair transaction processing. In the case of PPE, however, providers typically do not support confirmation or reversal messages (i.e. they operate on a single message pair basis). The reason for this is that once a token has been issued, it cannot (in most cases, at least) be revoked, and the merchant becomes liable for its cost. This essentially renders a confirmation meaningless and a reversal not possible, as from the perspective of the token issuer the transaction is complete. Despite this, it is still possible for implementations of this service operate on dual-pair messaging and for the server to include business rules for the handling of confirmations or reversals in the case that an upstream provider does not support these.
+### Which messaging logic is supported?
+Most PPE issuers do not support confirmation or reversal messages (i.e. they operate on a single message pair basis). The reason for this is that once a token has been issued, it usually can't be revoked, and the merchant becomes liable for its cost. This essentially renders a confirmation meaningless and a reversal not possible, as from the perspective of the token issuer the transaction is complete. Despite this, it is still possible for a client implementation to employ dual-pair messaging and for the server to include business rules for the handling of confirmations or reversals in the case that an upstream provider does not support these. This is the preferred scenario, as it can account for upstream implementations of either protocol. Hence, this specification only supports dual-pair messaging.
 
-# Transaction sequence examples
+## Transaction sequence examples
 ### Meter lookup
 The [createMeterLookup](/specification/operations/#createmeterlookup) operation allows for information about a specific meter to be queried. The client posts a request with a [MeterLookupRequest](/specification/definitions/#meterlookuprequest) in the message body containing the relevant meter identifier. A successful response will contain in its body a [MeterLookupResponse](/specification/definitions/#meterlookupresponse) supplying the information registered against this meter.
 
@@ -40,22 +40,35 @@ This operation can be utilised as a stand-alone information query, but it is mor
 ![Successful meter lookup](/images/sequence-meter-lookup.png "Successful meter lookup")
 
 ### Successful token purchase
-The recommended sequence for implementing a token purchase is to first post a [createMeterLookup](/specification/operations/#createmeterlookup) request. If this operation returns a successful response and the details contained in the response are deemed to be correct by the customer, then a [createPurchaseRequest](/specification/operations/#createpurchaserequest) call can be made. In the case of a single message pair transaction where payment is received at POS prior to the request being generated, no confirmation is sent, but where dual message pair logic is used, the purchase request is followed by a [confirmTokenPurchase](/specification/operations/#confirmtokenpurchase) call.
+The recommended sequence for implementing a token purchase is to first post a [createMeterLookup](/specification/operations/#createmeterlookup) request. If this operation returns a successful response and the details contained in the response are deemed to be correct by the customer, then a [createTokenPurchaseRequest](/specification/operations/#createtokenpurchaserequest) call can be made. The purchase request is followed by a [confirmTokenPurchase](/specification/operations/#confirmtokenpurchase) call to finalise the transaction, which is immediately acknowledged by the server. If the upstream provider supports confirmations, then the server places the message in a [store-and-forward](/advanced-topics/#store-and-forward) queue for delivery.
 
-##### Single message pair
+The following diagrams represent different scenarios for successful purchases.
 
-![Successful token purchase - Single message pair](/images/sequence_successful-purchase-single.png "Successful token purchase - Single message pair")
-
-##### Dual message pair
+### _Confirmations supported by 3rd party_
 
 ![Successful token purchase - Dual message pair](/images/sequence_successful-purchase-dual.png "Successful token purchase - Dual message pair")
 
+### _Confirmations not supported by 3rd party_
+
+![Successful token purchase - Dual message pair 2](/images/sequence_successful-purchase-dual-2.png "Successful token purchase - Dual message pair 2")
+
+### Unsuccessful token purchase
+Should a token purchase fail at POS (e.g. if the customer is unable to make payment), the transaction can be voided via the [reverseTokenPurchase](/specification/operations/#reversetokenpurchase) operation. The reserver acknowledges receipt of the reversal immediately and places the message in a [store-and-forward](/advanced-topics/#store-and-forward) queue for delivery. If a provider does not support reversals, then they will respond to the server with an error message to this effect. The merchant and provider need to ensure that there is a process for handling this scenario from a reconciliation and settlement point of view.
+
+### _Reversals supported by 3rd party_
+
+![Unsuccessful token purchase - Reversal supported](/images/sequence_unsuccessful-purchase-reversal-supported.png "Unsuccessful token purchase - Reversal supported")
+
+### _Reversals not supported by 3rd party_
+
+![Unsuccessful token purchase - Reversal not supported](/images/sequence_unsuccessful-purchase-reversal-not-supported.png "Unsuccessful token purchase - Reversal not supported")
+
 ### Request timeout, followed by retry
-Should the transaction time out before a response to a purchase request is received, the recommended approach is to retry the original purchase request via the [retryPurchaseRequest](specification/definitions/#retrypurchaserequest) operation. This will resend the original request and the expected response will contain a [PurchaseResponse](specification/definitions/#purchaseresponse) body. It is possible to submit multiple retries for the same transaction until a response is received.
+Should the transaction time out before a response to a purchase request is received, the recommended approach is to retry the original purchase request via the [retryPurchaseRequest](/specification/operations/#retrypurchaserequest) operation. This will resend the original request and the expected response will contain a [PurchaseResponse](/specification/definitions/#purchaseresponse) body. It is possible to submit multiple retries for the same transaction until a response is received.
 
 ![Purchase request timeout with retry](/images/sequence_purchase-timeout-retry.png "Purchase request timeout with retry")
 
 ### Reprint request
-Some POS environments may with to implement support for token reprints. This is a stand-alone transaction whereby the customer requests a reprint of a previously-issued token. Usually this will be the last-issued token for that customer on the provider's system, but some providers allow for specific token reprints based on a transaction reference.
+Some POS environments may wish to implement support for token reprints. This is a stand-alone transaction whereby the customer requests a reprint of a previously-issued token. Usually this will be the last-issued token for that customer on the provider's system, but some providers allow for specific token reprints based on a transaction reference.
 
 ![Token Reprint Request](/images/sequence_reprint-request.png "Token Reprint Request")
