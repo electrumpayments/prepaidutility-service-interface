@@ -5,6 +5,8 @@
   <artifactId>prepaidutility-service-interface</artifactId>
   <packaging>jar</packaging>
   <name>Prepaid Utility Service Interface</name>
+  <description>Prepaid Utility Service Interface</description>
+  <url>https://electrumpayments.github.io/prepaidutility-service-interface-docs</url>
   <version>1.0.0</version>
 
   <licenses>
