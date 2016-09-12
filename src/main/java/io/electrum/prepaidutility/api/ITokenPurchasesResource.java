@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Request;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
@@ -14,7 +13,7 @@ import io.electrum.vas.model.TenderAdvice;
 
 public interface ITokenPurchasesResource {
 
-   public abstract Response confirmTokenPurchase(
+   public void confirmTokenPurchase(
          String purchaseId,
          String confirmationId,
          TenderAdvice body,
@@ -25,7 +24,7 @@ public interface ITokenPurchasesResource {
          HttpHeaders httpHeaders,
          UriInfo uriInfo);
 
-   public abstract Response createTokenPurchaseRequest(
+   public void createTokenPurchaseRequest(
          String purchaseId,
          PurchaseRequest body,
          SecurityContext securityContext,
@@ -35,7 +34,7 @@ public interface ITokenPurchasesResource {
          HttpHeaders httpHeaders,
          UriInfo uriInfo);
 
-   public abstract Response retryPurchaseRequest(
+   public void retryPurchaseRequest(
          String purchaseId,
          String retryId,
          PurchaseRequest body,
@@ -46,7 +45,7 @@ public interface ITokenPurchasesResource {
          HttpHeaders httpHeaders,
          UriInfo uriInfo);
 
-   public abstract Response reverseTokenPurchase(
+   public void reverseTokenPurchase(
          String purchaseId,
          String reversalId,
          ReversalRequest body,
