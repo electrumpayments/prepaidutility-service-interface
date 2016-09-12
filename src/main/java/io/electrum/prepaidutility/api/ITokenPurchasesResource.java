@@ -8,7 +8,7 @@ import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
 import io.electrum.prepaidutility.model.PurchaseRequest;
-import io.electrum.prepaidutility.model.ReversalRequest;
+import io.electrum.vas.model.BasicReversal;
 import io.electrum.vas.model.TenderAdvice;
 
 public interface ITokenPurchasesResource {
@@ -48,11 +48,12 @@ public interface ITokenPurchasesResource {
    public void reverseTokenPurchase(
          String purchaseId,
          String reversalId,
-         ReversalRequest body,
+         BasicReversal body,
          SecurityContext securityContext,
          AsyncResponse asyncResponse,
          Request request,
          HttpServletRequest httpServletRequest,
          HttpHeaders httpHeaders,
          UriInfo uriInfo);
+
 }

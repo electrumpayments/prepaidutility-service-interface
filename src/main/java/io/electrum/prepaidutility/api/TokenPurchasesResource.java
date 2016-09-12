@@ -16,7 +16,7 @@ import javax.ws.rs.core.UriInfo;
 
 import io.electrum.prepaidutility.model.PurchaseRequest;
 import io.electrum.prepaidutility.model.PurchaseResponse;
-import io.electrum.prepaidutility.model.ReversalRequest;
+import io.electrum.vas.model.BasicReversal;
 import io.electrum.vas.model.ErrorDetail;
 import io.electrum.vas.model.TenderAdvice;
 import io.swagger.annotations.Api;
@@ -141,7 +141,7 @@ public abstract class TokenPurchasesResource {
    public void reverseTokenPurchase(
          @ApiParam(value = "The randomly generated UUID of the original purchase request.", required = true) @PathParam("purchaseId") String purchaseId,
          @ApiParam(value = "The randomly generated UUID of this reversal.", required = true) @PathParam("reversalId") String reversalId,
-         @ApiParam(value = "A token purchase reversal.", required = true) ReversalRequest body,
+         @ApiParam(value = "A token purchase reversal.", required = true) BasicReversal body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
          @Context Request request,
