@@ -13,9 +13,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Represents a tax levied on the transaction
+ * Represents an amount on which tax has been levied
  */
-@ApiModel(description = "Represents a tax levied on the transaction")
+@ApiModel(description = "Represents an amount on which tax has been levied")
 public class TaxableAmount extends LedgerAmount {
 
    private Long tax = null;
@@ -32,7 +32,8 @@ public class TaxableAmount extends LedgerAmount {
     * 
     * @return tax
     */
-   @ApiModelProperty(value = "Tax amount. Only present and non-zero if the amount field is exclusive of tax.")
+   @ApiModelProperty(required = true, value = "Tax amount. Only present and non-zero if the amount field is exclusive of tax.")
+   @NotNull
    public Long getTax() {
       return tax;
    }
@@ -92,13 +93,13 @@ public class TaxableAmount extends LedgerAmount {
       }
       TaxableAmount tax = (TaxableAmount) o;
       return Objects.equals(this.amount, tax.amount) && Objects.equals(this.currency, tax.currency)
-            && Objects.equals(this.tax, tax.tax) && Objects.equals(this.taxType, tax.taxType)
-            && Objects.equals(this.taxRate, tax.taxRate);
+            && Objects.equals(ledgerIndicator, tax.ledgerIndicator) && Objects.equals(this.tax, tax.tax)
+            && Objects.equals(this.taxType, tax.taxType) && Objects.equals(this.taxRate, tax.taxRate);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(amount, currency, tax, taxType, taxRate);
+      return Objects.hash(amount, currency, ledgerIndicator, tax, taxType, taxRate);
    }
 
    @Override
@@ -108,6 +109,7 @@ public class TaxableAmount extends LedgerAmount {
 
       sb.append("    amount: ").append(Utils.toIndentedString(amount)).append("\n");
       sb.append("    currency: ").append(Utils.toIndentedString(currency)).append("\n");
+      sb.append("    ledgerIndicator: ").append(Utils.toIndentedString(ledgerIndicator)).append("\n");
       sb.append("    tax: ").append(Utils.toIndentedString(tax)).append("\n");
       sb.append("    taxType: ").append(Utils.toIndentedString(taxType)).append("\n");
       sb.append("    taxRate: ").append(Utils.toIndentedString(taxRate)).append("\n");

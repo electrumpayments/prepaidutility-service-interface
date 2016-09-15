@@ -38,7 +38,7 @@ public class DebtRecoveryCharge {
     **/
    @ApiModelProperty(required = true, value = "Amount charged and tax levied for debt recovery, in minor denomination.")
    @NotNull
-   public LedgerAmount getAmount() {
+   public TaxableAmount getAmount() {
       return amount;
    }
 

@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import io.electrum.vas.Utils;
-import io.electrum.vas.model.LedgerAmount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -32,7 +31,7 @@ public class ServiceCharge {
     **/
    @ApiModelProperty(required = true, value = "Amount charged and tax levied for the service.")
    @NotNull
-   public LedgerAmount getAmount() {
+   public TaxableAmount getAmount() {
       return amount;
    }
 

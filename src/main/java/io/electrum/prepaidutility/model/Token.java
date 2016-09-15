@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.electrum.vas.Utils;
-import io.electrum.vas.model.LedgerAmount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -98,7 +97,7 @@ public class Token {
     **/
    @ApiModelProperty(required = true, value = "Monetary value of the token")
    @NotNull
-   public LedgerAmount getAmount() {
+   public TaxableAmount getAmount() {
       return amount;
    }
 
