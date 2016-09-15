@@ -5,8 +5,13 @@ import java.util.Objects;
 import javax.validation.constraints.Pattern;
 
 import io.electrum.vas.Utils;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+/**
+ * Represents updated meter encryption key data
+ */
+@ApiModel(description = "Represents updated meter encryption key data")
 public class KeyChangeData {
 
    private String newSupplyGroupCode = null;
