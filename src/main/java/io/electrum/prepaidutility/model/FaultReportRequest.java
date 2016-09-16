@@ -122,7 +122,6 @@ public class FaultReportRequest extends Transaction {
     */
    @ApiModelProperty(required = true, value = "Type of fault that is being reported")
    @NotNull
-   @Length(max = 30)
    public FaultType getFaultType() {
       return faultType;
    }
