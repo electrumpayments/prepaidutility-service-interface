@@ -1,13 +1,13 @@
----
-title: "Release notes"
-menu:
-  main:
-    weight: 50
----
+### Release notes
 
-Version | Release date | Author | Description of changes
---------|--------------|-------------|-----------------------
-1.0.0 | 07-09-2016 | Neil MacKellar | Initial release
-1.0.1 | 12-09-2016 | Neil MacKellar | Fixed incorrect method signatures in interface classes
-1.1.0 | 12-09-2016 | Neil MacKellar | Removed requirement for containing the original request in a reversal request
-1.1.1 | 15-09-2016 | Neil MacKellar | Bug fix to TaxableAmount getter methods
+## 1.1.1 
+> Bug fix to TaxableAmount getter methods
+
+## 1.1.0
+> Removed requirement for containing the original request in a reversal request
+
+## 1.0.1
+> Fixed incorrect method signatures in interface classes
+
+## 1.0.0
+> Initial release
