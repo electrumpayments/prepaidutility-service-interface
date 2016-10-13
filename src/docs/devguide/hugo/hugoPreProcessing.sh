@@ -65,10 +65,11 @@ awk 'BEGIN {
         print }' "${BASE_DIR}/target/swagger/swagger.yaml" "${BASE_DIR}/src/docs/devguide/hugo/swagger-template.md" > "${BASE_DIR}/target/devguide/hugo/content/specification/swagger.md"
 
 
-echo '5) Move release notes to specification section'
+echo '5) Move release notes and test resources docs to specification section'
 echo ''
 
 mv "${BASE_DIR}/target/devguide/hugo/content/release-notes.md" "${BASE_DIR}/target/devguide/hugo/content/specification/release-notes.md"
+mv "${BASE_DIR}/target/devguide/hugo/content/test-resources.md" "${BASE_DIR}/target/devguide/hugo/content/specification/test-resources.md"
 
 
 echo '6) Add hugo front matter'
@@ -89,4 +90,5 @@ addFrontMatter "Introduction"  "81" "Specification" "${BASE_DIR}/target/devguide
 addFrontMatter "Operations"    "82" "Specification" "${BASE_DIR}/target/devguide/hugo/content/specification/operations.md"
 addFrontMatter "Definitions"   "83" "Specification" "${BASE_DIR}/target/devguide/hugo/content/specification/definitions.md"
 addFrontMatter "Swagger"       "84" "Specification" "${BASE_DIR}/target/devguide/hugo/content/specification/swagger.md"
-addFrontMatter "Release Notes" "85" "Specification" "${BASE_DIR}/target/devguide/hugo/content/specification/release-notes.md"
+addFrontMatter "Test resources"       "85" "Specification" "${BASE_DIR}/target/devguide/hugo/content/specification/test-resources.md"
+addFrontMatter "Release Notes" "86" "Specification" "${BASE_DIR}/target/devguide/hugo/content/specification/release-notes.md"

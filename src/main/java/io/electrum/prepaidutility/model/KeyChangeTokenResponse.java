@@ -80,7 +80,7 @@ public class KeyChangeTokenResponse extends Transaction {
     * 
     * @return printableSlip
     */
-   @ApiModelProperty(value = "A ready-to-print till slipA ready-to-print till slip. This is supplied by some providers either in addition to or in place of individual message elements. Where present, it must be used by POS to print the slip.")
+   @ApiModelProperty(value = "A ready-to-print till slip. This is supplied by some providers either in addition to or in place of individual message elements. Where present, it must be used by POS to print the slip.")
    public PrintableSlip getPrintableSlip() {
       return printableSlip;
    }
