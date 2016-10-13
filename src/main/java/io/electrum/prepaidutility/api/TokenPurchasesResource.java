@@ -38,6 +38,7 @@ public abstract class TokenPurchasesResource {
    @ApiOperation(value = "Confirms that a purchase has been completed successfully.", notes = "Confirms that a purchase has been completed successfully (i.e. the tokens have been issued to the customer and payment has been received by the merchant). It is typical that token providers do not support confirmations (aka advices), but certain point-of-sale integrations may require support for these. A confirmation request must be sent repeatedly until an HTTP response code indicating a final state has been received (i.e. either 202 or 400).")
    @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted"),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
+         @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
@@ -102,6 +103,7 @@ public abstract class TokenPurchasesResource {
    @ApiOperation(value = "Retry a previously submitted purchase request.", notes = "If no response was received to a purchase request due to a timeout or temporary communications failure, PoS may retry the same purchase request by calling this resource. The original purchase request will be resubmitted to the provider. If the provider had received the original request, it will respond by returning any tokens that were already issued. If not, then new tokens will be issued as per a normal purchase.")
    @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = PurchaseResponse.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
+         @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
@@ -135,6 +137,7 @@ public abstract class TokenPurchasesResource {
    @ApiOperation(value = "Notifies the provider that a purchase was not completed successfully.", notes = "Notifies that a purchase was not completed successfully. This can occur if the original request timed out or if payment was unsuccessful. Many providers, however, do not support reversals and once a token has been issued the merchant becomes liable for the cost irrespective of payment failure or timeout. The token may still be retrieved by a reprint request, which merchants may use to help accommodate this scenario. A reversal request must be sent repeatedly until an HTTP response code indicating a final state has been received (i.e. either 202 or 400).")
    @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted"),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
+         @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
