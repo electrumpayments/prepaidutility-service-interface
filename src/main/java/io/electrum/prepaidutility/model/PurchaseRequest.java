@@ -1,9 +1,13 @@
 package io.electrum.prepaidutility.model;
 
+import java.util.UUID;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+
+import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -25,6 +29,9 @@ public class PurchaseRequest extends Transaction {
    private LedgerAmount purchaseAmount = null;
    private String utilityType = null;
    private Integer slipWidth = null;
+   private boolean retry = false;
+   private UUID originalId = null;
+   private DateTime originalTime = null;
 
    public PurchaseRequest meterId(Meter meter) {
       this.meter = meter;
@@ -107,6 +114,63 @@ public class PurchaseRequest extends Transaction {
       this.slipWidth = slipWidth;
    }
 
+   public PurchaseRequest retry(boolean retry) {
+      this.retry = retry;
+      return this;
+   }
+
+   /**
+    * Boolean indicating if this request represents a retry of a previous transaction.
+    * 
+    * @return isRetry
+    */
+   @ApiModelProperty(value = "Boolean indicating if this request represents a retry of a previous transaction.")
+   public boolean isRetry() {
+      return retry;
+   }
+
+   public void setRetry(boolean retry) {
+      this.retry = retry;
+   }
+
+   public PurchaseRequest originalId(UUID originalId) {
+      this.originalId = originalId;
+      return this;
+   }
+
+   /**
+    * UUID of the original request. Only used if this request is a retry of a previous transaction.
+    * 
+    * @return originalId
+    */
+   @ApiModelProperty(value = "UUID of the original request. Only used if this request is a retry of a previous transaction.")
+   public UUID getOriginalId() {
+      return originalId;
+   }
+
+   public void setOriginalId(UUID originalId) {
+      this.originalId = originalId;
+   }
+
+   public PurchaseRequest originalTime(DateTime originalTime) {
+      this.originalTime = originalTime;
+      return this;
+   }
+
+   /**
+    * Time of the original request. Only used if this request is a retry of a previous transaction.
+    * 
+    * @return
+    */
+   @ApiModelProperty(value = "Time of the original request. Only used if this request is a retry of a previous transaction.")
+   public DateTime getOriginalTime() {
+      return originalTime;
+   }
+
+   public void setOriginalTime(DateTime originalTime) {
+      this.originalTime = originalTime;
+   }
+
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
@@ -123,6 +187,9 @@ public class PurchaseRequest extends Transaction {
       sb.append("    purchaseAmount: ").append(Utils.toIndentedString(purchaseAmount)).append("\n");
       sb.append("    utilityType: ").append(Utils.toIndentedString(utilityType)).append("\n");
       sb.append("    slipWidth: ").append(Utils.toIndentedString(slipWidth)).append("\n");
+      sb.append("    retry: ").append(Utils.toIndentedString(retry)).append("\n");
+      sb.append("    originalId: ").append(Utils.toIndentedString(originalId)).append("\n");
+      sb.append("    originalTime: ").append(Utils.toIndentedString(originalTime)).append("\n");
       sb.append("}");
       return sb.toString();
    }

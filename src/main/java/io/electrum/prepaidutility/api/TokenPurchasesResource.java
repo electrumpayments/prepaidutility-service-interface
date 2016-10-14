@@ -110,7 +110,7 @@ public abstract class TokenPurchasesResource {
    public void retryPurchaseRequest(
          @ApiParam(value = "The randomly generated UUID of the original purchase request.", required = true) @PathParam("purchaseId") String purchaseId,
          @ApiParam(value = "The randomly generated UUID of this retry request.", required = true) @PathParam("retryId") String retryId,
-         @ApiParam(value = "A token purchase retry request.", required = true) PurchaseRequest body,
+         @ApiParam(value = "A token purchase retry request.", required = false) PurchaseRequest body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
          @Context Request request,
