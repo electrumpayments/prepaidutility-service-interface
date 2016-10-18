@@ -26,16 +26,14 @@ public class DebtRecoveryCharge {
    private LedgerAmount balance = null;
    private String receiptNum = null;
 
+   /**
+    * Amount charged and tax levied for debt recovery, in minor denomination.
+    **/
    public DebtRecoveryCharge amount(TaxableAmount amount) {
       this.amount = amount;
       return this;
    }
 
-   /**
-    * Amount charged and tax levied for debt recovery, in minor denomination.
-    * 
-    * @return amount
-    **/
    @ApiModelProperty(required = true, value = "Amount charged and tax levied for debt recovery, in minor denomination.")
    @NotNull
    public TaxableAmount getAmount() {
@@ -46,16 +44,14 @@ public class DebtRecoveryCharge {
       this.amount = amount;
    }
 
+   /**
+    * Description of this debt recovery charge (e.g. municipal rates arrears).
+    **/
    public DebtRecoveryCharge description(String description) {
       this.description = description;
       return this;
    }
 
-   /**
-    * Description of this debt recovery charge (e.g. municipal rates arrears).
-    * 
-    * @return description
-    **/
    @ApiModelProperty(required = true, value = "Description of this debt recovery charge (e.g. municipal rates arrears).")
    @NotNull
    @Length(max = 40)
@@ -67,16 +63,14 @@ public class DebtRecoveryCharge {
       this.description = description;
    }
 
+   /**
+    * Remaining balance on this account.
+    **/
    public DebtRecoveryCharge balance(LedgerAmount balance) {
       this.balance = balance;
       return this;
    }
 
-   /**
-    * Remaining balance on this account.
-    * 
-    * @return balance
-    **/
    @ApiModelProperty(required = true, value = "Remaining balance on this account.")
    @NotNull
    public LedgerAmount getBalance() {
@@ -87,16 +81,14 @@ public class DebtRecoveryCharge {
       this.balance = balance;
    }
 
+   /**
+    * Receipt number for this charge.
+    **/
    public DebtRecoveryCharge receiptNum(String receiptNum) {
       this.receiptNum = receiptNum;
       return this;
    }
 
-   /**
-    * Receipt number for this charge.
-    * 
-    * @return receiptNum
-    **/
    @ApiModelProperty(value = "Receipt number for this charge.")
    @Length(max = 30)
    public String getReceiptNum() {

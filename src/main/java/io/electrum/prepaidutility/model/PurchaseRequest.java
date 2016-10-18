@@ -1,5 +1,8 @@
 package io.electrum.prepaidutility.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -23,19 +26,17 @@ public class PurchaseRequest extends Transaction {
 
    private Meter meter = null;
    private LedgerAmount purchaseAmount = null;
-   private String utilityType = null;
    private Integer slipWidth = null;
+   private List<AdditionalDataElement> additionalData = new ArrayList<AdditionalDataElement>();
 
+   /**
+    * Details of the meter for which a purchase is requested. The object must include at least a value for meterId.
+    **/
    public PurchaseRequest meterId(Meter meter) {
       this.meter = meter;
       return this;
    }
 
-   /**
-    * Details of the meter for which a purchase is requested. The object must include at least a value for meterId.
-    * 
-    * @return meter
-    **/
    @ApiModelProperty(required = true, value = "Details of the meter for which a purchase is requested. The object must include at least a value for meterId.")
    @NotNull
    @Pattern(regexp = "[a-zA-Z0-9]{0,20}")
@@ -47,16 +48,14 @@ public class PurchaseRequest extends Transaction {
       this.meter = meter;
    }
 
+   /**
+    * Monetary amount, in minor denomination, of the requested token purchase.
+    **/
    public PurchaseRequest purchaseAmount(LedgerAmount purchaseAmount) {
       this.purchaseAmount = purchaseAmount;
       return this;
    }
 
-   /**
-    * Monetary amount, in minor denomination, of the requested token purchase.
-    * 
-    * @return purchaseAmount
-    **/
    @ApiModelProperty(required = true, value = "Monetary amount, in minor denomination, of the requested token purchase.")
    @NotNull
    public LedgerAmount getPurchaseAmount() {
@@ -67,35 +66,14 @@ public class PurchaseRequest extends Transaction {
       this.purchaseAmount = purchaseAmount;
    }
 
-   public PurchaseRequest utilityType(String utilityType) {
-      this.utilityType = utilityType;
-      return this;
-   }
-
    /**
-    * Type of utility purchase being requested (e.g. electricity, water, gas).
-    * 
-    * @return utilityType
-    **/
-   @ApiModelProperty(value = "Type of utility purchase being requested (e.g. electricity, water, gas).")
-   public String getUtilityType() {
-      return utilityType;
-   }
-
-   public void setUtilityType(String utilityType) {
-      this.utilityType = utilityType;
-   }
-
+    * Width of the slip on which POS prints the transaction receipt.
+    */
    public PurchaseRequest slipWidth(Integer slipWidth) {
       this.slipWidth = slipWidth;
       return this;
    }
 
-   /**
-    * Width of the slip on which POS prints the transaction receipt.
-    * 
-    * @return slipWidth
-    */
    @ApiModelProperty(value = "Width of the slip on which POS prints the transaction receipt.")
    @Min(21)
    @Max(80)
@@ -105,6 +83,23 @@ public class PurchaseRequest extends Transaction {
 
    public void setSlipWidth(Integer slipWidth) {
       this.slipWidth = slipWidth;
+   }
+   
+   /**
+    * Array of {@link AdditionalDataElement} fields. 
+    */
+   public PurchaseRequest additionalData(List<AdditionalDataElement> additionalData) {
+      this.additionalData = additionalData;
+      return this;
+   }
+   
+   @ApiModelProperty(value = "")
+   public List<AdditionalDataElement> getAdditionalData() {
+      return additionalData;
+   }
+   
+   public void setAdditionalData(List<AdditionalDataElement> additionalData) {
+      this.additionalData = additionalData;
    }
 
    @Override
@@ -121,8 +116,8 @@ public class PurchaseRequest extends Transaction {
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
       sb.append("    meterId: ").append(Utils.toIndentedString(meter)).append("\n");
       sb.append("    purchaseAmount: ").append(Utils.toIndentedString(purchaseAmount)).append("\n");
-      sb.append("    utilityType: ").append(Utils.toIndentedString(utilityType)).append("\n");
       sb.append("    slipWidth: ").append(Utils.toIndentedString(slipWidth)).append("\n");
+      sb.append("    additionalData: ").append(Utils.toIndentedString(additionalData)).append("\n");
       sb.append("}");
       return sb.toString();
    }
