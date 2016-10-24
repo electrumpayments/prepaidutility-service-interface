@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.electrum.vas.Utils;
-import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -17,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "Represents a token purchase request retry")
 @JsonInclude(Include.NON_NULL)
-public class PurchaseRequestRetry extends Transaction {
+public class PurchaseRequestRetry {
 
    private String retryId = null;
    private DateTime retryTime = null;
@@ -85,13 +84,6 @@ public class PurchaseRequestRetry extends Transaction {
       StringBuilder sb = new StringBuilder();
       sb.append("class PurchaseRequestRetry {\n");
 
-      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
-      sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
-      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append("\n");
-      sb.append("    client: ").append(Utils.toIndentedString(client)).append("\n");
-      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
-      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
-      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
       sb.append("    retryId: ").append(Utils.toIndentedString(retryId)).append("\n");
       sb.append("    retryTime: ").append(Utils.toIndentedString(retryTime)).append("\n");
       sb.append("    originalRequest: ").append(Utils.toIndentedString(originalRequest)).append("\n");
