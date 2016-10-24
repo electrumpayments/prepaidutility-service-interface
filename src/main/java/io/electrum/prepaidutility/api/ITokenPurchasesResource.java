@@ -10,7 +10,7 @@ import javax.ws.rs.core.UriInfo;
 import io.electrum.prepaidutility.model.ConfirmationAdvice;
 import io.electrum.prepaidutility.model.PurchaseRequest;
 import io.electrum.prepaidutility.model.PurchaseRequestRetry;
-import io.electrum.prepaidutility.model.ReversalRequest;
+import io.electrum.prepaidutility.model.ReversalAdvice;
 
 public interface ITokenPurchasesResource {
 
@@ -49,7 +49,7 @@ public interface ITokenPurchasesResource {
    public void reverseTokenPurchase(
          String purchaseId,
          String reversalId,
-         ReversalRequest body,
+         ReversalAdvice body,
          SecurityContext securityContext,
          AsyncResponse asyncResponse,
          Request request,
