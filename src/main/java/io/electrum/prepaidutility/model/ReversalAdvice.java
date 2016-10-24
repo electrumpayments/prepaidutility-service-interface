@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModel;
  * Represents a request to reverse a previous transaction transaction.
  */
 @ApiModel(description = "Represents a request to reverse a previous transaction transaction.")
-public class ReversalRequest extends BasicReversal {
+public class ReversalAdvice extends BasicReversal {
 
    @Override
    public String toString() {
