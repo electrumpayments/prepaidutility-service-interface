@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.LedgerAmount;
+import io.electrum.vas.model.Tender;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -26,8 +27,10 @@ public class PurchaseRequest extends Transaction {
 
    private Meter meter = null;
    private LedgerAmount purchaseAmount = null;
+   private String utilityType = null;
    private Integer slipWidth = null;
-   private List<AdditionalDataElement> additionalData = new ArrayList<AdditionalDataElement>();
+   private String msisdn = null;
+   private List<Tender> tenders = new ArrayList<>();
 
    /**
     * Details of the meter for which a purchase is requested. The object must include at least a value for meterId.
@@ -67,6 +70,23 @@ public class PurchaseRequest extends Transaction {
    }
 
    /**
+    * Type of utility purchase being requested (e.g. electricity, water, gas).
+    */
+   public PurchaseRequest utilityType(String utilityType) {
+      this.utilityType = utilityType;
+      return this;
+   }
+
+   @ApiModelProperty(value = "Type of utility purchase being requested (e.g. electricity, water, gas).")
+   public String getUtilityType() {
+      return utilityType;
+   }
+
+   public void setUtilityType(String utilityType) {
+      this.utilityType = utilityType;
+   }
+
+   /**
     * Width of the slip on which POS prints the transaction receipt.
     */
    public PurchaseRequest slipWidth(Integer slipWidth) {
@@ -84,22 +104,41 @@ public class PurchaseRequest extends Transaction {
    public void setSlipWidth(Integer slipWidth) {
       this.slipWidth = slipWidth;
    }
-   
-   /**
-    * Array of {@link AdditionalDataElement} fields. 
+
+   /*
+    * Mobile phone number of the customer to which the outcome of a transaction can be communicated. Must conform to the
+    * ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).
     */
-   public PurchaseRequest additionalData(List<AdditionalDataElement> additionalData) {
-      this.additionalData = additionalData;
+   public PurchaseRequest msisdn(String msisdn) {
+      this.msisdn = msisdn;
       return this;
    }
-   
-   @ApiModelProperty(value = "")
-   public List<AdditionalDataElement> getAdditionalData() {
-      return additionalData;
+
+   @ApiModelProperty(value = "Mobile phone number of the customer to which the outcome of a transaction can be communicated. Must conform to the ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).")
+   @Pattern(regexp = "^\\+?[1-9]\\d{1,14}")
+   public String getMsisdn() {
+      return msisdn;
    }
-   
-   public void setAdditionalData(List<AdditionalDataElement> additionalData) {
-      this.additionalData = additionalData;
+
+   public void setMsisdn(String msisdn) {
+      this.msisdn = msisdn;
+   }
+
+   /**
+    * An array of tenders used to pay for the transaction.
+    */
+   public PurchaseRequest tenders(List<Tender> tenders) {
+      this.tenders = tenders;
+      return this;
+   }
+
+   @ApiModelProperty(value = "An array of tenders used to pay for the transaction.")
+   public List<Tender> getTenders() {
+      return tenders;
+   }
+
+   public void setTenders(List<Tender> tenders) {
+      this.tenders = tenders;
    }
 
    @Override
@@ -116,8 +155,10 @@ public class PurchaseRequest extends Transaction {
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
       sb.append("    meterId: ").append(Utils.toIndentedString(meter)).append("\n");
       sb.append("    purchaseAmount: ").append(Utils.toIndentedString(purchaseAmount)).append("\n");
+      sb.append("    utilityType: ").append(Utils.toIndentedString(utilityType)).append("\n");
       sb.append("    slipWidth: ").append(Utils.toIndentedString(slipWidth)).append("\n");
-      sb.append("    additionalData: ").append(Utils.toIndentedString(additionalData)).append("\n");
+      sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append("\n");
+      sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
       sb.append("}");
       return sb.toString();
    }
