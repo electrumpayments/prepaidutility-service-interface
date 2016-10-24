@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Customer;
-import io.electrum.vas.model.SlipData;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -29,7 +28,6 @@ public class PurchaseResponse extends Transaction {
    private List<Token> tokens = new ArrayList<Token>();
    private List<DebtRecoveryCharge> debtRecoveryCharges = new ArrayList<DebtRecoveryCharge>();
    private List<ServiceCharge> serviceCharges = new ArrayList<ServiceCharge>();
-   private SlipData slipData = null;
 
    /**
     * Details of the meter.
@@ -168,24 +166,6 @@ public class PurchaseResponse extends Transaction {
       this.serviceCharges = serviceCharges;
    }
 
-   /**
-    * A ready-to-print till slip. This is supplied by some providers either in addition to or in place of individual
-    * message elements. Where present, it must be used by POS to print the slip.
-    */
-   public PurchaseResponse slipData(SlipData slipData) {
-      this.slipData = slipData;
-      return this;
-   }
-
-   @ApiModelProperty(value = "A ready-to-print till slip. This is supplied by some providers either in addition to or in place of individual message elements. Where present, it must be used by POS to print the slip.")
-   public SlipData getSlipData() {
-      return slipData;
-   }
-
-   public void setSlipData(SlipData slipData) {
-      this.slipData = slipData;
-   }
-
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
@@ -205,7 +185,6 @@ public class PurchaseResponse extends Transaction {
       sb.append("    tokens: ").append(Utils.toIndentedString(tokens)).append("\n");
       sb.append("    debtRecoveryCharges: ").append(Utils.toIndentedString(debtRecoveryCharges)).append("\n");
       sb.append("    serviceCharges: ").append(Utils.toIndentedString(serviceCharges)).append("\n");
-      sb.append("    slipData: ").append(Utils.toIndentedString(slipData)).append("\n");
       sb.append("}");
       return sb.toString();
    }
