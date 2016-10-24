@@ -3,8 +3,6 @@ package io.electrum.prepaidutility.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -28,7 +26,6 @@ public class PurchaseRequest extends Transaction {
    private Meter meter = null;
    private LedgerAmount purchaseAmount = null;
    private String utilityType = null;
-   private Integer slipWidth = null;
    private String msisdn = null;
    private List<Tender> tenders = new ArrayList<>();
 
@@ -86,25 +83,6 @@ public class PurchaseRequest extends Transaction {
       this.utilityType = utilityType;
    }
 
-   /**
-    * Width of the slip on which POS prints the transaction receipt.
-    */
-   public PurchaseRequest slipWidth(Integer slipWidth) {
-      this.slipWidth = slipWidth;
-      return this;
-   }
-
-   @ApiModelProperty(value = "Width of the slip on which POS prints the transaction receipt.")
-   @Min(21)
-   @Max(80)
-   public Integer getSlipWidth() {
-      return slipWidth;
-   }
-
-   public void setSlipWidth(Integer slipWidth) {
-      this.slipWidth = slipWidth;
-   }
-
    /*
     * Mobile phone number of the customer to which the outcome of a transaction can be communicated. Must conform to the
     * ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).
@@ -156,7 +134,6 @@ public class PurchaseRequest extends Transaction {
       sb.append("    meterId: ").append(Utils.toIndentedString(meter)).append("\n");
       sb.append("    purchaseAmount: ").append(Utils.toIndentedString(purchaseAmount)).append("\n");
       sb.append("    utilityType: ").append(Utils.toIndentedString(utilityType)).append("\n");
-      sb.append("    slipWidth: ").append(Utils.toIndentedString(slipWidth)).append("\n");
       sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append("\n");
       sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
       sb.append("}");

@@ -1,7 +1,5 @@
 package io.electrum.prepaidutility.model;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -21,7 +19,6 @@ public class TokenReprintRequest extends Transaction {
 
    private Meter meter = null;
    private String originalRef = null;
-   private Integer slipWidth = null;
 
    public TokenReprintRequest meterId(Meter meter) {
       this.meter = meter;
@@ -63,27 +60,6 @@ public class TokenReprintRequest extends Transaction {
       this.originalRef = originalRef;
    }
 
-   public TokenReprintRequest slipWidth(Integer slipWidth) {
-      this.slipWidth = slipWidth;
-      return this;
-   }
-
-   /**
-    * Width of the slip on which POS prints the transaction receipt.
-    * 
-    * @return slipWidth
-    */
-   @ApiModelProperty(value = "Width of the slip on which POS prints the transaction receipt.")
-   @Min(21)
-   @Max(80)
-   public Integer getSlipWidth() {
-      return slipWidth;
-   }
-
-   public void setSlipWidth(Integer slipWidth) {
-      this.slipWidth = slipWidth;
-   }
-
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
@@ -98,7 +74,6 @@ public class TokenReprintRequest extends Transaction {
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
       sb.append("    meter: ").append(Utils.toIndentedString(meter)).append("\n");
       sb.append("    originalRef: ").append(Utils.toIndentedString(originalRef)).append("\n");
-      sb.append("    slipWidth: ").append(Utils.toIndentedString(slipWidth)).append("\n");
       sb.append("}");
       return sb.toString();
    }
