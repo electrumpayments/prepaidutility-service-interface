@@ -74,6 +74,7 @@ public class TokenReprintRequest extends Transaction {
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
       sb.append("    meter: ").append(Utils.toIndentedString(meter)).append("\n");
       sb.append("    originalRef: ").append(Utils.toIndentedString(originalRef)).append("\n");
+      sb.append("    slipData: ").append(Utils.toIndentedString(slipData)).append("\n");
       sb.append("}");
       return sb.toString();
    }

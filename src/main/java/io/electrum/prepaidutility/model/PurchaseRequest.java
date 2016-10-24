@@ -136,6 +136,7 @@ public class PurchaseRequest extends Transaction {
       sb.append("    utilityType: ").append(Utils.toIndentedString(utilityType)).append("\n");
       sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append("\n");
       sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
+      sb.append("    slipData: ").append(Utils.toIndentedString(slipData)).append("\n");
       sb.append("}");
       return sb.toString();
    }

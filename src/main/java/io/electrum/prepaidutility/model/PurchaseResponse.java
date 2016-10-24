@@ -185,6 +185,7 @@ public class PurchaseResponse extends Transaction {
       sb.append("    tokens: ").append(Utils.toIndentedString(tokens)).append("\n");
       sb.append("    debtRecoveryCharges: ").append(Utils.toIndentedString(debtRecoveryCharges)).append("\n");
       sb.append("    serviceCharges: ").append(Utils.toIndentedString(serviceCharges)).append("\n");
+      sb.append("    slipData: ").append(Utils.toIndentedString(slipData)).append("\n");
       sb.append("}");
       return sb.toString();
    }
