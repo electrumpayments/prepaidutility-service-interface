@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 
-@Path("/prepaidutility/v1/meterLookups")
+@Path("/prepaidutility/v2/meterLookups")
 @Api(description = "the meterLookups API", authorizations = { @Authorization("httpBasic") })
 public abstract class MeterLookupsResource {
 
