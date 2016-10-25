@@ -5,10 +5,12 @@ Released 24 Oct 2016
 * Introduced `PurchaseRequestRetry` model to be used in place of `PurchaseRequest` for request retries
 * Introduced `SlipData` model to be used in place of `PrintableSlip`
 * Removed `slipWdth` from requests as this is now contained in `SlipData`
-* Introduced `ConfirmationAdvice` and `ReversalRequest` models as wrappers for `TenderAdvice` and `BasicReversal`, respectively
+* Introduced `ConfirmationAdvice` and `ReversalAdvice` models as wrappers for `TenderAdvice` and `BasicReversal`, respectively
+* Updated `ErrorDetail` enum values
 
 ### Non-breaking changes
 * Added `msisdn` and `tenders` fields to `PurchaseRequest` model
+* Added `BasicAdviceResponse` body to `reverseTokenPurchase` and `confirmTokenPurchase` operations
 
 
 ## v1.1.2
