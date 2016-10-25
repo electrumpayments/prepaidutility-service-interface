@@ -14,9 +14,9 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
+import io.electrum.prepaidutility.model.ErrorDetail;
 import io.electrum.prepaidutility.model.FaultReportRequest;
 import io.electrum.prepaidutility.model.FaultReportResponse;
-import io.electrum.vas.model.ErrorDetail;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 
-@Path("/prepaidutility/v1/faultReports")
+@Path("/prepaidutility/v2/faultReports")
 @Api(description = "the faultReports API", authorizations = { @Authorization("httpBasic") })
 public abstract class FaultReportsResource {
 

@@ -14,16 +14,16 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
+import io.electrum.prepaidutility.model.ErrorDetail;
 import io.electrum.prepaidutility.model.PurchaseResponse;
 import io.electrum.prepaidutility.model.TokenReprintRequest;
-import io.electrum.vas.model.ErrorDetail;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/prepaidutility/v1/tokenReprints")
+@Path("/prepaidutility/v2/tokenReprints")
 @Api(description = "the tokenReprints API")
 public abstract class TokenReprintsResource {
 
