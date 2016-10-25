@@ -1,16 +1,17 @@
 ## v2.0.0
-Released 24 Oct 2016
+Released 25 Oct 2016
 
 ### Breaking changes
 * Introduced `PurchaseRequestRetry` model to be used in place of `PurchaseRequest` for request retries
 * Introduced `SlipData` model to be used in place of `PrintableSlip`
 * Removed `slipWdth` from requests as this is now contained in `SlipData`
 * Introduced `ConfirmationAdvice` and `ReversalAdvice` models as wrappers for `TenderAdvice` and `BasicReversal`, respectively
-* Updated `ErrorDetail` enum values
+* Refactored `ErrorDetail` model
 
 ### Non-breaking changes
 * Added `msisdn` and `tenders` fields to `PurchaseRequest` model
 * Added `BasicAdviceResponse` body to `reverseTokenPurchase` and `confirmTokenPurchase` operations
+* Added `LOYALTY_CARD` and `GIFT_CARD` tender types
 
 
 ## v1.1.2
