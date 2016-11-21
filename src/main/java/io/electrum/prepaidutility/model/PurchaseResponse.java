@@ -28,18 +28,15 @@ public class PurchaseResponse extends Transaction {
    private List<Token> tokens = new ArrayList<Token>();
    private List<DebtRecoveryCharge> debtRecoveryCharges = new ArrayList<DebtRecoveryCharge>();
    private List<ServiceCharge> serviceCharges = new ArrayList<ServiceCharge>();
-   private PrintableSlip printableSlip = null;
 
+   /**
+    * Details of the meter.
+    **/
    public PurchaseResponse meter(Meter meter) {
       this.meter = meter;
       return this;
    }
 
-   /**
-    * Details of the meter.
-    * 
-    * @return meter
-    **/
    @ApiModelProperty(required = true, value = "Details of the meter.")
    @NotNull
    public Meter getMeter() {
@@ -50,16 +47,14 @@ public class PurchaseResponse extends Transaction {
       this.meter = meter;
    }
 
+   /**
+    * Details of the person or organization to whom the meter belongs.
+    **/
    public PurchaseResponse customer(Customer customer) {
       this.customer = customer;
       return this;
    }
 
-   /**
-    * Details of the person or organization to whom the meter belongs.
-    * 
-    * @return customer
-    **/
    @ApiModelProperty(required = true, value = "Details of the person or organization to whom the meter belongs.")
    @NotNull
    public Customer getCustomer() {
@@ -70,16 +65,14 @@ public class PurchaseResponse extends Transaction {
       this.customer = customer;
    }
 
+   /**
+    * Details of the utility which manages this meter's account.
+    **/
    public PurchaseResponse utility(Utility utility) {
       this.utility = utility;
       return this;
    }
 
-   /**
-    * Details of the utility which manages this meter's account.
-    * 
-    * @return utility
-    **/
    @ApiModelProperty(required = true, value = "Details of the utility which manages this meter's account.")
    @NotNull
    public Utility getUtility() {
@@ -90,16 +83,14 @@ public class PurchaseResponse extends Transaction {
       this.utility = utility;
    }
 
+   /**
+    * Type of utility purchase being requested (e.g. electricity, water, gas).
+    **/
    public PurchaseResponse utilityType(String utilityType) {
       this.utilityType = utilityType;
       return this;
    }
 
-   /**
-    * Type of utility purchase being requested (e.g. electricity, water, gas).
-    * 
-    * @return utilityType
-    **/
    @ApiModelProperty(value = "Type of utility purchase being requested (e.g. electricity, water, gas).")
    public String getUtilityType() {
       return utilityType;
@@ -109,6 +100,9 @@ public class PurchaseResponse extends Transaction {
       this.utilityType = utilityType;
    }
 
+   /**
+    * List of tokens issued for the purchase.
+    **/
    public PurchaseResponse tokens(List<Token> tokens) {
       this.tokens = tokens;
       return this;
@@ -119,11 +113,6 @@ public class PurchaseResponse extends Transaction {
       return this;
    }
 
-   /**
-    * List of tokens issued for the purchase.
-    * 
-    * @return tokens
-    **/
    @ApiModelProperty(value = "List of tokens issued for the purchase.")
    public List<Token> getTokens() {
       return tokens;
@@ -133,6 +122,9 @@ public class PurchaseResponse extends Transaction {
       this.tokens = tokens;
    }
 
+   /**
+    * List of charges that have been levied in order to reclaim outstanding debts associated with the meter.
+    **/
    public PurchaseResponse debtRecoveryCharges(List<DebtRecoveryCharge> debtRecoveryCharges) {
       this.debtRecoveryCharges = debtRecoveryCharges;
       return this;
@@ -143,11 +135,6 @@ public class PurchaseResponse extends Transaction {
       return this;
    }
 
-   /**
-    * List of charges that have been levied in order to reclaim outstanding debts associated with the meter.
-    * 
-    * @return debtRecoveryCharges
-    **/
    @ApiModelProperty(value = "List of charges that have been levied in order to reclaim outstanding debts associated with the meter.")
    public List<DebtRecoveryCharge> getDebtRecoveryCharges() {
       return debtRecoveryCharges;
@@ -157,6 +144,9 @@ public class PurchaseResponse extends Transaction {
       this.debtRecoveryCharges = debtRecoveryCharges;
    }
 
+   /**
+    * List of service charges levied against this meter.
+    **/
    public PurchaseResponse serviceCharges(List<ServiceCharge> serviceCharges) {
       this.serviceCharges = serviceCharges;
       return this;
@@ -167,11 +157,6 @@ public class PurchaseResponse extends Transaction {
       return this;
    }
 
-   /**
-    * List of service charges levied against this meter.
-    * 
-    * @return serviceCharges
-    **/
    @ApiModelProperty(value = "List of service charges levied against this meter.")
    public List<ServiceCharge> getServiceCharges() {
       return serviceCharges;
@@ -179,26 +164,6 @@ public class PurchaseResponse extends Transaction {
 
    public void setServiceCharges(List<ServiceCharge> serviceCharges) {
       this.serviceCharges = serviceCharges;
-   }
-
-   public PurchaseResponse printableSlip(PrintableSlip printableSlip) {
-      this.printableSlip = printableSlip;
-      return this;
-   }
-
-   /**
-    * A ready-to-print till slip. This is supplied by some providers either in addition to or in place of individual
-    * message elements. Where present, it must be used by POS to print the slip.
-    * 
-    * @return printableSlip
-    */
-   @ApiModelProperty(value = "A ready-to-print till slipA ready-to-print till slip. This is supplied by some providers either in addition to or in place of individual message elements. Where present, it must be used by POS to print the slip.")
-   public PrintableSlip getPrintableSlip() {
-      return printableSlip;
-   }
-
-   public void setPrintableSlip(PrintableSlip printableSlip) {
-      this.printableSlip = printableSlip;
    }
 
    @Override
@@ -220,7 +185,7 @@ public class PurchaseResponse extends Transaction {
       sb.append("    tokens: ").append(Utils.toIndentedString(tokens)).append("\n");
       sb.append("    debtRecoveryCharges: ").append(Utils.toIndentedString(debtRecoveryCharges)).append("\n");
       sb.append("    serviceCharges: ").append(Utils.toIndentedString(serviceCharges)).append("\n");
-      sb.append("    printableSlip: ").append(Utils.toIndentedString(printableSlip)).append("\n");
+      sb.append("    slipData: ").append(Utils.toIndentedString(slipData)).append("\n");
       sb.append("}");
       return sb.toString();
    }

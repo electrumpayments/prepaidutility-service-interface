@@ -7,16 +7,17 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
+import io.electrum.prepaidutility.model.ConfirmationAdvice;
 import io.electrum.prepaidutility.model.PurchaseRequest;
-import io.electrum.vas.model.BasicReversal;
-import io.electrum.vas.model.TenderAdvice;
+import io.electrum.prepaidutility.model.PurchaseRequestRetry;
+import io.electrum.prepaidutility.model.ReversalAdvice;
 
 public interface ITokenPurchasesResource {
 
    public void confirmTokenPurchase(
          String purchaseId,
          String confirmationId,
-         TenderAdvice body,
+         ConfirmationAdvice body,
          SecurityContext securityContext,
          AsyncResponse asyncResponse,
          Request request,
@@ -37,7 +38,7 @@ public interface ITokenPurchasesResource {
    public void retryPurchaseRequest(
          String purchaseId,
          String retryId,
-         PurchaseRequest body,
+         PurchaseRequestRetry body,
          SecurityContext securityContext,
          AsyncResponse asyncResponse,
          Request request,
@@ -48,7 +49,7 @@ public interface ITokenPurchasesResource {
    public void reverseTokenPurchase(
          String purchaseId,
          String reversalId,
-         BasicReversal body,
+         ReversalAdvice body,
          SecurityContext securityContext,
          AsyncResponse asyncResponse,
          Request request,

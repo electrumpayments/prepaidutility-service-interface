@@ -3,7 +3,7 @@ The Prepaid Utility Service Interface has a set of tools to assist developers wi
 
 ## Test server
 
-A server implementation of the Prepaid Utility Service Interface is accessible via the base url https://ppu-test-server.herokuapp.com/prepaidutility/v1. (Following this link will return a `404` error, but all the RESTful operations described in the specification are supported by the server).
+A server implementation of the Prepaid Utility Service Interface is accessible via the base url https://ppu-test-server.herokuapp.com/prepaidutility/v2. (Following this link will return a `404` error, but all the RESTful operations described in the specification are supported by the server).
 
 
 > __IMPORTANT__: The test server is intended to be used as a development tool for testing the basic functionality of a client implementation of the service. It does not interface with any upstream provider and cannot be used for quality assurance or user-acceptance testing of an end-to-end solution.
@@ -40,7 +40,7 @@ The test scenarios consist of either a single request message, or sequence of re
 
 ### Quick start guide
 - Install the [Postman](https://www.getpostman.com/) client app and familiarize yourself with how to use it.
-- Import the test pack [collection](https://github.com/electrumpayments/prepaidutility-test-server/blob/master/test/postman/PrepaidUtilityTestPack.postman_collection.json) into Postman.
+- Import the test pack [collection](https://github.com/electrumpayments/prepaidutility-test-server/blob/master/test/postman/PrepaidUtilityTestPack.postman_collection_v2.json) into Postman.
 
 ![Import collection](/images/postman-import.png)
 

@@ -1,19 +1,17 @@
 package io.electrum.prepaidutility.model;
 
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
-import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.LedgerAmount;
+import io.electrum.vas.model.Tender;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -28,21 +26,17 @@ public class PurchaseRequest extends Transaction {
    private Meter meter = null;
    private LedgerAmount purchaseAmount = null;
    private String utilityType = null;
-   private Integer slipWidth = null;
-   private boolean retry = false;
-   private UUID originalId = null;
-   private DateTime originalTime = null;
+   private String msisdn = null;
+   private List<Tender> tenders = new ArrayList<>();
 
+   /**
+    * Details of the meter for which a purchase is requested. The object must include at least a value for meterId.
+    **/
    public PurchaseRequest meterId(Meter meter) {
       this.meter = meter;
       return this;
    }
 
-   /**
-    * Details of the meter for which a purchase is requested. The object must include at least a value for meterId.
-    * 
-    * @return meter
-    **/
    @ApiModelProperty(required = true, value = "Details of the meter for which a purchase is requested. The object must include at least a value for meterId.")
    @NotNull
    @Pattern(regexp = "[a-zA-Z0-9]{0,20}")
@@ -54,16 +48,14 @@ public class PurchaseRequest extends Transaction {
       this.meter = meter;
    }
 
+   /**
+    * Monetary amount, in minor denomination, of the requested token purchase.
+    **/
    public PurchaseRequest purchaseAmount(LedgerAmount purchaseAmount) {
       this.purchaseAmount = purchaseAmount;
       return this;
    }
 
-   /**
-    * Monetary amount, in minor denomination, of the requested token purchase.
-    * 
-    * @return purchaseAmount
-    **/
    @ApiModelProperty(required = true, value = "Monetary amount, in minor denomination, of the requested token purchase.")
    @NotNull
    public LedgerAmount getPurchaseAmount() {
@@ -74,16 +66,14 @@ public class PurchaseRequest extends Transaction {
       this.purchaseAmount = purchaseAmount;
    }
 
+   /**
+    * Type of utility purchase being requested (e.g. electricity, water, gas).
+    */
    public PurchaseRequest utilityType(String utilityType) {
       this.utilityType = utilityType;
       return this;
    }
 
-   /**
-    * Type of utility purchase being requested (e.g. electricity, water, gas).
-    * 
-    * @return utilityType
-    **/
    @ApiModelProperty(value = "Type of utility purchase being requested (e.g. electricity, water, gas).")
    public String getUtilityType() {
       return utilityType;
@@ -93,82 +83,40 @@ public class PurchaseRequest extends Transaction {
       this.utilityType = utilityType;
    }
 
-   public PurchaseRequest slipWidth(Integer slipWidth) {
-      this.slipWidth = slipWidth;
+   /*
+    * Mobile phone number of the customer to which the outcome of a transaction can be communicated. Must conform to the
+    * ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).
+    */
+   public PurchaseRequest msisdn(String msisdn) {
+      this.msisdn = msisdn;
       return this;
    }
 
+   @ApiModelProperty(value = "Mobile phone number of the customer to which the outcome of a transaction can be communicated. Must conform to the ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).")
+   @Pattern(regexp = "^\\+?[1-9]\\d{1,14}")
+   public String getMsisdn() {
+      return msisdn;
+   }
+
+   public void setMsisdn(String msisdn) {
+      this.msisdn = msisdn;
+   }
+
    /**
-    * Width of the slip on which POS prints the transaction receipt.
-    * 
-    * @return slipWidth
+    * An array of tenders used to pay for the transaction.
     */
-   @ApiModelProperty(value = "Width of the slip on which POS prints the transaction receipt.")
-   @Min(21)
-   @Max(80)
-   public Integer getSlipWidth() {
-      return slipWidth;
-   }
-
-   public void setSlipWidth(Integer slipWidth) {
-      this.slipWidth = slipWidth;
-   }
-
-   public PurchaseRequest retry(boolean retry) {
-      this.retry = retry;
+   public PurchaseRequest tenders(List<Tender> tenders) {
+      this.tenders = tenders;
       return this;
    }
 
-   /**
-    * Boolean indicating if this request represents a retry of a previous transaction.
-    * 
-    * @return isRetry
-    */
-   @ApiModelProperty(value = "Boolean indicating if this request represents a retry of a previous transaction.")
-   public boolean isRetry() {
-      return retry;
+   @ApiModelProperty(value = "An array of tenders used to pay for the transaction.")
+   public List<Tender> getTenders() {
+      return tenders;
    }
 
-   public void setRetry(boolean retry) {
-      this.retry = retry;
-   }
-
-   public PurchaseRequest originalId(UUID originalId) {
-      this.originalId = originalId;
-      return this;
-   }
-
-   /**
-    * UUID of the original request. Only used if this request is a retry of a previous transaction.
-    * 
-    * @return originalId
-    */
-   @ApiModelProperty(value = "UUID of the original request. Only used if this request is a retry of a previous transaction.")
-   public UUID getOriginalId() {
-      return originalId;
-   }
-
-   public void setOriginalId(UUID originalId) {
-      this.originalId = originalId;
-   }
-
-   public PurchaseRequest originalTime(DateTime originalTime) {
-      this.originalTime = originalTime;
-      return this;
-   }
-
-   /**
-    * Time of the original request. Only used if this request is a retry of a previous transaction.
-    * 
-    * @return
-    */
-   @ApiModelProperty(value = "Time of the original request. Only used if this request is a retry of a previous transaction.")
-   public DateTime getOriginalTime() {
-      return originalTime;
-   }
-
-   public void setOriginalTime(DateTime originalTime) {
-      this.originalTime = originalTime;
+   public void setTenders(List<Tender> tenders) {
+      this.tenders = tenders;
    }
 
    @Override
@@ -186,10 +134,9 @@ public class PurchaseRequest extends Transaction {
       sb.append("    meterId: ").append(Utils.toIndentedString(meter)).append("\n");
       sb.append("    purchaseAmount: ").append(Utils.toIndentedString(purchaseAmount)).append("\n");
       sb.append("    utilityType: ").append(Utils.toIndentedString(utilityType)).append("\n");
-      sb.append("    slipWidth: ").append(Utils.toIndentedString(slipWidth)).append("\n");
-      sb.append("    retry: ").append(Utils.toIndentedString(retry)).append("\n");
-      sb.append("    originalId: ").append(Utils.toIndentedString(originalId)).append("\n");
-      sb.append("    originalTime: ").append(Utils.toIndentedString(originalTime)).append("\n");
+      sb.append("    msisdn: ").append(Utils.toIndentedString(msisdn)).append("\n");
+      sb.append("    tenders: ").append(Utils.toIndentedString(tenders)).append("\n");
+      sb.append("    slipData: ").append(Utils.toIndentedString(slipData)).append("\n");
       sb.append("}");
       return sb.toString();
    }

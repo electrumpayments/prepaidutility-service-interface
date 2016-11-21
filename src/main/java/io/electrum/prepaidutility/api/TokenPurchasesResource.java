@@ -14,18 +14,20 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
+import io.electrum.prepaidutility.model.ConfirmationAdvice;
+import io.electrum.prepaidutility.model.ErrorDetail;
 import io.electrum.prepaidutility.model.PurchaseRequest;
+import io.electrum.prepaidutility.model.PurchaseRequestRetry;
 import io.electrum.prepaidutility.model.PurchaseResponse;
-import io.electrum.vas.model.BasicReversal;
-import io.electrum.vas.model.ErrorDetail;
-import io.electrum.vas.model.TenderAdvice;
+import io.electrum.prepaidutility.model.ReversalAdvice;
+import io.electrum.vas.model.BasicAdviceResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/prepaidutility/v1/tokenPurchases")
+@Path("/prepaidutility/v2/tokenPurchases")
 @Api(description = "the tokenPurchases API")
 public abstract class TokenPurchasesResource {
 
@@ -36,7 +38,7 @@ public abstract class TokenPurchasesResource {
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(value = "Confirms that a purchase has been completed successfully.", notes = "Confirms that a purchase has been completed successfully (i.e. the tokens have been issued to the customer and payment has been received by the merchant). It is typical that token providers do not support confirmations (aka advices), but certain point-of-sale integrations may require support for these. A confirmation request must be sent repeatedly until an HTTP response code indicating a final state has been received (i.e. either 202 or 400).")
-   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted"),
+   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = BasicAdviceResponse.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
@@ -45,7 +47,7 @@ public abstract class TokenPurchasesResource {
    public void confirmTokenPurchase(
          @ApiParam(value = "The randomly generated UUID of the original purchase request.", required = true) @PathParam("purchaseId") String purchaseId,
          @ApiParam(value = "The randomly generated UUID of this confirmation.", required = true) @PathParam("confirmationId") String confirmationId,
-         @ApiParam(value = "A token purchase confirmation", required = true) TenderAdvice body,
+         @ApiParam(value = "A token purchase confirmation", required = true) ConfirmationAdvice body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
          @Context Request request,
@@ -110,7 +112,7 @@ public abstract class TokenPurchasesResource {
    public void retryPurchaseRequest(
          @ApiParam(value = "The randomly generated UUID of the original purchase request.", required = true) @PathParam("purchaseId") String purchaseId,
          @ApiParam(value = "The randomly generated UUID of this retry request.", required = true) @PathParam("retryId") String retryId,
-         @ApiParam(value = "A token purchase retry request.", required = false) PurchaseRequest body,
+         @ApiParam(value = "A token purchase retry request.", required = true) PurchaseRequestRetry body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
          @Context Request request,
@@ -135,7 +137,7 @@ public abstract class TokenPurchasesResource {
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(value = "Notifies the provider that a purchase was not completed successfully.", notes = "Notifies that a purchase was not completed successfully. This can occur if the original request timed out or if payment was unsuccessful. Many providers, however, do not support reversals and once a token has been issued the merchant becomes liable for the cost irrespective of payment failure or timeout. The token may still be retrieved by a reprint request, which merchants may use to help accommodate this scenario. A reversal request must be sent repeatedly until an HTTP response code indicating a final state has been received (i.e. either 202 or 400).")
-   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted"),
+   @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = BasicAdviceResponse.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
@@ -144,7 +146,7 @@ public abstract class TokenPurchasesResource {
    public void reverseTokenPurchase(
          @ApiParam(value = "The randomly generated UUID of the original purchase request.", required = true) @PathParam("purchaseId") String purchaseId,
          @ApiParam(value = "The randomly generated UUID of this reversal.", required = true) @PathParam("reversalId") String reversalId,
-         @ApiParam(value = "A token purchase reversal.", required = true) BasicReversal body,
+         @ApiParam(value = "A token purchase reversal.", required = true) ReversalAdvice body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
          @Context Request request,
