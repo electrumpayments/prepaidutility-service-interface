@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(description = "the tokenPurchases API")
 public abstract class TokenPurchasesResource {
 
-   protected abstract ITokenPurchasesResource getResourceImplementetion();
+   protected abstract ITokenPurchasesResource getResourceImplementation();
 
    @POST
    @Path("/{purchaseId}/confirmations/{confirmationId}")
@@ -55,7 +55,7 @@ public abstract class TokenPurchasesResource {
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo) {
 
-      getResourceImplementetion().confirmTokenPurchase(
+      getResourceImplementation().confirmTokenPurchase(
             purchaseId,
             confirmationId,
             body,
@@ -87,7 +87,7 @@ public abstract class TokenPurchasesResource {
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo) {
 
-      getResourceImplementetion().createTokenPurchaseRequest(
+      getResourceImplementation().createTokenPurchaseRequest(
             purchaseId,
             body,
             securityContext,
@@ -120,7 +120,7 @@ public abstract class TokenPurchasesResource {
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo) {
 
-      getResourceImplementetion().retryPurchaseRequest(
+      getResourceImplementation().retryPurchaseRequest(
             purchaseId,
             retryId,
             body,
@@ -154,7 +154,7 @@ public abstract class TokenPurchasesResource {
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo) {
 
-      getResourceImplementetion().reverseTokenPurchase(
+      getResourceImplementation().reverseTokenPurchase(
             purchaseId,
             reversalId,
             body,
