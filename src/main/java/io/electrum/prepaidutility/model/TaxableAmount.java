@@ -3,8 +3,6 @@ package io.electrum.prepaidutility.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.Length;
 
 import io.electrum.vas.Utils;
@@ -32,8 +30,7 @@ public class TaxableAmount extends LedgerAmount {
     * 
     * @return tax
     */
-   @ApiModelProperty(required = true, value = "Tax amount. Only present and non-zero if the amount field is exclusive of tax.")
-   @NotNull
+   @ApiModelProperty(value = "Tax amount. Only present and non-zero if the amount field is exclusive of tax.")
    public Long getTax() {
       return tax;
    }
@@ -52,8 +49,7 @@ public class TaxableAmount extends LedgerAmount {
     * 
     * @return taxType
     **/
-   @ApiModelProperty(required = true, value = "Description of the type of tax (e.g. VAT).")
-   @NotNull
+   @ApiModelProperty(value = "Description of the type of tax (e.g. VAT).")
    @Length(max = 10)
    public String getTaxType() {
       return taxType;
@@ -73,8 +69,7 @@ public class TaxableAmount extends LedgerAmount {
     * 
     * @return taxRate
     **/
-   @ApiModelProperty(required = true, value = "Rate at which tax is levied, expressed as a percentage.")
-   @NotNull
+   @ApiModelProperty(value = "Rate at which tax is levied, expressed as a percentage.")
    public BigDecimal getTaxRate() {
       return taxRate;
    }
