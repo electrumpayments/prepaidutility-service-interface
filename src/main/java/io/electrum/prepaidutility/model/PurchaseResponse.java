@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Customer;
+import io.electrum.vas.model.LedgerAmount;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -21,6 +22,8 @@ import io.swagger.annotations.ApiModelProperty;
 @JsonInclude(Include.NON_NULL)
 public class PurchaseResponse extends Transaction {
 
+   private LedgerAmount purchaseTotal = null;
+   private LedgerAmount taxTotal = null;
    private Meter meter = null;
    private Customer customer = null;
    private Utility utility = null;
@@ -28,6 +31,42 @@ public class PurchaseResponse extends Transaction {
    private List<Token> tokens = new ArrayList<Token>();
    private List<DebtRecoveryCharge> debtRecoveryCharges = new ArrayList<DebtRecoveryCharge>();
    private List<ServiceCharge> serviceCharges = new ArrayList<ServiceCharge>();
+
+   /**
+    * The total amount charged for tokens on this purchase. This amount is exclusive of tax and also excludes any debt
+    * recoveries or service charges deducted from the purchase amount.
+    */
+   public PurchaseResponse purchaseTotal(LedgerAmount saleTotal) {
+      this.purchaseTotal = saleTotal;
+      return this;
+   }
+
+   @ApiModelProperty(value = "The total amount charged for tokens on this purchase. This amount is exclusive of tax and also excludes any debt recoveries or service charges deducted from the purchase amount.")
+   public LedgerAmount getPurchaseTotal() {
+      return purchaseTotal;
+   }
+
+   public void setPurchaseTotal(LedgerAmount purchaseTotal) {
+      this.purchaseTotal = purchaseTotal;
+   }
+
+   /**
+    * The total tax charged for this purchase. This amount may include taxes levied on the tokens purchased, as well as
+    * any taxes on debt recovery or service charges.
+    */
+   public PurchaseResponse taxTotal(LedgerAmount taxTotal) {
+      this.taxTotal = taxTotal;
+      return this;
+   }
+
+   @ApiModelProperty(value = "The total tax charged for this purchase. This amount may include taxes levied on the tokens purchased, as well as any taxes on debt recovery or service charges.")
+   public LedgerAmount getTaxTotal() {
+      return taxTotal;
+   }
+
+   public void setTaxTotal(LedgerAmount taxTotal) {
+      this.taxTotal = taxTotal;
+   }
 
    /**
     * Details of the meter.
@@ -178,6 +217,8 @@ public class PurchaseResponse extends Transaction {
       sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
       sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
+      sb.append("    purchaseTotal: ").append(Utils.toIndentedString(purchaseTotal)).append("\n");
+      sb.append("    taxTotal: ").append(Utils.toIndentedString(taxTotal)).append("\n");
       sb.append("    meter: ").append(Utils.toIndentedString(meter)).append("\n");
       sb.append("    customer: ").append(Utils.toIndentedString(customer)).append("\n");
       sb.append("    utility: ").append(Utils.toIndentedString(utility)).append("\n");
