@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(description = "the tokenReprints API")
 public abstract class TokenReprintsResource {
 
-   protected abstract ITokenReprintsResource getResourceImplementetion();
+   protected abstract ITokenReprintsResource getResourceImplementation();
 
    @POST
    @Path("/{reprintId}")
@@ -49,7 +49,7 @@ public abstract class TokenReprintsResource {
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo) {
 
-      getResourceImplementetion().requestTokenReprint(
+      getResourceImplementation().requestTokenReprint(
             reprintId,
             body,
             securityContext,
