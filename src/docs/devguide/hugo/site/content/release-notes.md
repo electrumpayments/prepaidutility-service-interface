@@ -1,3 +1,10 @@
+## v2.1.0
+Released 24 Nov 2016
+
+* Added `purchaseTotal` and `taxTotal` fields to `PurchaseResponse` model
+* Added HTTP 501 status to resources
+* Tax fields in `TaxableAmount` model are no longer mandatory  
+
 ## v2.0.0
 Released 25 Oct 2016
 
