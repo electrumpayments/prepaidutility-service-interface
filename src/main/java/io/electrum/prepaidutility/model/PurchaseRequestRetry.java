@@ -1,5 +1,7 @@
 package io.electrum.prepaidutility.model;
 
+import java.util.Objects;
+
 import javax.validation.constraints.NotNull;
 
 import org.joda.time.DateTime;
@@ -77,6 +79,23 @@ public class PurchaseRequestRetry {
 
    public void setOriginalRequest(PurchaseRequest originalRequest) {
       this.originalRequest = originalRequest;
+   }
+
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) {
+         return true;
+      }
+      if (o == null || getClass() != o.getClass()) {
+         return false;
+      }
+      PurchaseRequestRetry vasRequest = (PurchaseRequestRetry) o;
+      return Objects.equals(retryId, vasRequest.retryId);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(retryId);
    }
 
    @Override

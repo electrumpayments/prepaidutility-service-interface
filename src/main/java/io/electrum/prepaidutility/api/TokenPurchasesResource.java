@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(description = "the tokenPurchases API")
 public abstract class TokenPurchasesResource {
 
-   protected abstract ITokenPurchasesResource getResourceImplementetion();
+   protected abstract ITokenPurchasesResource getResourceImplementation();
 
    @POST
    @Path("/{purchaseId}/confirmations/{confirmationId}")
@@ -42,6 +42,7 @@ public abstract class TokenPurchasesResource {
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
+         @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void confirmTokenPurchase(
@@ -55,7 +56,7 @@ public abstract class TokenPurchasesResource {
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo) {
 
-      getResourceImplementetion().confirmTokenPurchase(
+      getResourceImplementation().confirmTokenPurchase(
             purchaseId,
             confirmationId,
             body,
@@ -75,6 +76,7 @@ public abstract class TokenPurchasesResource {
    @ApiResponses(value = { @ApiResponse(code = 201, message = "Created", response = PurchaseResponse.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
+         @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void createTokenPurchaseRequest(
@@ -87,7 +89,7 @@ public abstract class TokenPurchasesResource {
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo) {
 
-      getResourceImplementetion().createTokenPurchaseRequest(
+      getResourceImplementation().createTokenPurchaseRequest(
             purchaseId,
             body,
             securityContext,
@@ -107,6 +109,7 @@ public abstract class TokenPurchasesResource {
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
+         @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void retryPurchaseRequest(
@@ -120,7 +123,7 @@ public abstract class TokenPurchasesResource {
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo) {
 
-      getResourceImplementetion().retryPurchaseRequest(
+      getResourceImplementation().retryPurchaseRequest(
             purchaseId,
             retryId,
             body,
@@ -141,6 +144,7 @@ public abstract class TokenPurchasesResource {
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
+         @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void reverseTokenPurchase(
@@ -154,7 +158,7 @@ public abstract class TokenPurchasesResource {
          @Context HttpHeaders httpHeaders,
          @Context UriInfo uriInfo) {
 
-      getResourceImplementetion().reverseTokenPurchase(
+      getResourceImplementation().reverseTokenPurchase(
             purchaseId,
             reversalId,
             body,

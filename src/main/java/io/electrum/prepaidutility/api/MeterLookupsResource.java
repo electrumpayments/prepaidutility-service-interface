@@ -38,6 +38,7 @@ public abstract class MeterLookupsResource {
    @ApiResponses(value = { @ApiResponse(code = 201, message = "Created", response = MeterLookupResponse.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
+         @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void createMeterLookup(
