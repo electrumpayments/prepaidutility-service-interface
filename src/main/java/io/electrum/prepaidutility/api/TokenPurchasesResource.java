@@ -17,7 +17,6 @@ import javax.ws.rs.core.UriInfo;
 import io.electrum.prepaidutility.model.ConfirmationAdvice;
 import io.electrum.prepaidutility.model.ErrorDetail;
 import io.electrum.prepaidutility.model.PurchaseRequest;
-import io.electrum.prepaidutility.model.PurchaseRequestRetry;
 import io.electrum.prepaidutility.model.PurchaseResponse;
 import io.electrum.prepaidutility.model.ReversalAdvice;
 import io.electrum.vas.model.BasicAdviceResponse;
@@ -27,7 +26,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/prepaidutility/v2/tokenPurchases")
+@Path("/prepaidutility/v3/tokenPurchases")
 @Api(description = "the tokenPurchases API")
 public abstract class TokenPurchasesResource {
 
@@ -101,10 +100,10 @@ public abstract class TokenPurchasesResource {
    }
 
    @POST
-   @Path("/{purchaseId}/retries/{retryId}")
+   @Path("/{purchaseId}/retry")
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
-   @ApiOperation(value = "Retry a previously submitted purchase request.", notes = "If no response was received to a purchase request due to a timeout or temporary communications failure, PoS may retry the same purchase request by calling this resource. The original purchase request will be resubmitted to the provider. If the provider had received the original request, it will respond by returning any tokens that were already issued. If not, then new tokens will be issued as per a normal purchase.")
+   @ApiOperation(value = "Retry a previously submitted purchase request.", notes = "If no response was received to a purchase request due to a timeout or temporary communications failure, PoS may retry the same purchase request by calling this resource. The original purchase request will be resubmitted to the provider. If the provider had received the original request, it will respond by returning any tokens that were already issued. If not, then new tokens may be issued as per a normal purchase.")
    @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = PurchaseResponse.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class),
@@ -114,8 +113,7 @@ public abstract class TokenPurchasesResource {
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void retryPurchaseRequest(
          @ApiParam(value = "The randomly generated UUID of the original purchase request.", required = true) @PathParam("purchaseId") String purchaseId,
-         @ApiParam(value = "The randomly generated UUID of this retry request.", required = true) @PathParam("retryId") String retryId,
-         @ApiParam(value = "A token purchase retry request.", required = true) PurchaseRequestRetry body,
+         @ApiParam(value = "The original token purchase request.", required = true) PurchaseRequest body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
          @Context Request request,
@@ -125,7 +123,6 @@ public abstract class TokenPurchasesResource {
 
       getResourceImplementation().retryPurchaseRequest(
             purchaseId,
-            retryId,
             body,
             securityContext,
             asyncResponse,

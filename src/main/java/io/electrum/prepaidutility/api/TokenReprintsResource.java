@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/prepaidutility/v2/tokenReprints")
+@Path("/prepaidutility/v3/tokenReprints")
 @Api(description = "the tokenReprints API")
 public abstract class TokenReprintsResource {
 
