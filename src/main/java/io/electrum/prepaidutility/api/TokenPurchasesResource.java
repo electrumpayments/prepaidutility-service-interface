@@ -103,7 +103,7 @@ public abstract class TokenPurchasesResource {
    @Path("/{purchaseId}/retry")
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
-   @ApiOperation(value = "Retry a previously submitted purchase request.", notes = "If no response was received to a purchase request due to a timeout or temporary communications failure, PoS may retry the same purchase request by calling this resource. The original purchase request will be resubmitted to the provider. If the provider had received the original request, it will respond by returning any tokens that were already issued. If not, then new tokens may be issued as per a normal purchase.")
+   @ApiOperation(value = "Retry a previously submitted purchase request.", notes = "If no response was received to a purchase request due to a timeout or temporary communications failure, PoS may retry the same purchase request by calling this resource. The original purchase request will be resubmitted to the provider. If the provider had received the original request, it will respond by returning any tokens that were already issued. If not, then either new tokens may be issued as per a normal purchase or the retry will be declined.")
    @ApiResponses(value = { @ApiResponse(code = 202, message = "Accepted", response = PurchaseResponse.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class),
