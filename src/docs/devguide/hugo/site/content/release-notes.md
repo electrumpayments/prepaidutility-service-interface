@@ -1,4 +1,9 @@
-## v2.1.0
+## v3.0.0
+Released 1 Mar 2017
+
+* Removed `PurchaseRequestRetry` object from operations. This has been replaced with the conventional `PurchaseRequest` object for the `retryPurchaseRequest` operation.
+* Removed `PurchaseRequestRetry` object definition
+
 Released 24 Nov 2016
 
 * Added `purchaseTotal` and `taxTotal` fields to `PurchaseResponse` model
