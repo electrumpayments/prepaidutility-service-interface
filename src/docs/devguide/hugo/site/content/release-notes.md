@@ -6,8 +6,11 @@ Released 5 Jul 2017
 ## v3.0.0
 Released 1 Mar 2017
 
+### Breaking changes
 * Removed `PurchaseRequestRetry` object from operations. This has been replaced with the conventional `PurchaseRequest` object for the `retryPurchaseRequest` operation.
 * Removed `PurchaseRequestRetry` object definition
+
+## v2.1.0
 
 Released 24 Nov 2016
 
