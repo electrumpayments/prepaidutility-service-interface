@@ -1,3 +1,8 @@
+## v3.1.0
+Released 5 Jul 2017
+
+* Added `TRANSACTION_DECLINED` error type
+
 ## v3.0.0
 Released 1 Mar 2017
 
