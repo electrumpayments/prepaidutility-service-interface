@@ -1,3 +1,9 @@
+## v3.2.0
+
+Released 24 July 2017
+
+- Added INVALID_MERCHANT
+
 ## v3.1.0
 Released 5 Jul 2017
 
