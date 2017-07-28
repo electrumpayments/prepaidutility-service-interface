@@ -64,7 +64,7 @@ Should a token purchase fail at POS (e.g. if the customer is unable to make paym
 ![Unsuccessful token purchase - Reversal not supported](/images/sequence_unsuccessful-purchase-reversal-not-supported.png "Unsuccessful token purchase - Reversal not supported")
 
 ### Request timeout, followed by retry
-Should the transaction time out before a response to a purchase request is received, the recommended approach is to retry the original purchase request via the [retryPurchaseRequest](/specification/operations/#retrypurchaserequest) operation. This will resend the original request embedded in a [PurchaseRequestRetry](/specification/definitions/#purchaserequestretry) message. The expected response will contain a [PurchaseResponse](/specification/definitions/#purchaseresponse) body. It is possible to submit multiple retries for the same transaction until a response is received.
+Should the transaction time out before a response to a purchase request is received, the recommended approach is to retry the original purchase request via the [retryPurchaseRequest](/specification/operations/#retrypurchaserequest) operation. This consumes a [PurchaseRequest](/specification/definitions/#purchaserequest) message which is linked to the original request by the original purchaseId specified in the resource path. The expected response will contain a [PurchaseResponse](/specification/definitions/#purchaseresponse) body. It is possible to submit multiple retries for the same transaction until a response is received.
 
 ![Purchase request timeout with retry](/images/sequence_purchase-timeout-retry.png "Purchase request timeout with retry")
 
