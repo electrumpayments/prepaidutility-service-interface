@@ -2,7 +2,7 @@
 
 Released 24 July 2017
 
-- Added INVALID_MERCHANT
+* Added `INVALID_MERCHANT` error type
 
 ## v3.1.0
 Released 5 Jul 2017
