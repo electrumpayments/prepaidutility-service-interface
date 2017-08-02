@@ -9,7 +9,6 @@ import javax.ws.rs.core.UriInfo;
 
 import io.electrum.prepaidutility.model.ConfirmationAdvice;
 import io.electrum.prepaidutility.model.PurchaseRequest;
-import io.electrum.prepaidutility.model.PurchaseRequestRetry;
 import io.electrum.prepaidutility.model.ReversalAdvice;
 
 public interface ITokenPurchasesResource {
@@ -37,8 +36,7 @@ public interface ITokenPurchasesResource {
 
    public void retryPurchaseRequest(
          String purchaseId,
-         String retryId,
-         PurchaseRequestRetry body,
+         PurchaseRequest body,
          SecurityContext securityContext,
          AsyncResponse asyncResponse,
          Request request,

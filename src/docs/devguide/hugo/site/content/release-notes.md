@@ -1,3 +1,28 @@
+## v3.2.0
+Released 24 July 2017
+
+* Added `INVALID_MERCHANT` error type
+
+## v3.1.0
+Released 5 Jul 2017
+
+* Added `TRANSACTION_DECLINED` error type
+
+## v3.0.0
+Released 1 Mar 2017
+
+### Breaking changes
+* Removed `PurchaseRequestRetry` object from operations. This has been replaced with the conventional `PurchaseRequest` object for the `retryPurchaseRequest` operation.
+* Removed `PurchaseRequestRetry` object definition
+
+## v2.1.0
+
+Released 24 Nov 2016
+
+* Added `purchaseTotal` and `taxTotal` fields to `PurchaseResponse` model
+* Added HTTP 501 status to resources
+* Tax fields in `TaxableAmount` model are no longer mandatory  
+
 ## v2.0.0
 Released 25 Oct 2016
 
