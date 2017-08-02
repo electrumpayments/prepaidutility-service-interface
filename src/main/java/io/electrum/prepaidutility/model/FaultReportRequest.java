@@ -133,7 +133,7 @@ public class FaultReportRequest extends Transaction {
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
-      sb.append("class MeterLookupRequest {\n");
+      sb.append("class FaultReportRequest {\n");
 
       sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
       sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");

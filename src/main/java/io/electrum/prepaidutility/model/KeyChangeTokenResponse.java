@@ -87,7 +87,7 @@ public class KeyChangeTokenResponse extends Transaction {
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
-      sb.append("class PurchaseResponse {\n");
+      sb.append("class KeyChangeTokenResponse {\n");
 
       sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
       sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
