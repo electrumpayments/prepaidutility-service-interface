@@ -11,7 +11,7 @@ import io.electrum.prepaidutility.model.FaultReportRequest;
 
 public interface IFaultReportsResource {
 
-   public void createFaultReport(
+   void createFaultReport(
          String requestId,
          FaultReportRequest body,
          SecurityContext securityContext,

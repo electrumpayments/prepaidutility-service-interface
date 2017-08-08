@@ -11,7 +11,7 @@ import io.electrum.prepaidutility.model.TokenReprintRequest;
 
 public interface ITokenReprintsResource {
 
-   public void requestTokenReprint(
+   void requestTokenReprint(
          String reprintId,
          TokenReprintRequest body,
          SecurityContext securityContext,

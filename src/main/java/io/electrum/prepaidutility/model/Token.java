@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -97,6 +98,7 @@ public class Token {
     **/
    @ApiModelProperty(required = true, value = "Monetary value of the token")
    @NotNull
+   @Valid
    public TaxableAmount getAmount() {
       return amount;
    }
@@ -160,6 +162,7 @@ public class Token {
     * @return tariffCalc
     **/
    @ApiModelProperty(value = "List of tariff blocks determining how the overall tariff is calculated.")
+   @Valid
    public List<TariffBlock> getTariffCalc() {
       return tariffCalc;
    }

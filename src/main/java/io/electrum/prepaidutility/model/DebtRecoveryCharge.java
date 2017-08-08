@@ -2,6 +2,7 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -36,6 +37,7 @@ public class DebtRecoveryCharge {
 
    @ApiModelProperty(required = true, value = "Amount charged and tax levied for debt recovery, in minor denomination.")
    @NotNull
+   @Valid
    public TaxableAmount getAmount() {
       return amount;
    }
@@ -73,6 +75,7 @@ public class DebtRecoveryCharge {
 
    @ApiModelProperty(required = true, value = "Remaining balance on this account.")
    @NotNull
+   @Valid
    public LedgerAmount getBalance() {
       return balance;
    }

@@ -13,7 +13,7 @@ import io.electrum.prepaidutility.model.ReversalAdvice;
 
 public interface ITokenPurchasesResource {
 
-   public void confirmTokenPurchase(
+   void confirmTokenPurchase(
          String purchaseId,
          String confirmationId,
          ConfirmationAdvice body,
@@ -24,7 +24,7 @@ public interface ITokenPurchasesResource {
          HttpHeaders httpHeaders,
          UriInfo uriInfo);
 
-   public void createTokenPurchaseRequest(
+   void createTokenPurchaseRequest(
          String purchaseId,
          PurchaseRequest body,
          SecurityContext securityContext,
@@ -34,7 +34,7 @@ public interface ITokenPurchasesResource {
          HttpHeaders httpHeaders,
          UriInfo uriInfo);
 
-   public void retryPurchaseRequest(
+   void retryPurchaseRequest(
          String purchaseId,
          PurchaseRequest body,
          SecurityContext securityContext,
@@ -44,7 +44,7 @@ public interface ITokenPurchasesResource {
          HttpHeaders httpHeaders,
          UriInfo uriInfo);
 
-   public void reverseTokenPurchase(
+   void reverseTokenPurchase(
          String purchaseId,
          String reversalId,
          ReversalAdvice body,

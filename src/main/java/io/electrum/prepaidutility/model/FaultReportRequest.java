@@ -1,5 +1,6 @@
 package io.electrum.prepaidutility.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -62,6 +63,7 @@ public class FaultReportRequest extends Transaction {
     **/
    @ApiModelProperty(required = true, value = "Details of the meter for which fault is logged. The object must include at least a value for meterId.")
    @NotNull
+   @Valid
    public Meter getMeter() {
       return meter;
    }
@@ -81,6 +83,7 @@ public class FaultReportRequest extends Transaction {
     * @return customer
     **/
    @ApiModelProperty(value = "Details of the person or organization to whom the meter belongs.")
+   @Valid
    public Customer getCustomer() {
       return customer;
    }

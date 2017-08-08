@@ -1,5 +1,6 @@
 package io.electrum.prepaidutility.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import io.electrum.vas.Utils;
@@ -28,6 +29,7 @@ public class KeyChangeTokenRequest extends Transaction {
     **/
    @ApiModelProperty(required = true, value = "Details of the meter.")
    @NotNull
+   @Valid
    public Meter getMeter() {
       return meter;
    }

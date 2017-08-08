@@ -2,6 +2,7 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -31,6 +32,7 @@ public class ServiceCharge {
     **/
    @ApiModelProperty(required = true, value = "Amount charged and tax levied for the service.")
    @NotNull
+   @Valid
    public TaxableAmount getAmount() {
       return amount;
    }
