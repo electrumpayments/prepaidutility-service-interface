@@ -3,6 +3,7 @@ package io.electrum.prepaidutility.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -36,6 +37,7 @@ public class KeyChangeTokenResponse extends Transaction {
 
    @ApiModelProperty(required = true, value = "Details of the meter.")
    @NotNull
+   @Valid
    public Meter getMeter() {
       return meter;
    }
@@ -58,6 +60,7 @@ public class KeyChangeTokenResponse extends Transaction {
    }
 
    @ApiModelProperty(value = "List of tokens issued for the key change.")
+   @Valid
    public List<Token> getTokens() {
       return tokens;
    }
@@ -76,6 +79,7 @@ public class KeyChangeTokenResponse extends Transaction {
    }
 
    @ApiModelProperty(value = "A ready-to-print till slip. This is supplied by some providers either in addition to or in place of individual message elements. Where present, it must be used by POS to print the slip.")
+   @Valid
    public SlipData getSlipData() {
       return slipData;
    }
@@ -87,7 +91,7 @@ public class KeyChangeTokenResponse extends Transaction {
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
-      sb.append("class PurchaseResponse {\n");
+      sb.append("class KeyChangeTokenResponse {\n");
 
       sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
       sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");

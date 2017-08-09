@@ -3,6 +3,7 @@ package io.electrum.prepaidutility.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -42,6 +43,7 @@ public class PurchaseResponse extends Transaction {
    }
 
    @ApiModelProperty(value = "The total amount charged for tokens on this purchase. This amount is exclusive of tax and also excludes any debt recoveries or service charges deducted from the purchase amount.")
+   @Valid
    public LedgerAmount getPurchaseTotal() {
       return purchaseTotal;
    }
@@ -60,6 +62,7 @@ public class PurchaseResponse extends Transaction {
    }
 
    @ApiModelProperty(value = "The total tax charged for this purchase. This amount may include taxes levied on the tokens purchased, as well as any taxes on debt recovery or service charges.")
+   @Valid
    public LedgerAmount getTaxTotal() {
       return taxTotal;
    }
@@ -78,6 +81,7 @@ public class PurchaseResponse extends Transaction {
 
    @ApiModelProperty(required = true, value = "Details of the meter.")
    @NotNull
+   @Valid
    public Meter getMeter() {
       return meter;
    }
@@ -96,6 +100,7 @@ public class PurchaseResponse extends Transaction {
 
    @ApiModelProperty(required = true, value = "Details of the person or organization to whom the meter belongs.")
    @NotNull
+   @Valid
    public Customer getCustomer() {
       return customer;
    }
@@ -114,6 +119,7 @@ public class PurchaseResponse extends Transaction {
 
    @ApiModelProperty(required = true, value = "Details of the utility which manages this meter's account.")
    @NotNull
+   @Valid
    public Utility getUtility() {
       return utility;
    }
@@ -153,6 +159,7 @@ public class PurchaseResponse extends Transaction {
    }
 
    @ApiModelProperty(value = "List of tokens issued for the purchase.")
+   @Valid
    public List<Token> getTokens() {
       return tokens;
    }
@@ -175,6 +182,7 @@ public class PurchaseResponse extends Transaction {
    }
 
    @ApiModelProperty(value = "List of charges that have been levied in order to reclaim outstanding debts associated with the meter.")
+   @Valid
    public List<DebtRecoveryCharge> getDebtRecoveryCharges() {
       return debtRecoveryCharges;
    }
@@ -197,6 +205,7 @@ public class PurchaseResponse extends Transaction {
    }
 
    @ApiModelProperty(value = "List of service charges levied against this meter.")
+   @Valid
    public List<ServiceCharge> getServiceCharges() {
       return serviceCharges;
    }

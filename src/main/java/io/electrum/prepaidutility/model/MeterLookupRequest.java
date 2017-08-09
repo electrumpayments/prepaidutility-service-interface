@@ -1,5 +1,6 @@
 package io.electrum.prepaidutility.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import io.electrum.vas.Utils;
@@ -13,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "Represents a request for information about a meter")
 public class MeterLookupRequest extends Transaction {
 
-   private Meter meter = null;
+   private Meter meter;
 
    public MeterLookupRequest meter(Meter meter) {
       this.meter = meter;
@@ -27,6 +28,7 @@ public class MeterLookupRequest extends Transaction {
     **/
    @ApiModelProperty(required = true, value = "Details of the meter for which information is requested. The object must include at least a value for meterId.")
    @NotNull
+   @Valid
    public Meter getMeter() {
       return meter;
    }

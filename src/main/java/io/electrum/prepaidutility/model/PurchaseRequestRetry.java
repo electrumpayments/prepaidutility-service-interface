@@ -2,6 +2,7 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -47,6 +48,7 @@ public class PurchaseRequestRetry {
 
    @ApiModelProperty(required = true, value = "The original PurchaseRequest that is being retried")
    @NotNull
+   @Valid
    public PurchaseRequest getOriginalRequest() {
       return originalRequest;
    }

@@ -2,6 +2,7 @@ package io.electrum.prepaidutility.model;
 
 import java.util.Objects;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -202,7 +203,7 @@ public class Meter {
     * @return keyChangeData
     **/
    @ApiModelProperty(value = "Represents new meter data in the case that these these have been updated.")
-   @Pattern(regexp = "[0-9]{2}")
+   @Valid
    public KeyChangeData getKeyChangeData() {
       return keyChangeData;
    }

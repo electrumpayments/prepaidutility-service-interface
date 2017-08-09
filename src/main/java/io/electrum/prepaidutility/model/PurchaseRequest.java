@@ -3,6 +3,7 @@ package io.electrum.prepaidutility.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -23,10 +24,10 @@ import io.swagger.annotations.ApiModelProperty;
 @JsonInclude(Include.NON_NULL)
 public class PurchaseRequest extends Transaction {
 
-   private Meter meter = null;
-   private LedgerAmount purchaseAmount = null;
-   private String utilityType = null;
-   private String msisdn = null;
+   private Meter meter;
+   private LedgerAmount purchaseAmount;
+   private String utilityType;
+   private String msisdn;
    private List<Tender> tenders = new ArrayList<>();
 
    /**
@@ -39,7 +40,7 @@ public class PurchaseRequest extends Transaction {
 
    @ApiModelProperty(required = true, value = "Details of the meter for which a purchase is requested. The object must include at least a value for meterId.")
    @NotNull
-   @Pattern(regexp = "[a-zA-Z0-9]{0,20}")
+   @Valid
    public Meter getMeter() {
       return meter;
    }
@@ -58,6 +59,7 @@ public class PurchaseRequest extends Transaction {
 
    @ApiModelProperty(required = true, value = "Monetary amount, in minor denomination, of the requested token purchase.")
    @NotNull
+   @Valid
    public LedgerAmount getPurchaseAmount() {
       return purchaseAmount;
    }
@@ -92,8 +94,8 @@ public class PurchaseRequest extends Transaction {
       return this;
    }
 
-   @ApiModelProperty(value = "Mobile phone number of the customer to which the outcome of a transaction can be communicated. Must conform to the ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en).")
-   @Pattern(regexp = "^\\+?[1-9]\\d{1,14}")
+   @ApiModelProperty(value = "Mobile phone number of the customer to which the outcome of a transaction can be communicated. This should conform to the ITU E.164 numbering plan (https://www.itu.int/rec/T-REC-E.164/en), but a 10-digit number beginning with zero is also acceptable.")
+   @Pattern(regexp = "(^\\+?[1-9]\\d{1,14})|(^[0][0-9]{9})")
    public String getMsisdn() {
       return msisdn;
    }
@@ -111,6 +113,7 @@ public class PurchaseRequest extends Transaction {
    }
 
    @ApiModelProperty(value = "An array of tenders used to pay for the transaction.")
+   @Valid
    public List<Tender> getTenders() {
       return tenders;
    }

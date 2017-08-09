@@ -11,7 +11,7 @@ import io.electrum.prepaidutility.model.MeterLookupRequest;
 
 public interface IMeterLookupsResource {
 
-   public void createMeterLookup(
+   void createMeterLookup(
          String lookupId,
          MeterLookupRequest body,
          SecurityContext securityContext,

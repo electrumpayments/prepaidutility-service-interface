@@ -1,5 +1,6 @@
 package io.electrum.prepaidutility.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -38,6 +39,7 @@ public class MeterLookupResponse extends Transaction {
     **/
    @ApiModelProperty(required = true, value = "Details of the meter.")
    @NotNull
+   @Valid
    public Meter getMeter() {
       return meter;
    }
@@ -58,6 +60,7 @@ public class MeterLookupResponse extends Transaction {
     **/
    @ApiModelProperty(required = true, value = "Details of the person or organization to whom the meter belongs.")
    @NotNull
+   @Valid
    public Customer getCustomer() {
       return customer;
    }
@@ -78,6 +81,7 @@ public class MeterLookupResponse extends Transaction {
     **/
    @ApiModelProperty(required = true, value = "Details of the utility which manages this meter's account.")
    @NotNull
+   @Valid
    public Utility getUtility() {
       return utility;
    }
@@ -97,6 +101,7 @@ public class MeterLookupResponse extends Transaction {
     * @return minAmount
     **/
    @ApiModelProperty(value = "Minimum purchase amount that can be requested by the customer.")
+   @Valid
    public LedgerAmount getMinAmount() {
       return minAmount;
    }
@@ -116,6 +121,7 @@ public class MeterLookupResponse extends Transaction {
     * @return maxAmount
     **/
    @ApiModelProperty(value = "Maximum purchase amount that can be requested by the customer.")
+   @Valid
    public LedgerAmount getMaxAmount() {
       return maxAmount;
    }

@@ -1,5 +1,6 @@
 package io.electrum.prepaidutility.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -32,6 +33,7 @@ public class TokenReprintRequest extends Transaction {
     **/
    @ApiModelProperty(required = true, value = "Details of the meter for which a token reprint is requested. The object must include at least a value for meterId.")
    @NotNull
+   @Valid
    public Meter getMeter() {
       return meter;
    }
