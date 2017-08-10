@@ -1,3 +1,8 @@
+## v3.3.0
+Released 9 Aug 2017
+
+* Additional annotations for cascading model validation
+
 ## v3.2.0
 Released 24 July 2017
 
