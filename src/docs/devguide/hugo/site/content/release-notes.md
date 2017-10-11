@@ -1,3 +1,12 @@
+This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
+
+## v3.3.1
+
+Released 9 October 2017
+
+- Update Swagger Jersey 2 JAX-RS version to v1.5.16.
+- Remove included SLF4J library.
+
 ## v3.3.0
 Released 9 Aug 2017
 
