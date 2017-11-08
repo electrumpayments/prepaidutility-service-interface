@@ -1,5 +1,12 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.4.0
+
+Released 8 November 2017
+
+- Update base service interface version to v3.4.0.
+  - Added optional `barcode` field to `SlipLine` which represents a barcode on a till slip.
+
 ## v3.3.1
 
 Released 9 October 2017
