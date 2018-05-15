@@ -1,5 +1,16 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.5.0
+
+Released 15 May 2018
+
+- Added field `paymentMethods` to `PurchaseRequest`
+- Update base service interface version to v3.9.0.
+    - Added `PaymentMethod` model with subtypes `An32TokenPayment` and `LoyaltyCardPayment`
+    - Changed `PaymentMethodType.TOKEN` to `PaymentMethodType.AN_32_TOKEN` 
+    - Added `amount` field to `PaymentMethod`
+    - Added EncryptedPin model object
+  
 ## v3.4.0
 
 Released 8 November 2017

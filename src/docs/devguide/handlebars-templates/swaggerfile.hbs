@@ -112,16 +112,58 @@
 # Definitions
 {{#each definitions}}
 ## {{key}}
+{{!-- Handle the case of models which have been included via inheritance separately --}}
+{{#if allOf}}
+{{#each allOf}}
+{{!-- We only want to display the description of the model in question; there is more than one model listed in allOf (both reference models and real models --}}
+{{#ifeq @key key}}{{this.description}}{{/ifeq}}
+{{/each}}
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Restrictions</th>
+        <th>Description</th>
+    </tr>
+{{#each allOf}}
+{{#each definitions}}
+{{#ifeq (basename ../this.$ref) @key}}
+{{#each this.properties}}<tr>
+    <td>{{@key}}</td>
+    <td>{{#ifeq type "array"}}{{#items.$ref}}{{type}}[[{{basename items.$ref}}](#{{lower (basename items.$ref)}})]{{/items.$ref}}{{^items.$ref}}{{type}}[{{items.type}}]{{/items.$ref}}{{else}}{{#this.$ref}}<a href="#{{lower (basename $ref)}}">{{basename $ref}}</a>{{/this.$ref}}{{^this.$ref}}{{type}}{{/this.$ref}}{{/ifeq}}</td>
+    <td>{{#required}}required{{/required}}{{^required}}optional{{/required}}</td>
+    <td>{{#defaultValue}}{{{defaultValue}}}{{/defaultValue}}</td>
+    <td>{{#format}}format:<i>{{format}}</i><br/>{{/format}}{{#maximum}}maximum:<i>{{maximum}}</i><br/>{{/maximum}}{{#if exclusiveMaximum}}exclusiveMaximum:<i>{{exclusiveMaximum}}</i><br/>{{/if}}{{#if minimum}}minimum:<i>{{minimum}}</i><br/>{{/if}}{{#if exclusiveMinimum}}exclusiveMinimum:<i>{{exclusiveMinimum}}</i><br/>{{/if}}{{#if maxLength}}maxLength:<i>{{maxLength}}</i><br/>{{/if}}{{#if minLength}}minLength:<i>{{minLength}}</i><br/>{{/if}}{{#if pattern}}pattern:<i>{{pattern}}</i><br/>{{/if}}{{#if maxItems}}maxItems:<i>{{maxItems}}</i><br/>{{/if}}{{#if minItems}}minItems:<i>{{minItems}}</i><br/>{{/if}}{{#if uniqueItems}}uniqueItems:<i>{{uniqueItems}}</i><br/>{{/if}}{{#if multipleOf}}multipleOf:<i>{{multipleOf}}</i><br/>{{/if}}{{#if enum}}<i>{{enum}}</i>{{/if}}</td>
+    <td>{{#description}}{{{description}}}{{/description}}</td>
+</tr>
+{{/each}}
+{{/ifeq}}
+{{/each}}
+{{#each this.properties}}<tr>
+    <td>{{@key}}</td>
+    <td>{{#ifeq type "array"}}{{#items.$ref}}{{type}}[[{{basename items.$ref}}](#{{lower (basename items.$ref)}})]{{/items.$ref}}{{^items.$ref}}{{type}}[{{items.type}}]{{/items.$ref}}{{else}}{{#$ref}}[{{basename $ref}}](#{{lower (basename $ref)}}){{/$ref}}{{^$ref}}{{type}}{{/$ref}}{{/ifeq}}</td>
+    <td>{{#required}}required{{/required}}{{^required}}optional{{/required}}</td>
+    <td>{{#defaultValue}}{{{defaultValue}}}{{/defaultValue}}</td>
+    <td>{{#format}}format:<i>{{format}}</i><br/>{{/format}}{{#maximum}}maximum:<i>{{maximum}}</i><br/>{{/maximum}}{{#if exclusiveMaximum}}exclusiveMaximum:<i>{{exclusiveMaximum}}</i><br/>{{/if}}{{#if minimum}}minimum:<i>{{minimum}}</i><br/>{{/if}}{{#if exclusiveMinimum}}exclusiveMinimum:<i>{{exclusiveMinimum}}</i><br/>{{/if}}{{#if maxLength}}maxLength:<i>{{maxLength}}</i><br/>{{/if}}{{#if minLength}}minLength:<i>{{minLength}}</i><br/>{{/if}}{{#if pattern}}pattern:<i>{{pattern}}</i><br/>{{/if}}{{#if maxItems}}maxItems:<i>{{maxItems}}</i><br/>{{/if}}{{#if minItems}}minItems:<i>{{minItems}}</i><br/>{{/if}}{{#if uniqueItems}}uniqueItems:<i>{{uniqueItems}}</i><br/>{{/if}}{{#if multipleOf}}multipleOf:<i>{{multipleOf}}</i><br/>{{/if}}{{#if enum}}<i>{{enum}}</i>{{/if}}</td>
+    <td>{{#description}}{{{description}}}{{/description}}</td>
+</tr>
+{{/each}}
+{{/each}}
+</table>
+{{else}}
+{{!-- Handle normal models --}}
 {{#description}}{{description}}{{/description}}
 <table border="1">
-<tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Default</th>
-    <th>Restrictions</th>
-    <th>Description</th>
-</tr>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Restrictions</th>
+        <th>Description</th>
+    </tr>
 {{#each this.properties}}<tr>
     <td>{{@key}}</td>
     <td>{{#ifeq type "array"}}{{#items.$ref}}{{type}}[[{{basename items.$ref}}](#{{lower (basename items.$ref)}})]{{/items.$ref}}{{^items.$ref}}{{type}}[{{items.type}}]{{/items.$ref}}{{else}}{{#$ref}}[{{basename $ref}}](#{{lower (basename $ref)}}){{/$ref}}{{^$ref}}{{type}}{{/$ref}}{{/ifeq}}</td>
@@ -132,4 +174,5 @@
 </tr>
 {{/each}}
 </table>
+{{/if}}
 {{/each}}
