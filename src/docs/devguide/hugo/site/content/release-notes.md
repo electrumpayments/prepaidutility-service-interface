@@ -1,5 +1,13 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.5.1
+Released 18 May 2018
+
+* Added `INVALID_AN32_TOKEN` error type
+* Added `DO_NOT_HONOR` error type
+* Added `INVALID_MSISDN` error type
+* Added `INVALID_LOYALTY_CARD` error type
+
 ## v3.5.0
 
 Released 15 May 2018
