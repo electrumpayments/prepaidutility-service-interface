@@ -4,7 +4,9 @@ target/
 test-output/
 .classpath
 .project
-.settings
+.settings/
 log/
 *.iml
-.idea
+.idea/
+
+.DS_Store
