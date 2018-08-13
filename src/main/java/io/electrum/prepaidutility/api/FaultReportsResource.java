@@ -24,18 +24,18 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 
-@Path(FaultReportsResource.PATH)
+@Path(PrepaidUtilityApi.API_BASE_PATH)
 @Api(description = "the faultReports API", authorizations = { @Authorization("httpBasic") })
 public abstract class FaultReportsResource {
 
    protected abstract IFaultReportsResource getResourceImplementation();
 
-   public static final String PATH = PrepaidUtilityApi.API_BASE_PATH + "/faultReports";
+   public static final String PATH = "/faultReports";
 
    public class CreateFaultReport {
       public static final String CREATE_FAULT_REPORT = "createFaultReport";
       public static final int SUCCESS = 201;
-      public static final String PATH = "/{" + PathParameters.REQUEST_ID + "}";
+      public static final String PATH = FaultReportsResource.PATH + "/{" + PathParameters.REQUEST_ID + "}";
 
       public class PathParameters {
          public static final String REQUEST_ID = "requestId";

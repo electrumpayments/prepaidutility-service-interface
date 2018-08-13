@@ -26,19 +26,20 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path(TokenPurchasesResource.PATH)
+@Path(PrepaidUtilityApi.API_BASE_PATH)
 @Api(description = "the tokenPurchases API")
 public abstract class TokenPurchasesResource {
 
    protected abstract ITokenPurchasesResource getResourceImplementation();
 
-   public static final String PATH = PrepaidUtilityApi.API_BASE_PATH + "/tokenPurchases";
+   public static final String PATH = "/tokenPurchases";
 
    public class ConfirmTokenPurchase {
       public static final String CONFIRM_TOKEN_PURCHASE = "confirmTokenPurchase";
       public static final int SUCCESS = 202;
       public static final String PATH =
-            "/{" + PathParameters.PURCHASE_ID + "}/confirmations/{" + PathParameters.CONFIRMATION_ID + "}";
+            TokenPurchasesResource.PATH + "/{" + PathParameters.PURCHASE_ID + "}/confirmations/{"
+                  + PathParameters.CONFIRMATION_ID + "}";
 
       public class PathParameters {
          public static final String CONFIRMATION_ID = "confirmationId";
@@ -49,7 +50,7 @@ public abstract class TokenPurchasesResource {
    public class CreateTokenPurchaseRequest {
       public static final String CREATE_TOKEN_PURCHASE_REQUEST = "createTokenPurchaseRequest";
       public static final int SUCCESS = 201;
-      public static final String PATH = "/{" + PathParameters.PURCHASE_ID + "}";
+      public static final String PATH = TokenPurchasesResource.PATH + "/{" + PathParameters.PURCHASE_ID + "}";
 
       public class PathParameters {
          public static final String PURCHASE_ID = "purchaseId";
@@ -60,7 +61,7 @@ public abstract class TokenPurchasesResource {
       public static final String RETRY_PURCHASE_REQUEST = "retryPurchaseRequest";
       public static final int SUCCESS = 202;
       public static final String PATH =
-            "/{" + PathParameters.PURCHASE_ID + "}/retry";
+            TokenPurchasesResource.PATH + "/{" + PathParameters.PURCHASE_ID + "}/retry";
 
       public class PathParameters {
          public static final String PURCHASE_ID = "purchaseId";
@@ -71,7 +72,8 @@ public abstract class TokenPurchasesResource {
       public static final String REVERSE_TOKEN_PURCHASE = "reverseTokenPurchase";
       public static final int SUCCESS = 202;
       public static final String PATH =
-            "/{" + PathParameters.PURCHASE_ID + "}/reversals/{" + PathParameters.REVERSAL_ID + "}";
+            TokenPurchasesResource.PATH + "/{" + PathParameters.PURCHASE_ID + "}/reversals/{"
+                  + PathParameters.REVERSAL_ID + "}";
 
       public class PathParameters {
          public static final String REVERSAL_ID = "reversalId";

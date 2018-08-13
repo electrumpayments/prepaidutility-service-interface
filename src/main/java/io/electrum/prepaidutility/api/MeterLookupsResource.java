@@ -11,18 +11,18 @@ import io.electrum.prepaidutility.model.MeterLookupRequest;
 import io.electrum.prepaidutility.model.MeterLookupResponse;
 import io.swagger.annotations.*;
 
-@Path(MeterLookupsResource.PATH)
+@Path(PrepaidUtilityApi.API_BASE_PATH)
 @Api(description = "the meterLookups API", authorizations = { @Authorization("httpBasic") })
 public abstract class MeterLookupsResource {
 
    protected abstract IMeterLookupsResource getResourceImplementation();
 
-   public static final String PATH = PrepaidUtilityApi.API_BASE_PATH + "/meterLookups";
+   public static final String PATH = "/meterLookups";
 
    public class CreateMeterLookup {
       public static final String CREATE_METER_LOOKUP = "createMeterLookup";
       public static final int SUCCESS = 201;
-      public static final String PATH = "/{" + PathParameters.LOOKUP_ID + "}";
+      public static final String PATH = MeterLookupsResource.PATH + "/{" + PathParameters.LOOKUP_ID + "}";
 
       public class PathParameters {
          public static final String LOOKUP_ID = "lookupId";

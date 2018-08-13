@@ -23,18 +23,18 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path(TokenReprintsResource.PATH)
+@Path(PrepaidUtilityApi.API_BASE_PATH)
 @Api(description = "the tokenReprints API")
 public abstract class TokenReprintsResource {
 
    protected abstract ITokenReprintsResource getResourceImplementation();
 
-   public static final String PATH = PrepaidUtilityApi.API_BASE_PATH + "/tokenReprints";
+   public static final String PATH = "/tokenReprints";
 
    public class RequestTokenReprint {
       public static final String REQUEST_TOKEN_REPRINT = "requestTokenReprint";
       public static final int SUCCESS = 200;
-      public static final String PATH = "/{" + PathParameters.REPRINT_ID + "}";
+      public static final String PATH = TokenReprintsResource.PATH + "/{" + PathParameters.REPRINT_ID + "}";
 
       public class PathParameters {
          public static final String REPRINT_ID = "reprintId";

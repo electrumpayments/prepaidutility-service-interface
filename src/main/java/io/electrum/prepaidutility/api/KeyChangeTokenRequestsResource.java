@@ -24,18 +24,18 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 
-@Path(KeyChangeTokenRequestsResource.PATH)
+@Path(PrepaidUtilityApi.API_BASE_PATH)
 @Api(description = "the keyChangeTokenRequests API", authorizations = { @Authorization("httpBasic") })
 public abstract class KeyChangeTokenRequestsResource {
 
    protected abstract IKeyChangeTokenRequestsResource getResourceImplementation();
 
-   public static final String PATH = PrepaidUtilityApi.API_BASE_PATH + "/keyChangeTokenRequests";
+   public static final String PATH = "/keyChangeTokenRequests";
 
    public class CreateKeyChangeTokenRequest {
       public static final String CREATE_KEY_CHANGE_TOKEN_REQUEST = "createKeyChangeTokenRequest";
       public static final int SUCCESS = 201;
-      public static final String PATH = "/{" + PathParameters.REQUEST_ID + "}";
+      public static final String PATH = KeyChangeTokenRequestsResource.PATH + "/{" + PathParameters.REQUEST_ID + "}";
 
       public class PathParameters {
          public static final String REQUEST_ID = "requestId";
