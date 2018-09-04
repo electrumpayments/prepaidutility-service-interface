@@ -41,7 +41,7 @@ docker run \
   --volumes-from configs \
   --name hugo \
   -e "HUGO_THEME=hugo-material-docs" \
-  -e "HUGO_BASEURL=https://electrumpayments.github.io/airtime-service-interface-docs/" \
+  -e "HUGO_BASEURL=https://electrumpayments.github.io/prepaid-service-interface-docs/" \
   jojomi/hugo:0.29
 #docker run \
 #  --volumes-from configs \
