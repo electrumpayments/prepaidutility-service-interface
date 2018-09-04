@@ -1,7 +1,7 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
 ## 3.5.2
-Released xx August 2018
+Released 04 September 2018
 
 - Made various path related constants available.
 - Update base service interface version to v3.12.1.

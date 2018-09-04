@@ -220,7 +220,7 @@ public class PurchaseResponse extends Transaction {
       return this;
    }
 
-   @ApiModelProperty(value = "The vat invoice number corresponding to this specific transaction.")
+   @ApiModelProperty(value = "The VAT invoice number corresponding to this specific transaction.")
    public String getVatInvoiceNumber() {
       return vatInvoiceNumber;
    }
