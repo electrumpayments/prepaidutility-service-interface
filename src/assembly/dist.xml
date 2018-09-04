@@ -1,0 +1,29 @@
+<assembly>
+  <baseDirectory>${project.artifactId}-${project.version}-${timestamp}
+  </baseDirectory>
+  <formats>
+    <format>tar.gz</format>
+  </formats>
+  <files>
+    <file>
+      <source>
+        target/${project.artifactId}-${project.version}-jar-with-dependencies.jar
+      </source>
+      <outputDirectory>lib</outputDirectory>
+    </file>
+  </files>
+  <fileSets>
+    <fileSet>
+      <directory>
+        src/dist/
+      </directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+      <outputDirectory>/</outputDirectory>
+      <filtered>true</filtered>
+      <directoryMode>0755</directoryMode>
+      <fileMode>0444</fileMode>
+    </fileSet>
+  </fileSets>
+</assembly>

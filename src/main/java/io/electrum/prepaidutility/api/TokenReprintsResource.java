@@ -23,25 +23,38 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path("/prepaidutility/v3/tokenReprints")
+@Path(PrepaidUtilityApi.API_BASE_PATH)
 @Api(description = "the tokenReprints API")
 public abstract class TokenReprintsResource {
 
    protected abstract ITokenReprintsResource getResourceImplementation();
 
+   public static final String PATH = "/tokenReprints";
+
+   public class RequestTokenReprint {
+      public static final String REQUEST_TOKEN_REPRINT = "requestTokenReprint";
+      public static final int SUCCESS = 200;
+      public static final String PATH = TokenReprintsResource.PATH + "/{" + PathParameters.REPRINT_ID + "}";
+
+      public class PathParameters {
+         public static final String REPRINT_ID = "reprintId";
+      }
+   }
+
    @POST
-   @Path("/{reprintId}")
+   @Path(RequestTokenReprint.PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
-   @ApiOperation(value = "Requests a reprint of a token", notes = "Requests a reprint of a token that was previously issued for a specified meter. The request can be for either the last token issued for that meter, or for a specific transaction reference, depending on what the provider supports.")
-   @ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = PurchaseResponse.class),
+   @ApiOperation(nickname = RequestTokenReprint.REQUEST_TOKEN_REPRINT, value = "Requests a reprint of a token", notes = "Requests a reprint of a token that was previously issued for a specified meter. The request can be for either the last token issued for that meter, or for a specific transaction reference, depending on what the provider supports.")
+   @ApiResponses(value = {
+         @ApiResponse(code = RequestTokenReprint.SUCCESS, message = "Success", response = PurchaseResponse.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void requestTokenReprint(
-         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("reprintId") String reprintId,
+         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(RequestTokenReprint.PathParameters.REPRINT_ID) String reprintId,
          @ApiParam(value = "A token reprint request.", required = true) TokenReprintRequest body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,

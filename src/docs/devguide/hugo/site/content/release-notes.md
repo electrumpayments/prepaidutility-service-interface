@@ -1,5 +1,15 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## 3.5.2
+Released 04 September 2018
+
+- Made various path related constants available.
+- Update base service interface version to v3.12.1.
+    - Added in new base interface.
+    - Added in new JsonUtil class
+    - `BasicAdviceResponse` has been depricated and now extends `BasicAdvice`
+- Added the vatInvoiceNumber field to the PurchaseResponse
+
 ## v3.5.1
 Released 18 May 2018
 

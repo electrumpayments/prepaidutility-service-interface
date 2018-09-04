@@ -24,25 +24,38 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 
-@Path("/prepaidutility/v3/keyChangeTokenRequests")
+@Path(PrepaidUtilityApi.API_BASE_PATH)
 @Api(description = "the keyChangeTokenRequests API", authorizations = { @Authorization("httpBasic") })
 public abstract class KeyChangeTokenRequestsResource {
 
    protected abstract IKeyChangeTokenRequestsResource getResourceImplementation();
 
+   public static final String PATH = "/keyChangeTokenRequests";
+
+   public class CreateKeyChangeTokenRequest {
+      public static final String CREATE_KEY_CHANGE_TOKEN_REQUEST = "createKeyChangeTokenRequest";
+      public static final int SUCCESS = 201;
+      public static final String PATH = KeyChangeTokenRequestsResource.PATH + "/{" + PathParameters.REQUEST_ID + "}";
+
+      public class PathParameters {
+         public static final String REQUEST_ID = "requestId";
+      }
+   }
+
    @POST
-   @Path("/{requestId}")
+   @Path(CreateKeyChangeTokenRequest.PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
-   @ApiOperation(value = "Request a key change token", notes = "Requests a key change token for a specified meter. This resource is used when the utility has updated a meter's encryption key and the customer required a token to input the new key to the meter. Key change tokens are typically supplied as part of a normal purchase, so this operation is rarely used.")
-   @ApiResponses(value = { @ApiResponse(code = 201, message = "Created", response = KeyChangeTokenResponse.class),
+   @ApiOperation(nickname = CreateKeyChangeTokenRequest.CREATE_KEY_CHANGE_TOKEN_REQUEST, value = "Request a key change token", notes = "Requests a key change token for a specified meter. This resource is used when the utility has updated a meter's encryption key and the customer required a token to input the new key to the meter. Key change tokens are typically supplied as part of a normal purchase, so this operation is rarely used.")
+   @ApiResponses(value = {
+         @ApiResponse(code = CreateKeyChangeTokenRequest.SUCCESS, message = "Created", response = KeyChangeTokenResponse.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void createKeyChangeTokenRequest(
-         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam("requestId") String requestId,
+         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(CreateKeyChangeTokenRequest.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "A key change token request", required = true) KeyChangeTokenRequest body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,

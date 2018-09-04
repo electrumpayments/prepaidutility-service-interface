@@ -34,7 +34,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <service-interface-base-version>3.9.0</service-interface-base-version>
+    <service-interface-base-version>3.12.1</service-interface-base-version>
     <joda-time-version>2.9.4</joda-time-version>
     <swagger-version>1.5.16</swagger-version>
     <jetty-version>9.2.14.v20151106</jetty-version>
@@ -45,7 +45,7 @@
     <logback-version>1.0.13</logback-version>
     <major-version>3</major-version>
     <minor-version>5</minor-version>
-    <patch-version>1</patch-version>
+    <patch-version>2</patch-version>
   </properties>
 
   <dependencies>
@@ -124,8 +124,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
       <plugin>
@@ -168,10 +168,14 @@
                 <title>Prepaid Utility Service Interface</title>
                 <version>${project.version}</version>
                 <description>
-                  The Electrum Prepaid Utility Service describes an interface for facilitating the purchase of prepaid tokens for
-                  utilities such as electricity and water. One or more tokens for a requested value are issued by an
-                  upstream provider (typically a payments aggregator) against a specified meter number. The tokens (each
-                  being a sequence of usually 20 digits) are printed on the customer receipt and are input manually on
+                  The Electrum Prepaid Utility Service describes an interface for facilitating the purchase
+                  of prepaid tokens for
+                  utilities such as electricity and water. One or more tokens for a requested value
+                  are issued by an
+                  upstream provider (typically a payments aggregator) against a specified meter number.
+                  The tokens (each
+                  being a sequence of usually 20 digits) are printed on the customer receipt and are
+                  input manually on
                   the meter's keypad for the value to be redeemed.
                 </description>
                 <contact>
@@ -234,7 +238,7 @@
       <plugin>
         <groupId>org.jfrog.buildinfo</groupId>
         <artifactId>artifactory-maven-plugin</artifactId>
-        <version>2.2.1</version>
+        <version>2.6.1</version>
         <inherited>false</inherited>
         <executions>
           <execution>
@@ -249,6 +253,36 @@
                 <password>${artifactory-password}</password>
                 <repoKey>oss-local</repoKey>
               </publisher>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>jar-with-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+            </configuration>
+          </execution>
+          <execution>
+            <id>dist</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>src/assembly/dist.xml</descriptor>
+              </descriptors>
             </configuration>
           </execution>
         </executions>
