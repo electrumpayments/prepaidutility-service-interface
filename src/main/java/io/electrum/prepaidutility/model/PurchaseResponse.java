@@ -32,6 +32,7 @@ public class PurchaseResponse extends Transaction {
    private List<Token> tokens = new ArrayList<Token>();
    private List<DebtRecoveryCharge> debtRecoveryCharges = new ArrayList<DebtRecoveryCharge>();
    private List<ServiceCharge> serviceCharges = new ArrayList<ServiceCharge>();
+   private String vatInvoiceNumber = null;
 
    /**
     * The total amount charged for tokens on this purchase. This amount is exclusive of tax and also excludes any debt
@@ -214,6 +215,20 @@ public class PurchaseResponse extends Transaction {
       this.serviceCharges = serviceCharges;
    }
 
+   public PurchaseResponse vatInvoiceNumber(String vatInvoiceNumber) {
+      this.vatInvoiceNumber = vatInvoiceNumber;
+      return this;
+   }
+
+   @ApiModelProperty(value = "The vat invoice number corresponding to this specific transaction.")
+   public String getVatInvoiceNumber() {
+      return vatInvoiceNumber;
+   }
+
+   public void setVatInvoiceNumber(String vatInvoiceNumber) {
+      this.vatInvoiceNumber = vatInvoiceNumber;
+   }
+
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
@@ -236,6 +251,7 @@ public class PurchaseResponse extends Transaction {
       sb.append("    debtRecoveryCharges: ").append(Utils.toIndentedString(debtRecoveryCharges)).append("\n");
       sb.append("    serviceCharges: ").append(Utils.toIndentedString(serviceCharges)).append("\n");
       sb.append("    slipData: ").append(Utils.toIndentedString(slipData)).append("\n");
+      sb.append("    vatInvoiceNumber: ").append(Utils.toIndentedString(vatInvoiceNumber)).append("\n");
       sb.append("}");
       return sb.toString();
    }

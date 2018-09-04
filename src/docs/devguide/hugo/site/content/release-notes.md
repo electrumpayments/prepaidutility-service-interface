@@ -8,6 +8,7 @@ Released xx August 2018
     - Added in new base interface.
     - Added in new JsonUtil class
     - `BasicAdviceResponse` has been depricated and now extends `BasicAdvice`
+- Added the vatInvoiceNumber field to the PurchaseResponse
 
 ## v3.5.1
 Released 18 May 2018
