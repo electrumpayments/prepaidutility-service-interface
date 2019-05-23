@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Path(PrepaidUtilityApi.API_BASE_PATH)
+@Path("")
 @Api(description = "the tokenPurchases API")
 public abstract class TokenPurchasesResource {
 

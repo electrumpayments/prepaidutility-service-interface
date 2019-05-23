@@ -1,5 +1,25 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## 3.6.0
+Released xx
+
+* Added `CREDIT_CARD_SCHEME_NOT_SUPPORTED` error type
+- Corrected repetition of API base path.
+  - *Note* This is breaking change to the API but is not treated as such. Previously the API defined paths to operations as `/prepaidutility/v3/prepaidutility/v3/{operation}` when they should have been of the more simple form `/prepaidutility/v3/{operation}`. Changing the API base path in this manner would typically be a breaking change and would be reflected as such by bumping the major version number in the URL from `v3` to `v4`. However, all known projects depending on the PrepaidUtility Service Interface are already implemented using the simpler base path of `/prepaidutility/v3/{operation}`. Thus the decision was made to transparently fix the base path repetition bug as a minor version update as this was deemed to be a less disruptive change to all known projects.
+- Update base service interface version to v3.20.0.
+  - Added new models:
+      - `Pin` a base PIN model
+      - `PinClear` for PINs in the clear
+      - `PinEncrypted` for encrypted PIN blocks with the PIN block format, accountNumber and the key index
+  - `Pin` was added to `CardPayment`, taking precedence over the existing `encryptedPin` field
+  - Added `PaymentMethod` subtype `CardPayment`
+  - Added `dateOfBirth` and `status` field to `Customer` model
+  - Added utility for HTTP authentication
+  - Added explicit fields for STAN and RRN values to `BasicAdvice` and `Transaction` models.
+  - Added `ExchangeRate` to describe the exchange rate between two currencies
+  - Added `Account` to describe more varied accounts in a consistent manner. This has the following sub-types defined:
+  - The limitations on the `id` field of the `Institution` model have been removed to make the field suitable for a wider range of applications.
+
 ## 3.5.2
 Released 04 September 2018
 
@@ -28,7 +48,7 @@ Released 15 May 2018
     - Changed `PaymentMethodType.TOKEN` to `PaymentMethodType.AN_32_TOKEN` 
     - Added `amount` field to `PaymentMethod`
     - Added EncryptedPin model object
-  
+
 ## v3.4.0
 
 Released 8 November 2017

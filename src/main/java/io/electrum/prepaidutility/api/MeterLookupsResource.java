@@ -11,7 +11,7 @@ import io.electrum.prepaidutility.model.MeterLookupRequest;
 import io.electrum.prepaidutility.model.MeterLookupResponse;
 import io.swagger.annotations.*;
 
-@Path(PrepaidUtilityApi.API_BASE_PATH)
+@Path("")
 @Api(description = "the meterLookups API", authorizations = { @Authorization("httpBasic") })
 public abstract class MeterLookupsResource {
 
