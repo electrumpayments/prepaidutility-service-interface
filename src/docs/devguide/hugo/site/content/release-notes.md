@@ -17,7 +17,6 @@ Released xx
   - Added utility for HTTP authentication
   - Added explicit fields for STAN and RRN values to `BasicAdvice` and `Transaction` models.
   - Added `ExchangeRate` to describe the exchange rate between two currencies
-  - Added `Account` to describe more varied accounts in a consistent manner. This has the following sub-types defined:
   - The limitations on the `id` field of the `Institution` model have been removed to make the field suitable for a wider range of applications.
 
 ## 3.5.2
