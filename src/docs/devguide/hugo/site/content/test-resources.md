@@ -40,7 +40,7 @@ The test scenarios consist of either a single request message, or sequence of re
 
 ### Quick start guide
 - Install the [Postman](https://www.getpostman.com/) client app and familiarize yourself with how to use it.
-- Import the test pack [collection](https://github.com/electrumpayments/prepaidutility-test-server/blob/master/test/postman/PrepaidUtilityTestPack.postman_collection_v2.json) into Postman.
+- Import the test pack [collection](https://github.com/electrumpayments/prepaidutility-test-server/blob/master/test/postman/PrepaidUtilityTestPack.postman_collection.json) into Postman.
 
 ![Import collection](/images/postman-import.png)
 
