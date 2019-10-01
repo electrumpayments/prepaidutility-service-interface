@@ -25,9 +25,10 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
 
 @Path(PrepaidUtilityApi.API_BASE_PATH)
-@Api(description = "the tokenPurchases API")
+@Api(description = "the tokenPurchases API", authorizations = { @Authorization("httpBasic") })
 public abstract class TokenPurchasesResource {
 
    protected abstract ITokenPurchasesResource getResourceImplementation();

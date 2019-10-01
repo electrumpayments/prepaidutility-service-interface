@@ -22,9 +22,10 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
 
 @Path(PrepaidUtilityApi.API_BASE_PATH)
-@Api(description = "the tokenReprints API")
+@Api(description = "the tokenReprints API", authorizations = { @Authorization("httpBasic") })
 public abstract class TokenReprintsResource {
 
    protected abstract ITokenReprintsResource getResourceImplementation();
