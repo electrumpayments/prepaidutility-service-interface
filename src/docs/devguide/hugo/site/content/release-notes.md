@@ -2,12 +2,13 @@ This page describes changes to the Prepaid Utility Service Interface implemented
 
 ## 3.6.0
 Released 04 October 2019
+
 - Added `httpBasic` authorisation to all the `TokenPurchases` and `TokenReprint` resources in the API. Previously, `httpBasic` authorisation was omitted from the API documentation for these resources, even though it is required. The affected operations are:
-	- `createTokenPurchaseRequest`
-	- `confirmTokenPurchase`
-	- `retryPurchaseRequest`
-	- `reverseTokenPurchase`
-	- `requestTokenReprint`
+    - `createTokenPurchaseRequest`
+    - `confirmTokenPurchase`
+    - `retryPurchaseRequest`
+    - `reverseTokenPurchase`
+    - `requestTokenReprint`
 
 ## 3.5.2
 Released 04 September 2018
