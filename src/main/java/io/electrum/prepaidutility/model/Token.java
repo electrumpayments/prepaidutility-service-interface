@@ -25,7 +25,7 @@ public class Token {
     * Type of token, namely standard (STD), basic service support tariff (BSST), refund (REFUND), key change (KC).
     */
    public enum TokenTypeEnum {
-      STD("STD"), BSST("BSST"), REFUND("REFUND"), KC("KC");
+      STD("STD"), BSST("BSST"), REFUND("REFUND"), KC("KC"), PWRLMT("PWRLMT");
 
       private String value;
 

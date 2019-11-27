@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="all" verbose="1">
+  <test name="build">
+    <groups>
+      <run>
+        <exclude name="integration"/>
+        <exclude name="production"/>
+      </run>
+    </groups>
+    <packages>
+      <package name="io.electrum.prepaidutility.*"/>
+    </packages>
+  </test>
+</suite>

@@ -1,5 +1,14 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## 3.7.0
+Released 27 November 2019
+
+- Added `PWRLMT` as a Token Type enumeration. "Power Limit" tokens are tokens which allow a municipality to communicate an
+*instantaneous* load limit to a consumer's Prepaid Electricity Meter. For example, a "Power Limit" of 1kW means that, if a
+consumer's load is above 1kW, the meter will cut off their supply for a predefined amount of time, and then reset. If the load
+continues to exceed this instantaneous limit, this cycle will repeat.
+- Update the java version to OpenJDK 11 with Java 8 Source compatibility 
+
 ## 3.6.0
 Released 04 October 2019
 
