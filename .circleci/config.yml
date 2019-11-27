@@ -2,13 +2,15 @@ version: 2
 jobs:
   build-and-release:
     docker:
-      - image: 813968012009.dkr.ecr.us-east-1.amazonaws.com/circleci-openjdk8-8u162
-        aws_auth:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
+      - image: electrum-docker.jfrog.io/circleci-openjdk
+        auth:
+          username: circleci-reader
+          password: $ARTIFACTORY_READER_PASSWORD
     steps:
       - setup_remote_docker
-      - checkout
+      - run:
+          name: Sonar Checkout
+          command: /electrum/bin/sonarCheckout.sh
       - restore_cache:
           # if you ever need to invalidate the cache, simply bump the version number
           keys:
@@ -47,6 +49,9 @@ jobs:
           path: ~/tests
           destination: tests
       - store_artifacts:
+          path: log
+          destination: log
+      - store_artifacts:
           path: logs
           destination: logs
       - store_artifacts:
@@ -54,12 +59,15 @@ jobs:
           destination: release
   code-coverage-report:
     docker:
-      - image: 813968012009.dkr.ecr.us-east-1.amazonaws.com/circleci-openjdk8-8u162
-        aws_auth:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
+      - image: electrum-docker.jfrog.io/circleci-openjdk
+        auth:
+          username: circleci-reader
+          password: $ARTIFACTORY_READER_PASSWORD
     steps:
-      - checkout
+      - setup_remote_docker
+      - run:
+          name: Sonar Checkout
+          command: /electrum/bin/sonarCheckout.sh
       - restore_cache:
           # if you ever need to invalidate the cache, simply bump the version number
           keys:
@@ -67,18 +75,20 @@ jobs:
             - v1-maven-{{ .Branch }}
       - run:
           name: Generate code coverage report
-          command: mvn cobertura:cobertura -B -Dstyle.color=always
+          command: /electrum/bin/codeCoverageJacoco.sh
+      - run:
+          name: Push to SonarQube
+          command: /electrum/bin/runSonar.sh
       - store_artifacts:
-          path: target/site/cobertura
+          path: target/site
           destination: coverage
   build-with-latest-deps:
     docker:
-      - image: 813968012009.dkr.ecr.us-east-1.amazonaws.com/circleci-openjdk8-8u162
-        aws_auth:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
+      - image: electrum-docker.jfrog.io/circleci-openjdk
+        auth:
+          username: circleci-reader
+          password: $ARTIFACTORY_READER_PASSWORD
     steps:
-      - setup_remote_docker
       - checkout
       - restore_cache:
           # if you ever need to invalidate the cache, simply bump the version number
@@ -91,6 +101,10 @@ jobs:
       - run:
           name: Test, but only if any Electrum dependencies changed
           command: /electrum/bin/testWithUpdatedDepsJava.sh
+      - run:
+          name: Notify success to slack
+          command: /electrum/bin/notifySlackDepBuildSucceeded.sh
+          when: on_success
       - run:
           name: Notify failure to slack
           command: /electrum/bin/notifySlackDepBuildFailed.sh
@@ -108,17 +122,22 @@ jobs:
           path: ~/tests
           destination: tests
       - store_artifacts:
+          path: log
+          destination: log
+      - store_artifacts:
           path: logs
           destination: logs
 
 workflows:
   version: 2
-  build:
+  commit:
     jobs:
       - build-and-release:
           context: java
       - code-coverage-report:
           context: java
+          requires:
+            - build-and-release
   nightly:
     jobs:
       - build-with-latest-deps:
