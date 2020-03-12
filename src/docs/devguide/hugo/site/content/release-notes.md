@@ -1,5 +1,15 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.8.0
+Released 12 March 2020
+
+* Added `UTILITY_INVALID` error type
+* Added `SYSTEM_MALFUNCTION` error type
+* Added `METER_KEY_INVALID` error type
+* Added `AMOUNT_TOO_LOW` error type
+* Added `AMOUNT_TOO_HIGH` error type
+* Updated jetty version from `v9.4.17.v20190418` to `v9.4.17.v20190418`.
+
 ## 3.7.0
 Released 27 November 2019
 
