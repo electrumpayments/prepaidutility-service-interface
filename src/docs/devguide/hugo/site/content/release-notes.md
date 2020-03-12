@@ -3,12 +3,13 @@ This page describes changes to the Prepaid Utility Service Interface implemented
 ## v3.8.0
 Released 12 March 2020
 
-* Added `UTILITY_INVALID` error type
-* Added `SYSTEM_MALFUNCTION` error type
-* Added `METER_KEY_INVALID` error type
-* Added `AMOUNT_TOO_LOW` error type
-* Added `AMOUNT_TOO_HIGH` error type
-* Updated jetty version from `v9.4.17.v20190418` to `v9.4.17.v20190418`.
+- Added the following new `ErrorType` values:
+    - `UTILITY_INVALID`
+    - `SYSTEM_MALFUNCTION`
+    - `METER_KEY_INVALID`
+    - `AMOUNT_TOO_LOW`
+    - `AMOUNT_TOO_HIGH`
+- Updated jetty version from `v9.2.14.v20151106` to `v9.4.17.v20190418`.
 
 ## 3.7.0
 Released 27 November 2019
@@ -57,7 +58,7 @@ Released 15 May 2018
     - Changed `PaymentMethodType.TOKEN` to `PaymentMethodType.AN_32_TOKEN` 
     - Added `amount` field to `PaymentMethod`
     - Added EncryptedPin model object
-  
+
 ## v3.4.0
 
 Released 8 November 2017
