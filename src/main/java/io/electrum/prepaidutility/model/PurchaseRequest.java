@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.electrum.vas.Utils;
+import io.electrum.vas.interfaces.HasPaymentMethods;
 import io.electrum.vas.model.LedgerAmount;
 import io.electrum.vas.model.PaymentMethod;
 import io.electrum.vas.model.Tender;
@@ -24,7 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "Represents a token purchase request")
 @JsonInclude(Include.NON_NULL)
-public class PurchaseRequest extends Transaction {
+public class PurchaseRequest extends Transaction implements HasPaymentMethods {
 
    private Meter meter;
    private LedgerAmount purchaseAmount;

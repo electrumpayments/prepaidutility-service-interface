@@ -1,5 +1,12 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.9.0
+Released 30 April 2020
+
+- Added additionalAmounts field to PurchaseResponse.
+- Added arrearsAmount LedgerAmount to MeterLookupResponse for handling Customer Debt Balance.
+- Incorporated Interfaces for Amounts & PaymentMethods from ``service-interface-base``.
+
 ## v3.8.0
 Released 12 March 2020
 

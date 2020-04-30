@@ -25,12 +25,8 @@ public class MeterLookupResponse extends Transaction {
    private Utility utility = null;
    private LedgerAmount minAmount = null;
    private LedgerAmount maxAmount = null;
+   private LedgerAmount arrearsAmount = null;
    private Boolean bsstDue = null;
-
-   public MeterLookupResponse meter(Meter meter) {
-      this.meter = meter;
-      return this;
-   }
 
    /**
     * Details of the meter.
@@ -48,8 +44,8 @@ public class MeterLookupResponse extends Transaction {
       this.meter = meter;
    }
 
-   public MeterLookupResponse customer(Customer customer) {
-      this.customer = customer;
+   public MeterLookupResponse meter(Meter meter) {
+      this.meter = meter;
       return this;
    }
 
@@ -69,8 +65,8 @@ public class MeterLookupResponse extends Transaction {
       this.customer = customer;
    }
 
-   public MeterLookupResponse utility(Utility utility) {
-      this.utility = utility;
+   public MeterLookupResponse customer(Customer customer) {
+      this.customer = customer;
       return this;
    }
 
@@ -90,8 +86,8 @@ public class MeterLookupResponse extends Transaction {
       this.utility = utility;
    }
 
-   public MeterLookupResponse minAmount(LedgerAmount minAmount) {
-      this.minAmount = minAmount;
+   public MeterLookupResponse utility(Utility utility) {
+      this.utility = utility;
       return this;
    }
 
@@ -110,8 +106,8 @@ public class MeterLookupResponse extends Transaction {
       this.minAmount = minAmount;
    }
 
-   public MeterLookupResponse maxAmount(LedgerAmount maxAmount) {
-      this.maxAmount = maxAmount;
+   public MeterLookupResponse minAmount(LedgerAmount minAmount) {
+      this.minAmount = minAmount;
       return this;
    }
 
@@ -130,8 +126,28 @@ public class MeterLookupResponse extends Transaction {
       this.maxAmount = maxAmount;
    }
 
-   public MeterLookupResponse bsstDue(Boolean bsstDue) {
-      this.bsstDue = bsstDue;
+   public MeterLookupResponse maxAmount(LedgerAmount maxAmount) {
+      this.maxAmount = maxAmount;
+      return this;
+   }
+
+   /**
+    * Maximum purchase amount that can be requested by the customer.
+    *
+    * @return maxAmount
+    **/
+   @ApiModelProperty(value = "Maximum purchase amount that can be requested by the customer.")
+   @Valid
+   public LedgerAmount getArrearsAmount() {
+      return arrearsAmount;
+   }
+
+   public void setArrearsAmount(LedgerAmount arrearsAmount) {
+      this.arrearsAmount = arrearsAmount;
+   }
+
+   public MeterLookupResponse arrearsAmount(LedgerAmount arrearsAmount) {
+      this.arrearsAmount = arrearsAmount;
       return this;
    }
 
@@ -149,6 +165,11 @@ public class MeterLookupResponse extends Transaction {
 
    public void setBsstDue(Boolean bsstDue) {
       this.bsstDue = bsstDue;
+   }
+
+   public MeterLookupResponse bsstDue(Boolean bsstDue) {
+      this.bsstDue = bsstDue;
+      return this;
    }
 
    @Override

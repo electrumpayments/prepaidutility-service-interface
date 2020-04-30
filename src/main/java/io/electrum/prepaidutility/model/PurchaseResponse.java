@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import io.electrum.vas.Utils;
+import io.electrum.vas.interfaces.HasAmounts;
+import io.electrum.vas.model.Amounts;
 import io.electrum.vas.model.Customer;
 import io.electrum.vas.model.LedgerAmount;
 import io.electrum.vas.model.Transaction;
@@ -21,10 +23,11 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "Represents the response to a token purchase request")
 @JsonInclude(Include.NON_NULL)
-public class PurchaseResponse extends Transaction {
+public class PurchaseResponse extends Transaction implements HasAmounts {
 
    private LedgerAmount purchaseTotal = null;
    private LedgerAmount taxTotal = null;
+   private Amounts additionalAmounts = null;
    private Meter meter = null;
    private Customer customer = null;
    private Utility utility = null;
@@ -70,6 +73,17 @@ public class PurchaseResponse extends Transaction {
 
    public void setTaxTotal(LedgerAmount taxTotal) {
       this.taxTotal = taxTotal;
+   }
+
+   @ApiModelProperty(required = false, value = "An optional amounts field for any additionalAmounts which may need to be added to the response payload.")
+   @Override
+   public Amounts getAmounts() {
+      return additionalAmounts;
+   }
+
+   @Override
+   public void setAmounts(Amounts amounts) {
+      this.additionalAmounts = amounts;
    }
 
    /**
@@ -242,6 +256,7 @@ public class PurchaseResponse extends Transaction {
       sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
       sb.append("    purchaseTotal: ").append(Utils.toIndentedString(purchaseTotal)).append("\n");
+      sb.append("    additionalAmounts: ").append(Utils.toIndentedString(additionalAmounts)).append("\n");
       sb.append("    taxTotal: ").append(Utils.toIndentedString(taxTotal)).append("\n");
       sb.append("    meter: ").append(Utils.toIndentedString(meter)).append("\n");
       sb.append("    customer: ").append(Utils.toIndentedString(customer)).append("\n");
