@@ -1,5 +1,11 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.8.1
+Released 30 April 2020
+
+- Added the following `ErrorType.RequestType` value:
+    - `CONFIRMATION`
+
 ## v3.8.0
 Released 12 March 2020
 
