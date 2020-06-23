@@ -1,6 +1,7 @@
 package io.electrum.prepaidutility.api;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.ServerErrorException;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Request;
@@ -55,4 +56,15 @@ public interface ITokenPurchasesResource {
          HttpHeaders httpHeaders,
          UriInfo uriInfo);
 
+   default void trialTokenPurchaseRequest(
+         String purchaseId,
+         PurchaseRequest body,
+         SecurityContext securityContext,
+         AsyncResponse asyncResponse,
+         Request request,
+         HttpServletRequest httpServletRequest,
+         HttpHeaders httpHeaders,
+         UriInfo uriInfo) {
+      asyncResponse.resume(new ServerErrorException("This operation has not been implemented.", 501));
+   }
 }

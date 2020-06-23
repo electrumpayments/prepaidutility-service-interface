@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 
-@Path(PrepaidUtilityApi.API_BASE_PATH)
+@Path(FaultReportsResource.PATH)
 @Api(description = "the faultReports API", authorizations = { @Authorization("httpBasic") })
 public abstract class FaultReportsResource {
 

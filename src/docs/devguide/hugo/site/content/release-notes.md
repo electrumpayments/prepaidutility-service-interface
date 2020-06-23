@@ -1,5 +1,20 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.9.0
+Released 24 June 2020
+
+- Corrected repetition of API base path.
+  - *Note* This is breaking change to the API but is not treated as such. Previously the API defined paths to operations as `/prepaidutility/v3/prepaidutility/v3/{operation}` when they should have been of the more simple form `/prepaidutility/v3/{operation}`. Changing the API base path in this manner would typically be a breaking change and would be reflected as such by bumping the major version number in the URL from `v3` to `v4`. However, all known projects depending on the Prepaid Utility Service Interface are already implemented using the simpler base path of `/prepaidutility/v3/{operation}`. Thus the decision was made to transparently fix the base path repetition bug as a minor version update as this was deemed to be a less disruptive change to all known projects.
+- Added a new operation, `trialTokenPurchaseRequest`, which mimics a conventional `createTokenPurchaseRequest` operation with the following exceptions:
+    - No tokens are returned.
+    - Has no financial impact.
+- Added a new field to the `MeterLookupsResource` object called `balanceAmount`.
+- Added a new field to the `Meter` object called `blindVendCapable`.
+- Added a new `ErrorType` called `NO_FREE_UNITS_DUE`. 
+- Updated the dependency on the base API from v3.23.0 to v3.25.0:
+    - Added `amounts` field to the `BasicAdvice` model to support partial reversals and partial confirmations.
+    - Added support for hashed PINs (via a new sub-type of `Pin` named `HashedPin`).
+
 ## v3.8.0
 Released 12 March 2020
 

@@ -43,7 +43,11 @@ public class ErrorDetail {
       SYSTEM_MALFUNCTION("SYSTEM_MALFUNCTION"),
       METER_KEY_INVALID("METER_KEY_INVALID"),
       AMOUNT_TOO_LOW("AMOUNT_TOO_LOW"),
-      AMOUNT_TOO_HIGH("AMOUNT_TOO_HIGH");
+      AMOUNT_TOO_HIGH("AMOUNT_TOO_HIGH"),
+      /**
+       * @since v3.9.0
+       */
+      NO_FREE_UNITS_DUE("NO_FREE_UNITS_DUE");
 
       private String value;
 

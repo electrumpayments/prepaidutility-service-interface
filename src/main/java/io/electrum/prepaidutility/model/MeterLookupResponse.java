@@ -26,6 +26,10 @@ public class MeterLookupResponse extends Transaction {
    private LedgerAmount minAmount = null;
    private LedgerAmount maxAmount = null;
    private Boolean bsstDue = null;
+   /**
+    * @since v3.9.0
+    */
+   private LedgerAmount balanceAmount = null;
 
    public MeterLookupResponse meter(Meter meter) {
       this.meter = meter;
@@ -151,6 +155,28 @@ public class MeterLookupResponse extends Transaction {
       this.bsstDue = bsstDue;
    }
 
+   public MeterLookupResponse balanceAmount(LedgerAmount balanceAmount) {
+      this.balanceAmount = balanceAmount;
+      return this;
+   }
+
+   /**
+    * The balance of the customer's account. If the customer is in debt, a portion of their purchase may be allocated by
+    * the authority to repay the debt rather than to pay for electricity units.
+    * 
+    * @return balanceAmount
+    * @since v3.9.0
+    **/
+   @ApiModelProperty(value = "The balance of the customer's account. If the customer is in debt, a portion of their purchase may be allocated by the authority to repay the debt rather than to pay for electricity units.")
+   @Valid
+   public LedgerAmount getBalanceAmount() {
+      return balanceAmount;
+   }
+
+   public void setBalanceAmount(LedgerAmount balanceAmount) {
+      this.balanceAmount = balanceAmount;
+   }
+
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
@@ -169,6 +195,7 @@ public class MeterLookupResponse extends Transaction {
       sb.append("    minAmount: ").append(Utils.toIndentedString(minAmount)).append("\n");
       sb.append("    maxAmount: ").append(Utils.toIndentedString(maxAmount)).append("\n");
       sb.append("    bsstDue: ").append(Utils.toIndentedString(bsstDue)).append("\n");
+      sb.append("    balanceAmount: ").append(Utils.toIndentedString(balanceAmount)).append("\n");
       sb.append("}");
       return sb.toString();
    }
