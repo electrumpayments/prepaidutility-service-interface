@@ -35,7 +35,8 @@ public abstract class TokenReprintsResource {
    public class RequestTokenReprint {
       public static final String REQUEST_TOKEN_REPRINT = "requestTokenReprint";
       public static final int SUCCESS = 200;
-      public static final String PATH = TokenReprintsResource.PATH + "/{" + PathParameters.REPRINT_ID + "}";
+      public static final String RELATIVE_PATH = "/{" + PathParameters.REPRINT_ID + "}";
+      public static final String PATH = TokenReprintsResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
          public static final String REPRINT_ID = "reprintId";
@@ -43,7 +44,7 @@ public abstract class TokenReprintsResource {
    }
 
    @POST
-   @Path(RequestTokenReprint.PATH)
+   @Path(RequestTokenReprint.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = RequestTokenReprint.REQUEST_TOKEN_REPRINT, value = "Requests a reprint of a token", notes = "Requests a reprint of a token that was previously issued for a specified meter. The request can be for either the last token issued for that meter, or for a specific transaction reference, depending on what the provider supports.")
