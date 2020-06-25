@@ -14,6 +14,7 @@ Released 24 June 2020
 - Updated the dependency on the base API from v3.23.0 to v3.25.0:
     - Added `amounts` field to the `BasicAdvice` model to support partial reversals and partial confirmations.
     - Added support for hashed PINs (via a new sub-type of `Pin` named `HashedPin`).
+- Updated Hibernate Validator version from `v5.2.2.Final` to `v5.3.5.Final`.
 
 ## v3.8.0
 Released 12 March 2020
