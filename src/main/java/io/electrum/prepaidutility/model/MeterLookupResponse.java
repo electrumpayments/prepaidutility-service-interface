@@ -182,21 +182,21 @@ public class MeterLookupResponse extends Transaction {
       StringBuilder sb = new StringBuilder();
       sb.append("class MeterLookupResponse {\n");
 
-      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
-      sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
-      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append("\n");
-      sb.append("    client: ").append(Utils.toIndentedString(client)).append("\n");
-      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
-      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
-      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
-      sb.append("    meter: ").append(Utils.toIndentedString(meter)).append("\n");
-      sb.append("    customer: ").append(Utils.toIndentedString(customer)).append("\n");
-      sb.append("    utility: ").append(Utils.toIndentedString(utility)).append("\n");
-      sb.append("    minAmount: ").append(Utils.toIndentedString(minAmount)).append("\n");
-      sb.append("    maxAmount: ").append(Utils.toIndentedString(maxAmount)).append("\n");
-      sb.append("    bsstDue: ").append(Utils.toIndentedString(bsstDue)).append("\n");
-      sb.append("    balanceAmount: ").append(Utils.toIndentedString(balanceAmount)).append("\n");
-      sb.append("}");
+      sb.append("    id: ").append(Utils.toIndentedString(id)).append('\n');
+      sb.append("    time: ").append(Utils.toIndentedString(time)).append('\n');
+      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append('\n');
+      sb.append("    client: ").append(Utils.toIndentedString(client)).append('\n');
+      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append('\n');
+      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append('\n');
+      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append('\n');
+      sb.append("    meter: ").append(Utils.toIndentedString(meter)).append('\n');
+      sb.append("    customer: ").append(Utils.toIndentedString(customer)).append('\n');
+      sb.append("    utility: ").append(Utils.toIndentedString(utility)).append('\n');
+      sb.append("    minAmount: ").append(Utils.toIndentedString(minAmount)).append('\n');
+      sb.append("    maxAmount: ").append(Utils.toIndentedString(maxAmount)).append('\n');
+      sb.append("    bsstDue: ").append(Utils.toIndentedString(bsstDue)).append('\n');
+      sb.append("    balanceAmount: ").append(Utils.toIndentedString(balanceAmount)).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

@@ -85,7 +85,7 @@ public abstract class TokenPurchasesResource {
 
    public class TrialTokenPurchaseRequest {
       public static final String TRIAL_TOKEN_PURCHASE_REQUEST = "trialTokenPurchaseRequest";
-      public static final int SUCCESS = 201;
+      public static final int SUCCESS = 200;
       public static final String RELATIVE_PATH = "/{" + PathParameters.PURCHASE_ID + "}/trials";
       public static final String PATH = TokenPurchasesResource.PATH + RELATIVE_PATH;
 
@@ -236,12 +236,12 @@ public abstract class TokenPurchasesResource {
    /**
     * Requests a trial token purchase for a specified meter
     * 
-    * This operation is identical to the '{@code trialTokenPurchaseRequest}' operation except that no tokens are
-    * returned and this operation carries no financial impact. This operation allows the consumer to make an informed
+    * This operation is identical to the '{@code createTokenPurchaseRequest}' operation except that no tokens are
+    * returned and this operation carries no financial impact. This operation allows the customer to make an informed
     * choice about the transaction outcome before committing to purchase electricity. This operation serves to inform a
     * customer exactly what the outcome of their purchase is: the service charges which will be levied, the debt
-    * recovery charges, the number of units which will be provided etc. If a consumer is dissatisfied with the details
-    * in the response, the consumer may abort the transaction without any consequences.
+    * recovery charges, the number of units which will be provided etc. If a customer is dissatisfied with the details
+    * in the response, the customer may abort the transaction without any consequences.
     * 
     * @param purchaseId
     * @param body
@@ -259,16 +259,16 @@ public abstract class TokenPurchasesResource {
    @Produces({ "application/json" })
    @ApiOperation(nickname = TrialTokenPurchaseRequest.TRIAL_TOKEN_PURCHASE_REQUEST, value = "Requests a trial token purchase for a specified meter.", notes = "This operation is identical to the '"
          + CreateTokenPurchaseRequest.CREATE_TOKEN_PURCHASE_REQUEST
-         + "' operation except that no tokens are returned and this operation carries no financial impact. This operation allows the consumer to make an informed choice about the transaction outcome before committing to purchase electricity. This operation serves to inform a customer exactly what the outcome of their purchase is: the service charges which will be levied, the debt recovery charges, the number of units which will be provided etc. If a consumer is dissatisfied with the details in the response, the consumer may abort the transaction without any consequences.")
+         + "' operation except that no tokens are returned and this operation carries no financial impact. This operation allows the customer to make an informed choice about the transaction outcome before committing to purchase electricity. This operation serves to inform a customer exactly what the outcome of their purchase is: the service charges which will be levied, the debt recovery charges, the number of units which will be provided etc. If a customer is dissatisfied with the details in the response, the customer may abort the transaction without any consequences.")
    @ApiResponses(value = {
-         @ApiResponse(code = CreateTokenPurchaseRequest.SUCCESS, message = "Created", response = PurchaseResponse.class),
+         @ApiResponse(code = TrialTokenPurchaseRequest.SUCCESS, message = "OK", response = PurchaseResponse.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void trialTokenPurchaseRequest(
-         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(CreateTokenPurchaseRequest.PathParameters.PURCHASE_ID) String purchaseId,
+         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(TrialTokenPurchaseRequest.PathParameters.PURCHASE_ID) String purchaseId,
          @ApiParam(value = "A token purchase request.", required = true) PurchaseRequest body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
