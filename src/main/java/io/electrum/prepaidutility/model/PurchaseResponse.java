@@ -1,5 +1,14 @@
 package io.electrum.prepaidutility.model;
 
+import io.electrum.vas.Utils;
+import io.electrum.vas.interfaces.HasAmounts;
+import io.electrum.vas.model.Amounts;
+import io.electrum.vas.model.Customer;
+import io.electrum.vas.model.LedgerAmount;
+import io.electrum.vas.model.Transaction;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,22 +18,16 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import io.electrum.vas.Utils;
-import io.electrum.vas.model.Customer;
-import io.electrum.vas.model.LedgerAmount;
-import io.electrum.vas.model.Transaction;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 /**
  * Represents the response to a token purchase request
  */
 @ApiModel(description = "Represents the response to a token purchase request")
 @JsonInclude(Include.NON_NULL)
-public class PurchaseResponse extends Transaction {
+public class PurchaseResponse extends Transaction implements HasAmounts {
 
    private LedgerAmount purchaseTotal = null;
    private LedgerAmount taxTotal = null;
+   private Amounts amounts = null;
    private Meter meter = null;
    private Customer customer = null;
    private Utility utility = null;
@@ -70,6 +73,25 @@ public class PurchaseResponse extends Transaction {
 
    public void setTaxTotal(LedgerAmount taxTotal) {
       this.taxTotal = taxTotal;
+   }
+
+   /**
+    * An optional amounts field for any additional amounts which may need to be added to the response payload
+    */
+   public PurchaseResponse amounts(Amounts amounts) {
+      this.amounts = amounts;
+      return this;
+   }
+
+   @ApiModelProperty(required = false, value = "An optional amounts field for any additional amounts which may need to be added to the response payload.")
+   @Override
+   public Amounts getAmounts() {
+      return amounts;
+   }
+
+   @Override
+   public void setAmounts(Amounts amounts) {
+      this.amounts = amounts;
    }
 
    /**
@@ -242,6 +264,7 @@ public class PurchaseResponse extends Transaction {
       sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
       sb.append("    purchaseTotal: ").append(Utils.toIndentedString(purchaseTotal)).append("\n");
+      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append("\n");
       sb.append("    taxTotal: ").append(Utils.toIndentedString(taxTotal)).append("\n");
       sb.append("    meter: ").append(Utils.toIndentedString(meter)).append("\n");
       sb.append("    customer: ").append(Utils.toIndentedString(customer)).append("\n");

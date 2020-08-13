@@ -1,5 +1,14 @@
 package io.electrum.prepaidutility.model;
 
+import io.electrum.vas.Utils;
+import io.electrum.vas.interfaces.HasPaymentMethods;
+import io.electrum.vas.model.LedgerAmount;
+import io.electrum.vas.model.PaymentMethod;
+import io.electrum.vas.model.Tender;
+import io.electrum.vas.model.Transaction;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,22 +18,14 @@ import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.electrum.vas.Utils;
-import io.electrum.vas.model.LedgerAmount;
-import io.electrum.vas.model.PaymentMethod;
-import io.electrum.vas.model.Tender;
-import io.electrum.vas.model.Transaction;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Represents a token purchase request
  */
 @ApiModel(description = "Represents a token purchase request")
 @JsonInclude(Include.NON_NULL)
-public class PurchaseRequest extends Transaction {
+public class PurchaseRequest extends Transaction implements HasPaymentMethods {
 
    private Meter meter;
    private LedgerAmount purchaseAmount;
@@ -115,10 +116,10 @@ public class PurchaseRequest extends Transaction {
       return this;
    }
 
-   @ApiModelProperty(required = false, value = "An array of tenders used to pay for the transaction. This is used " +
-         "if payment is tendered at the point of sale. A Tender differs from a PaymentMethod in that the former " +
-         "represents a payment that has already been collected at the point of sale, whereas the latter represents " +
-         "a payment that still needs to be collected from a third party.")
+   @ApiModelProperty(required = false, value = "An array of tenders used to pay for the transaction. This is used "
+         + "if payment is tendered at the point of sale. A Tender differs from a PaymentMethod in that the former "
+         + "represents a payment that has already been collected at the point of sale, whereas the latter represents "
+         + "a payment that still needs to be collected from a third party.")
    @Valid
    public List<Tender> getTenders() {
       return tenders;
@@ -136,11 +137,11 @@ public class PurchaseRequest extends Transaction {
       return this;
    }
 
-   @ApiModelProperty(required = false, value = "An array of payment methods to be used as payment for the " +
-         "transaction. This is used if payment is not tendered at the point of sale, but is effected through one " +
-         "or more calls to third party payment providers as part of the request. A PaymentMethod differs from a " +
-         "Tender in that the former represents payment that still needs to be collected from a third party, " +
-         "whereas the latter represents payment that has already been collected at the point of sale.")
+   @ApiModelProperty(required = false, value = "An array of payment methods to be used as payment for the "
+         + "transaction. This is used if payment is not tendered at the point of sale, but is effected through one "
+         + "or more calls to third party payment providers as part of the request. A PaymentMethod differs from a "
+         + "Tender in that the former represents payment that still needs to be collected from a third party, "
+         + "whereas the latter represents payment that has already been collected at the point of sale.")
    @JsonProperty("paymentMethods")
    public List<PaymentMethod> getPaymentMethods() {
       return paymentMethods;

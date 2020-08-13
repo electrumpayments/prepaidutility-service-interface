@@ -1,5 +1,19 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.9.0
+Released 13 August 2020
+
+- Added an ```amounts``` field to ```PurchaseResponse```. This can be used for any additional amounts which don't
+  traditionally fit into dedicated amount fields.
+- Added an arrearsAmount LedgerAmount to MeterLookupResponse for handling customer debt payments & outstanding debt
+  balance enquiries.
+- Incorporated new interfaces from ``service-interface-base``. This change affects the Java implementation of the API
+  only and does not further change the public definition of the API. The Java implementation has been updated as follows: 
+    - The following classes now implement the `HasAmounts` interface defined in the base API:
+        - `PurchaseResponse`
+    - The following classes now implement the `HasPaymentMethods` interface defined in the base API:
+        - `PurchaseRequest`
+
 ## v3.8.0
 Released 12 March 2020
 

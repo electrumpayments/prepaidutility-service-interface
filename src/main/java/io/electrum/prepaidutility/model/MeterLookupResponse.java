@@ -1,17 +1,17 @@
 package io.electrum.prepaidutility.model;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Customer;
 import io.electrum.vas.model.LedgerAmount;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * Represents a response to a meter lookup request
@@ -25,6 +25,7 @@ public class MeterLookupResponse extends Transaction {
    private Utility utility = null;
    private LedgerAmount minAmount = null;
    private LedgerAmount maxAmount = null;
+   private LedgerAmount arrearsAmount = null;
    private Boolean bsstDue = null;
 
    public MeterLookupResponse meter(Meter meter) {
@@ -130,6 +131,26 @@ public class MeterLookupResponse extends Transaction {
       this.maxAmount = maxAmount;
    }
 
+   public MeterLookupResponse arrearsAmount(LedgerAmount arrearsAmount) {
+      this.arrearsAmount = arrearsAmount;
+      return this;
+   }
+
+   /**
+    * Returned arrears amount from provider.
+    *
+    * @return arrearsAmount
+    **/
+   @ApiModelProperty(value = "Returned arrears amount from provider. Encapsulates the total debt outstanding.")
+   @Valid
+   public LedgerAmount getArrearsAmount() {
+      return arrearsAmount;
+   }
+
+   public void setArrearsAmount(LedgerAmount arrearsAmount) {
+      this.arrearsAmount = arrearsAmount;
+   }
+
    public MeterLookupResponse bsstDue(Boolean bsstDue) {
       this.bsstDue = bsstDue;
       return this;
@@ -155,7 +176,6 @@ public class MeterLookupResponse extends Transaction {
    public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class MeterLookupResponse {\n");
-
       sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
       sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
       sb.append("    originator: ").append(Utils.toIndentedString(originator)).append("\n");
@@ -168,6 +188,7 @@ public class MeterLookupResponse extends Transaction {
       sb.append("    utility: ").append(Utils.toIndentedString(utility)).append("\n");
       sb.append("    minAmount: ").append(Utils.toIndentedString(minAmount)).append("\n");
       sb.append("    maxAmount: ").append(Utils.toIndentedString(maxAmount)).append("\n");
+      sb.append("    arrearsAmount: ").append(Utils.toIndentedString(arrearsAmount)).append("\n");
       sb.append("    bsstDue: ").append(Utils.toIndentedString(bsstDue)).append("\n");
       sb.append("}");
       return sb.toString();
