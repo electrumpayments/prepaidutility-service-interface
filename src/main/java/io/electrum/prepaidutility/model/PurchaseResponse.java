@@ -27,7 +27,7 @@ public class PurchaseResponse extends Transaction implements HasAmounts {
 
    private LedgerAmount purchaseTotal = null;
    private LedgerAmount taxTotal = null;
-   private Amounts additionalAmounts = null;
+   private Amounts amounts = null;
    private Meter meter = null;
    private Customer customer = null;
    private Utility utility = null;
@@ -75,20 +75,23 @@ public class PurchaseResponse extends Transaction implements HasAmounts {
       this.taxTotal = taxTotal;
    }
 
-   public PurchaseResponse additionalAmounts(Amounts additionalAmounts) {
-      this.additionalAmounts = additionalAmounts;
+   /**
+    * An optional amounts field for any additional amounts which may need to be added to the response payload
+    */
+   public PurchaseResponse amounts(Amounts amounts) {
+      this.amounts = amounts;
       return this;
    }
 
-   @ApiModelProperty(required = false, value = "An optional amounts field for any additionalAmounts which may need to be added to the response payload.")
+   @ApiModelProperty(required = false, value = "An optional amounts field for any additional amounts which may need to be added to the response payload.")
    @Override
    public Amounts getAmounts() {
-      return additionalAmounts;
+      return amounts;
    }
 
    @Override
    public void setAmounts(Amounts amounts) {
-      this.additionalAmounts = amounts;
+      this.amounts = amounts;
    }
 
    /**
@@ -261,7 +264,7 @@ public class PurchaseResponse extends Transaction implements HasAmounts {
       sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
       sb.append("    purchaseTotal: ").append(Utils.toIndentedString(purchaseTotal)).append("\n");
-      sb.append("    additionalAmounts: ").append(Utils.toIndentedString(additionalAmounts)).append("\n");
+      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append("\n");
       sb.append("    taxTotal: ").append(Utils.toIndentedString(taxTotal)).append("\n");
       sb.append("    meter: ").append(Utils.toIndentedString(meter)).append("\n");
       sb.append("    customer: ").append(Utils.toIndentedString(customer)).append("\n");

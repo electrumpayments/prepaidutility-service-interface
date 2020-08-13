@@ -3,7 +3,7 @@ This page describes changes to the Prepaid Utility Service Interface implemented
 ## v3.9.0
 Released 13 August 2020
 
-- Added additionalAmounts field to PurchaseResponse. This can be used for any additional amounts which don't
+- Added an ```amounts``` field to ```PurchaseResponse```. This can be used for any additional amounts which don't
   traditionally fit into dedicated amount fields.
 - Added an arrearsAmount LedgerAmount to MeterLookupResponse for handling customer debt payments & outstanding debt
   balance enquiries.
