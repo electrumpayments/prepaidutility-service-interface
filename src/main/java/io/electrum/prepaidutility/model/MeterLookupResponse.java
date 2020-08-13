@@ -28,6 +28,11 @@ public class MeterLookupResponse extends Transaction {
    private LedgerAmount arrearsAmount = null;
    private Boolean bsstDue = null;
 
+   public MeterLookupResponse meter(Meter meter) {
+      this.meter = meter;
+      return this;
+   }
+
    /**
     * Details of the meter.
     * 
@@ -44,8 +49,8 @@ public class MeterLookupResponse extends Transaction {
       this.meter = meter;
    }
 
-   public MeterLookupResponse meter(Meter meter) {
-      this.meter = meter;
+   public MeterLookupResponse customer(Customer customer) {
+      this.customer = customer;
       return this;
    }
 
@@ -65,8 +70,8 @@ public class MeterLookupResponse extends Transaction {
       this.customer = customer;
    }
 
-   public MeterLookupResponse customer(Customer customer) {
-      this.customer = customer;
+   public MeterLookupResponse utility(Utility utility) {
+      this.utility = utility;
       return this;
    }
 
@@ -86,8 +91,8 @@ public class MeterLookupResponse extends Transaction {
       this.utility = utility;
    }
 
-   public MeterLookupResponse utility(Utility utility) {
-      this.utility = utility;
+   public MeterLookupResponse minAmount(LedgerAmount minAmount) {
+      this.minAmount = minAmount;
       return this;
    }
 
@@ -106,8 +111,8 @@ public class MeterLookupResponse extends Transaction {
       this.minAmount = minAmount;
    }
 
-   public MeterLookupResponse minAmount(LedgerAmount minAmount) {
-      this.minAmount = minAmount;
+   public MeterLookupResponse maxAmount(LedgerAmount maxAmount) {
+      this.maxAmount = maxAmount;
       return this;
    }
 
@@ -126,15 +131,15 @@ public class MeterLookupResponse extends Transaction {
       this.maxAmount = maxAmount;
    }
 
-   public MeterLookupResponse maxAmount(LedgerAmount maxAmount) {
-      this.maxAmount = maxAmount;
+   public MeterLookupResponse arrearsAmount(LedgerAmount arrearsAmount) {
+      this.arrearsAmount = arrearsAmount;
       return this;
    }
 
    /**
-    * Maximum purchase amount that can be requested by the customer.
+    * Returned arrears amount from provider.
     *
-    * @return maxAmount
+    * @return arrearsAmount
     **/
    @ApiModelProperty(value = "Returned arrears amount from provider. Encapsulates the total debt outstanding.")
    @Valid
@@ -146,8 +151,8 @@ public class MeterLookupResponse extends Transaction {
       this.arrearsAmount = arrearsAmount;
    }
 
-   public MeterLookupResponse arrearsAmount(LedgerAmount arrearsAmount) {
-      this.arrearsAmount = arrearsAmount;
+   public MeterLookupResponse bsstDue(Boolean bsstDue) {
+      this.bsstDue = bsstDue;
       return this;
    }
 
@@ -165,11 +170,6 @@ public class MeterLookupResponse extends Transaction {
 
    public void setBsstDue(Boolean bsstDue) {
       this.bsstDue = bsstDue;
-   }
-
-   public MeterLookupResponse bsstDue(Boolean bsstDue) {
-      this.bsstDue = bsstDue;
-      return this;
    }
 
    @Override
