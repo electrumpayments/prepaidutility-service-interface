@@ -1,5 +1,6 @@
 package io.electrum.prepaidutility.model;
 
+import io.electrum.vas.Utils;
 import io.electrum.vas.model.Customer;
 import io.electrum.vas.model.LedgerAmount;
 import io.electrum.vas.model.Transaction;
@@ -27,6 +28,11 @@ public class MeterLookupResponse extends Transaction {
    private LedgerAmount arrearsAmount = null;
    private Boolean bsstDue = null;
 
+   public MeterLookupResponse meter(Meter meter) {
+      this.meter = meter;
+      return this;
+   }
+
    /**
     * Details of the meter.
     * 
@@ -43,8 +49,8 @@ public class MeterLookupResponse extends Transaction {
       this.meter = meter;
    }
 
-   public MeterLookupResponse meter(Meter meter) {
-      this.meter = meter;
+   public MeterLookupResponse customer(Customer customer) {
+      this.customer = customer;
       return this;
    }
 
@@ -64,8 +70,8 @@ public class MeterLookupResponse extends Transaction {
       this.customer = customer;
    }
 
-   public MeterLookupResponse customer(Customer customer) {
-      this.customer = customer;
+   public MeterLookupResponse utility(Utility utility) {
+      this.utility = utility;
       return this;
    }
 
@@ -85,8 +91,8 @@ public class MeterLookupResponse extends Transaction {
       this.utility = utility;
    }
 
-   public MeterLookupResponse utility(Utility utility) {
-      this.utility = utility;
+   public MeterLookupResponse minAmount(LedgerAmount minAmount) {
+      this.minAmount = minAmount;
       return this;
    }
 
@@ -105,8 +111,8 @@ public class MeterLookupResponse extends Transaction {
       this.minAmount = minAmount;
    }
 
-   public MeterLookupResponse minAmount(LedgerAmount minAmount) {
-      this.minAmount = minAmount;
+   public MeterLookupResponse maxAmount(LedgerAmount maxAmount) {
+      this.maxAmount = maxAmount;
       return this;
    }
 
@@ -125,17 +131,17 @@ public class MeterLookupResponse extends Transaction {
       this.maxAmount = maxAmount;
    }
 
-   public MeterLookupResponse maxAmount(LedgerAmount maxAmount) {
-      this.maxAmount = maxAmount;
+   public MeterLookupResponse arrearsAmount(LedgerAmount arrearsAmount) {
+      this.arrearsAmount = arrearsAmount;
       return this;
    }
 
    /**
-    * Maximum purchase amount that can be requested by the customer.
+    * Returned arrears amount from provider.
     *
-    * @return maxAmount
+    * @return arrearsAmount
     **/
-   @ApiModelProperty(value = "Maximum purchase amount that can be requested by the customer.")
+   @ApiModelProperty(value = "Returned arrears amount from provider. Encapsulates the total debt outstanding.")
    @Valid
    public LedgerAmount getArrearsAmount() {
       return arrearsAmount;
@@ -145,8 +151,8 @@ public class MeterLookupResponse extends Transaction {
       this.arrearsAmount = arrearsAmount;
    }
 
-   public MeterLookupResponse arrearsAmount(LedgerAmount arrearsAmount) {
-      this.arrearsAmount = arrearsAmount;
+   public MeterLookupResponse bsstDue(Boolean bsstDue) {
+      this.bsstDue = bsstDue;
       return this;
    }
 
@@ -166,29 +172,25 @@ public class MeterLookupResponse extends Transaction {
       this.bsstDue = bsstDue;
    }
 
-   public MeterLookupResponse bsstDue(Boolean bsstDue) {
-      this.bsstDue = bsstDue;
-      return this;
-   }
-
    @Override
    public String toString() {
-      final StringBuilder sb = new StringBuilder("MeterLookupResponse{");
-      sb.append("meter=").append(meter);
-      sb.append(", customer=").append(customer);
-      sb.append(", utility=").append(utility);
-      sb.append(", minAmount=").append(minAmount);
-      sb.append(", maxAmount=").append(maxAmount);
-      sb.append(", arrearsAmount=").append(arrearsAmount);
-      sb.append(", bsstDue=").append(bsstDue);
-      sb.append(", id='").append(id).append('\'');
-      sb.append(", time=").append(time);
-      sb.append(", originator=").append(originator);
-      sb.append(", client=").append(client);
-      sb.append(", settlementEntity=").append(settlementEntity);
-      sb.append(", receiver=").append(receiver);
-      sb.append(", thirdPartyIdentifiers=").append(thirdPartyIdentifiers);
-      sb.append('}');
+      StringBuilder sb = new StringBuilder();
+      sb.append("class MeterLookupResponse {\n");
+      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
+      sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
+      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append("\n");
+      sb.append("    client: ").append(Utils.toIndentedString(client)).append("\n");
+      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
+      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
+      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
+      sb.append("    meter: ").append(Utils.toIndentedString(meter)).append("\n");
+      sb.append("    customer: ").append(Utils.toIndentedString(customer)).append("\n");
+      sb.append("    utility: ").append(Utils.toIndentedString(utility)).append("\n");
+      sb.append("    minAmount: ").append(Utils.toIndentedString(minAmount)).append("\n");
+      sb.append("    maxAmount: ").append(Utils.toIndentedString(maxAmount)).append("\n");
+      sb.append("    arrearsAmount: ").append(Utils.toIndentedString(arrearsAmount)).append("\n");
+      sb.append("    bsstDue: ").append(Utils.toIndentedString(bsstDue)).append("\n");
+      sb.append("}");
       return sb.toString();
    }
 }

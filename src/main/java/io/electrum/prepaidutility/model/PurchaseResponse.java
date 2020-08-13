@@ -75,6 +75,11 @@ public class PurchaseResponse extends Transaction implements HasAmounts {
       this.taxTotal = taxTotal;
    }
 
+   public PurchaseResponse additionalAmounts(Amounts additionalAmounts) {
+      this.additionalAmounts = additionalAmounts;
+      return this;
+   }
+
    @ApiModelProperty(required = false, value = "An optional amounts field for any additionalAmounts which may need to be added to the response payload.")
    @Override
    public Amounts getAmounts() {
