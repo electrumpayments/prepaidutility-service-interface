@@ -1,5 +1,11 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.10.0
+Released 1 September 2020
+
+- Added a new `events` resource that has a `notifyTokenPurchase` operation which can be invoked for informational 
+  purposes when a successful token purchase has taken place.
+
 ## v3.9.0
 Released 13 August 2020
 
