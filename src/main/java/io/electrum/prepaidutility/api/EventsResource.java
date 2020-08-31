@@ -15,6 +15,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.Context;
@@ -31,10 +32,10 @@ public abstract class EventsResource {
 
    public static final String PATH = "/events";
 
-   public class NotifyTokenPurchase {
+   public static class NotifyTokenPurchase {
       public static final String NOTIFY_TOKEN_PURCHASE = "notifyTokenPurchase";
       public static final int SUCCESS = 202;
-      public static final String PATH = EventsResource.PATH + "/tokenPurchases/{" + PathParameters.PURCHASE_ID + "}";
+      public static final String PATH = EventsResource.PATH + "/tokenPurchases";
 
       public class PathParameters {
          public static final String PURCHASE_ID = "purchaseId";
@@ -55,7 +56,7 @@ public abstract class EventsResource {
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void notifyTokenPurchase(
-         @ApiParam(value = "The id of the original purchase request.", required = true) @PathParam(NotifyTokenPurchase.PathParameters.PURCHASE_ID) String purchaseId,
+         @ApiParam(value = "The id of the original purchase request.", required = true) @QueryParam(NotifyTokenPurchase.PathParameters.PURCHASE_ID) String purchaseId,
          @ApiParam(value = "A token purchase response", required = true) PurchaseResponse body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
