@@ -45,7 +45,7 @@ public abstract class EventsResource {
    @Path(NotifyTokenPurchase.PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
-   @ApiOperation(nickname = NotifyTokenPurchase.NOTIFY_TOKEN_PURCHASE, value = "Notifies that a successful token purchase has taken place.", notes = "An event notification to signal that a successful token purchase was performed. This operation is for information purposes only. Implementations that does not need to subscribe to this event may simply return an HTTP status code 501.")
+   @ApiOperation(nickname = NotifyTokenPurchase.NOTIFY_TOKEN_PURCHASE, value = "Notifies that a successful token purchase has taken place.", notes = "An event notification to signal that a successful token purchase was performed. This operation is for informational purposes only. Implementations that do not need to subscribe to this event may simply return an HTTP status code 501.")
    @ApiResponses(value = {
          @ApiResponse(code = NotifyTokenPurchase.SUCCESS, message = "Accepted"),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
