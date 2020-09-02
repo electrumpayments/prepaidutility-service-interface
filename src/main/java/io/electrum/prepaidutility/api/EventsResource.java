@@ -23,6 +23,9 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
+/**
+ * @since 3.10.0
+ */
 @Path(EventsResource.PATH)
 @Api(description = "the events API", authorizations = { @Authorization("httpBasic") })
 public abstract class EventsResource {
