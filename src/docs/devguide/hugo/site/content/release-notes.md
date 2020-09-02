@@ -1,5 +1,19 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.10.0
+Released 2 September 2020
+
+- Corrected repetition of API base path.
+  - *Note* This is breaking change to the API but is not treated as such. Previously the API defined paths to operations
+    as `/prepaidutility/v3/prepaidutility/v3/{operation}` when they should have been of the more simple form 
+    `/prepaidutility/v3/{operation}`. Changing the API base path in this manner would typically be a breaking change and 
+    would be reflected as such by bumping the major version number in the URL from `v3` to `v4`. However, all known 
+    projects depending on the Prepaid Utility Service Interface are already implemented using the simpler base path of 
+    `/prepaidutility/v3/{operation}`. Thus, the decision was made to transparently fix the base path repetition bug as a 
+    minor version update as this was deemed to be a less disruptive change to all known projects.
+- Added a new `events` resource that has a `notifyTokenPurchase` operation which should be invoked for informational 
+  purposes when a successful token purchase has taken place.
+
 ## v3.9.0
 Released 13 August 2020
 

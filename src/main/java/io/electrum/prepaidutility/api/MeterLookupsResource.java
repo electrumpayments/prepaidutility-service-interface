@@ -11,7 +11,7 @@ import io.electrum.prepaidutility.model.MeterLookupRequest;
 import io.electrum.prepaidutility.model.MeterLookupResponse;
 import io.swagger.annotations.*;
 
-@Path(PrepaidUtilityApi.API_BASE_PATH)
+@Path(MeterLookupsResource.PATH)
 @Api(description = "the meterLookups API", authorizations = { @Authorization("httpBasic") })
 public abstract class MeterLookupsResource {
 
@@ -22,7 +22,8 @@ public abstract class MeterLookupsResource {
    public class CreateMeterLookup {
       public static final String CREATE_METER_LOOKUP = "createMeterLookup";
       public static final int SUCCESS = 201;
-      public static final String PATH = MeterLookupsResource.PATH + "/{" + PathParameters.LOOKUP_ID + "}";
+      public static final String RELATIVE_PATH = "/{" + PathParameters.LOOKUP_ID + "}";
+      public static final String PATH = MeterLookupsResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
          public static final String LOOKUP_ID = "lookupId";
@@ -30,7 +31,7 @@ public abstract class MeterLookupsResource {
    }
 
    @POST
-   @Path(CreateMeterLookup.PATH)
+   @Path(CreateMeterLookup.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = CreateMeterLookup.CREATE_METER_LOOKUP, value = "Request information about a specified meter", notes = "Request information about a specified meter, including customer and utility details. This resource is used to verify that a meter number is valid and registered with the correct details. It also confirms whether the meter is recognised by a provider and that tokens can be issued against it.")
