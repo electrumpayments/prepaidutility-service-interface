@@ -37,7 +37,7 @@ public abstract class EventsResource {
       public static final String RELATIVE_PATH = "/tokenPurchases";
       public static final String PATH = EventsResource.PATH + RELATIVE_PATH;
 
-      public class QueryParameters {
+      public static class QueryParameters {
          public static final String PURCHASE_ID = "purchaseId";
       }
    }
