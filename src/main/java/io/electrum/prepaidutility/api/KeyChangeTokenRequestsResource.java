@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 
-@Path(PrepaidUtilityApi.API_BASE_PATH)
+@Path(KeyChangeTokenRequestsResource.PATH)
 @Api(description = "the keyChangeTokenRequests API", authorizations = { @Authorization("httpBasic") })
 public abstract class KeyChangeTokenRequestsResource {
 
@@ -35,7 +35,8 @@ public abstract class KeyChangeTokenRequestsResource {
    public class CreateKeyChangeTokenRequest {
       public static final String CREATE_KEY_CHANGE_TOKEN_REQUEST = "createKeyChangeTokenRequest";
       public static final int SUCCESS = 201;
-      public static final String PATH = KeyChangeTokenRequestsResource.PATH + "/{" + PathParameters.REQUEST_ID + "}";
+      public static final String RELATIVE_PATH = "/{" + PathParameters.REQUEST_ID + "}";
+      public static final String PATH = KeyChangeTokenRequestsResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
          public static final String REQUEST_ID = "requestId";
@@ -43,7 +44,7 @@ public abstract class KeyChangeTokenRequestsResource {
    }
 
    @POST
-   @Path(CreateKeyChangeTokenRequest.PATH)
+   @Path(CreateKeyChangeTokenRequest.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = CreateKeyChangeTokenRequest.CREATE_KEY_CHANGE_TOKEN_REQUEST, value = "Request a key change token", notes = "Requests a key change token for a specified meter. This resource is used when the utility has updated a meter's encryption key and the customer required a token to input the new key to the meter. Key change tokens are typically supplied as part of a normal purchase, so this operation is rarely used.")
