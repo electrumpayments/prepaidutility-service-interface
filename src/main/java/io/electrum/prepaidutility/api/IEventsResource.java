@@ -12,7 +12,7 @@ import javax.ws.rs.core.UriInfo;
 
 public interface IEventsResource {
 
-   default void notifyTokenPurchase(
+   void notifyTokenPurchase(
          String purchaseId,
          PurchaseResponse body,
          SecurityContext securityContext,
@@ -20,8 +20,5 @@ public interface IEventsResource {
          Request request,
          HttpServletRequest httpServletRequest,
          HttpHeaders httpHeaders,
-         UriInfo uriInfo) {
-
-      asyncResponse.resume(new ServerErrorException("This operation has not been implemented.", 501));
-   }
+         UriInfo uriInfo);
 }
