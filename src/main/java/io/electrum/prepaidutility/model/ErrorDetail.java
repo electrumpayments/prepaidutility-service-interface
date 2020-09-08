@@ -70,6 +70,9 @@ public class ErrorDetail {
       KEY_CHANGE_TOKEN_REQUEST("KEY_CHANGE_TOKEN_REQUEST"),
       CONFIRMATION_ADVICE("CONFIRMATION_ADVICE"),
       REVERSAL_ADVICE("REVERSAL_ADVICE"),
+      /**
+       * @since 2.8.0
+       */
       NOTIFY_TOKEN_PURCHASE("NOTIFY_TOKEN_PURCHASE");
 
       private String value;
