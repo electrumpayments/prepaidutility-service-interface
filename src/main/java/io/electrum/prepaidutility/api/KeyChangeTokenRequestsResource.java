@@ -2,6 +2,7 @@ package io.electrum.prepaidutility.api;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -23,6 +24,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
+import io.swagger.annotations.ResponseHeader;
 
 @Path(KeyChangeTokenRequestsResource.PATH)
 @Api(description = "the keyChangeTokenRequests API", authorizations = { @Authorization("httpBasic") })
@@ -49,13 +51,15 @@ public abstract class KeyChangeTokenRequestsResource {
    @Produces({ "application/json" })
    @ApiOperation(nickname = CreateKeyChangeTokenRequest.CREATE_KEY_CHANGE_TOKEN_REQUEST, value = "Request a key change token", notes = "Requests a key change token for a specified meter. This resource is used when the utility has updated a meter's encryption key and the customer required a token to input the new key to the meter. Key change tokens are typically supplied as part of a normal purchase, so this operation is rarely used.")
    @ApiResponses(value = {
-         @ApiResponse(code = CreateKeyChangeTokenRequest.SUCCESS, message = "Created", response = KeyChangeTokenResponse.class),
+         @ApiResponse(code = CreateKeyChangeTokenRequest.SUCCESS, message = "Created", response = KeyChangeTokenResponse.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void createKeyChangeTokenRequest(
+         @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(CreateKeyChangeTokenRequest.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "A key change token request", required = true) KeyChangeTokenRequest body,
          @Context SecurityContext securityContext,

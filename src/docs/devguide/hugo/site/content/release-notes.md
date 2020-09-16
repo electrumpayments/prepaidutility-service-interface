@@ -1,5 +1,11 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.11.0
+
+Released 17 September 2020
+
+- Support has been added for including the `x-jws-signature` header in requests and responses with payloads. JWS message integrity checking is only performed when enabled by both parties.
+
 ## v3.10.0
 Released 2 September 2020
 

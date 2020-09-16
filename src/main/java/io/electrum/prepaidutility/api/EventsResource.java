@@ -11,6 +11,7 @@ import io.swagger.annotations.Authorization;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -59,6 +60,7 @@ public abstract class EventsResource {
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void notifyTokenPurchase(
+         @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "The id of the original purchase request.", required = true) @QueryParam(NotifyTokenPurchase.QueryParameters.PURCHASE_ID) String purchaseId,
          @ApiParam(value = "A token purchase response", required = true) PurchaseResponse body,
          @Context SecurityContext securityContext,

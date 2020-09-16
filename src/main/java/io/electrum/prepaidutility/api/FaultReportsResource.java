@@ -2,6 +2,7 @@ package io.electrum.prepaidutility.api;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -23,6 +24,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
+import io.swagger.annotations.ResponseHeader;
 
 @Path(FaultReportsResource.PATH)
 @Api(description = "the faultReports API", authorizations = { @Authorization("httpBasic") })
@@ -49,13 +51,15 @@ public abstract class FaultReportsResource {
    @Produces({ "application/json" })
    @ApiOperation(nickname = CreateFaultReport.CREATE_FAULT_REPORT, value = "Report a fault on a meter", notes = "Reports a technical fault on a specified meter. This resource is used when a customer wishes to report a technical fault to the utility with whom the meter is reqistered.")
    @ApiResponses(value = {
-         @ApiResponse(code = CreateFaultReport.SUCCESS, message = "Created", response = FaultReportResponse.class),
+         @ApiResponse(code = CreateFaultReport.SUCCESS, message = "Created", response = FaultReportResponse.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void createFaultReport(
+         @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(CreateFaultReport.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "A fault report", required = true) FaultReportRequest body,
          @Context SecurityContext securityContext,

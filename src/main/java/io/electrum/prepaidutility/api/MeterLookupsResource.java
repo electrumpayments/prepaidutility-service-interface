@@ -36,13 +36,15 @@ public abstract class MeterLookupsResource {
    @Produces({ "application/json" })
    @ApiOperation(nickname = CreateMeterLookup.CREATE_METER_LOOKUP, value = "Request information about a specified meter", notes = "Request information about a specified meter, including customer and utility details. This resource is used to verify that a meter number is valid and registered with the correct details. It also confirms whether the meter is recognised by a provider and that tokens can be issued against it.")
    @ApiResponses(value = {
-         @ApiResponse(code = CreateMeterLookup.SUCCESS, message = "Created", response = MeterLookupResponse.class),
+         @ApiResponse(code = CreateMeterLookup.SUCCESS, message = "Created", response = MeterLookupResponse.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
          @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void createMeterLookup(
+         @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(CreateMeterLookup.PathParameters.LOOKUP_ID) String lookupId,
          @ApiParam(value = "A meter information lookup request.", required = true) MeterLookupRequest body,
          @Context SecurityContext securityContext,
