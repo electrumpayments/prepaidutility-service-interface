@@ -17,4 +17,4 @@
 ## Version 3.11.0 - 17 September 2020
 
 ### New Features
-* Added `RequestType.NOTIFY_TOKEN_PURCHASE` to `ErrorDetail` Model..
+* Added `RequestType.NOTIFY_TOKEN_PURCHASE` to `ErrorDetail` Model.
