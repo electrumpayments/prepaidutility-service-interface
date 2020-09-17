@@ -53,11 +53,16 @@ public abstract class KeyChangeTokenRequestsResource {
    @ApiResponses(value = {
          @ApiResponse(code = CreateKeyChangeTokenRequest.SUCCESS, message = "Created", response = KeyChangeTokenResponse.class, responseHeaders = {
                  @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
-         @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
-         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
-         @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
-         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
-         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+         @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }) })
    public void createKeyChangeTokenRequest(
          @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(CreateKeyChangeTokenRequest.PathParameters.REQUEST_ID) String requestId,

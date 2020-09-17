@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
+import io.swagger.annotations.ResponseHeader;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -53,12 +54,18 @@ public abstract class EventsResource {
    @ApiOperation(nickname = NotifyTokenPurchase.NOTIFY_TOKEN_PURCHASE, value = "Notifies that a successful token purchase has taken place.", notes = "An event notification to signal that a successful token purchase was performed. This operation is for informational purposes only. Implementations that do not need to subscribe to this event may simply return an HTTP status code 501.")
    @ApiResponses(value = {
          @ApiResponse(code = NotifyTokenPurchase.SUCCESS, message = "Accepted"),
-         @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
-         @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class),
-         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
-         @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
-         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
-         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+         @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }),
+         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class, responseHeaders = {
+                 @ResponseHeader(name = PrepaidUtilityApi.Headers.X_JWS_SIGNATURE, description = "When message integrity checking has been enabled, contains a JWS signature of the payload", response = String.class) }) })
    public void notifyTokenPurchase(
          @ApiParam(value = "When message integrity checking has been enabled, contains a JWS signature of the payload") @HeaderParam(value = "x-jws-signature") String jwsHeader,
          @ApiParam(value = "The id of the original purchase request.", required = true) @QueryParam(NotifyTokenPurchase.QueryParameters.PURCHASE_ID) String purchaseId,
