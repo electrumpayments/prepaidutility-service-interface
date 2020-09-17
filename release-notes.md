@@ -14,7 +14,7 @@
     - Try and avoid special characters as far as possible
 -->
 
-## Version 3.10.1 - 4 September 2020
+## Version 3.11.0 - 17 September 2020
 
 ### New Features
-* Removed default implementation of `IEventsResource.notifyTokenPurchase()`.
+* Added `RequestType.NOTIFY_TOKEN_PURCHASE` to `ErrorDetail` Model..

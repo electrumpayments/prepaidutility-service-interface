@@ -71,7 +71,7 @@ public class ErrorDetail {
       CONFIRMATION_ADVICE("CONFIRMATION_ADVICE"),
       REVERSAL_ADVICE("REVERSAL_ADVICE"),
       /**
-       * @since 2.8.0
+       * @since 3.10.1
        */
       NOTIFY_TOKEN_PURCHASE("NOTIFY_TOKEN_PURCHASE");
 
