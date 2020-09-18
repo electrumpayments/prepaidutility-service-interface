@@ -1,5 +1,11 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.11.0
+Released 18 September 2020
+
+- Added the following new `RequestType` values:
+    - `NOTIFY_TOKEN_PURCHASE`
+
 ## v3.10.0
 Released 2 September 2020
 
