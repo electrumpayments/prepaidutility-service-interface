@@ -30,7 +30,7 @@ public class Meter {
    private String algorithmCode = null;
    private KeyChangeData keyChangeData = null;
    /**
-    * @since v3.9.0
+    * @since v3.12.0
     */
    private Boolean blindVendCapable = null;
 
@@ -226,7 +226,7 @@ public class Meter {
     * {@code keyRevisionNumber} etc. may be provided in the request.
     * 
     * @return blindVendCapable
-    * @since v3.9.0
+    * @since v3.12.0
     **/
    @ApiModelProperty(value = "Indicates whether or not a meter is capable of processing a blind vend i.e. meter fields such as supplyGroupCode, keyRevisionNumber etc. may be provided in the request.")
    @Valid

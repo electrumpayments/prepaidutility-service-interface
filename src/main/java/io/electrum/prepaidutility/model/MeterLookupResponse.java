@@ -1,17 +1,17 @@
 package io.electrum.prepaidutility.model;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 import io.electrum.vas.Utils;
 import io.electrum.vas.model.Customer;
 import io.electrum.vas.model.LedgerAmount;
 import io.electrum.vas.model.Transaction;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * Represents a response to a meter lookup request
@@ -25,11 +25,8 @@ public class MeterLookupResponse extends Transaction {
    private Utility utility = null;
    private LedgerAmount minAmount = null;
    private LedgerAmount maxAmount = null;
+   private LedgerAmount arrearsAmount = null;
    private Boolean bsstDue = null;
-   /**
-    * @since v3.9.0
-    */
-   private LedgerAmount balanceAmount = null;
 
    public MeterLookupResponse meter(Meter meter) {
       this.meter = meter;
@@ -134,6 +131,26 @@ public class MeterLookupResponse extends Transaction {
       this.maxAmount = maxAmount;
    }
 
+   public MeterLookupResponse arrearsAmount(LedgerAmount arrearsAmount) {
+      this.arrearsAmount = arrearsAmount;
+      return this;
+   }
+
+   /**
+    * Returned arrears amount from provider.
+    *
+    * @return arrearsAmount
+    **/
+   @ApiModelProperty(value = "Returned arrears amount from provider. Encapsulates the total debt outstanding.")
+   @Valid
+   public LedgerAmount getArrearsAmount() {
+      return arrearsAmount;
+   }
+
+   public void setArrearsAmount(LedgerAmount arrearsAmount) {
+      this.arrearsAmount = arrearsAmount;
+   }
+
    public MeterLookupResponse bsstDue(Boolean bsstDue) {
       this.bsstDue = bsstDue;
       return this;
@@ -155,48 +172,25 @@ public class MeterLookupResponse extends Transaction {
       this.bsstDue = bsstDue;
    }
 
-   public MeterLookupResponse balanceAmount(LedgerAmount balanceAmount) {
-      this.balanceAmount = balanceAmount;
-      return this;
-   }
-
-   /**
-    * The balance of the customer's account. If the customer is in debt, a portion of their purchase may be allocated by
-    * the authority to repay the debt rather than to pay for electricity units.
-    * 
-    * @return balanceAmount
-    * @since v3.9.0
-    **/
-   @ApiModelProperty(value = "The balance of the customer's account. If the customer is in debt, a portion of their purchase may be allocated by the authority to repay the debt rather than to pay for electricity units.")
-   @Valid
-   public LedgerAmount getBalanceAmount() {
-      return balanceAmount;
-   }
-
-   public void setBalanceAmount(LedgerAmount balanceAmount) {
-      this.balanceAmount = balanceAmount;
-   }
-
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class MeterLookupResponse {\n");
-
-      sb.append("    id: ").append(Utils.toIndentedString(id)).append('\n');
-      sb.append("    time: ").append(Utils.toIndentedString(time)).append('\n');
-      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append('\n');
-      sb.append("    client: ").append(Utils.toIndentedString(client)).append('\n');
-      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append('\n');
-      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append('\n');
-      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append('\n');
-      sb.append("    meter: ").append(Utils.toIndentedString(meter)).append('\n');
-      sb.append("    customer: ").append(Utils.toIndentedString(customer)).append('\n');
-      sb.append("    utility: ").append(Utils.toIndentedString(utility)).append('\n');
-      sb.append("    minAmount: ").append(Utils.toIndentedString(minAmount)).append('\n');
-      sb.append("    maxAmount: ").append(Utils.toIndentedString(maxAmount)).append('\n');
-      sb.append("    bsstDue: ").append(Utils.toIndentedString(bsstDue)).append('\n');
-      sb.append("    balanceAmount: ").append(Utils.toIndentedString(balanceAmount)).append('\n');
-      sb.append('}');
+      sb.append("    id: ").append(Utils.toIndentedString(id)).append("\n");
+      sb.append("    time: ").append(Utils.toIndentedString(time)).append("\n");
+      sb.append("    originator: ").append(Utils.toIndentedString(originator)).append("\n");
+      sb.append("    client: ").append(Utils.toIndentedString(client)).append("\n");
+      sb.append("    settlementEntity: ").append(Utils.toIndentedString(settlementEntity)).append("\n");
+      sb.append("    receiver: ").append(Utils.toIndentedString(receiver)).append("\n");
+      sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append("\n");
+      sb.append("    meter: ").append(Utils.toIndentedString(meter)).append("\n");
+      sb.append("    customer: ").append(Utils.toIndentedString(customer)).append("\n");
+      sb.append("    utility: ").append(Utils.toIndentedString(utility)).append("\n");
+      sb.append("    minAmount: ").append(Utils.toIndentedString(minAmount)).append("\n");
+      sb.append("    maxAmount: ").append(Utils.toIndentedString(maxAmount)).append("\n");
+      sb.append("    arrearsAmount: ").append(Utils.toIndentedString(arrearsAmount)).append("\n");
+      sb.append("    bsstDue: ").append(Utils.toIndentedString(bsstDue)).append("\n");
+      sb.append("}");
       return sb.toString();
    }
 }

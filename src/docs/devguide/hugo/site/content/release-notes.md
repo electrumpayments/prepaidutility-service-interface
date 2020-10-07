@@ -1,20 +1,47 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
-## v3.9.0
+## v3.12.0
 Released 24 June 2020
 
-- Corrected repetition of API base path.
-  - *Note* This is breaking change to the API but is not treated as such. Previously the API defined paths to operations as `/prepaidutility/v3/prepaidutility/v3/{operation}` when they should have been of the more simple form `/prepaidutility/v3/{operation}`. Changing the API base path in this manner would typically be a breaking change and would be reflected as such by bumping the major version number in the URL from `v3` to `v4`. However, all known projects depending on the Prepaid Utility Service Interface are already implemented using the simpler base path of `/prepaidutility/v3/{operation}`. Thus the decision was made to transparently fix the base path repetition bug as a minor version update as this was deemed to be a less disruptive change to all known projects.
 - Added a new operation, `trialTokenPurchaseRequest`, which mimics a conventional `createTokenPurchaseRequest` operation with the following exceptions:
     - No tokens are returned.
     - Has no financial impact.
-- Added a new field to the `MeterLookupsResource` object called `balanceAmount`.
 - Added a new field to the `Meter` object called `blindVendCapable`.
 - Added a new `ErrorType` called `NO_FREE_UNITS_DUE`. 
-- Updated the dependency on the base API from v3.23.0 to v3.25.0:
-    - Added `amounts` field to the `BasicAdvice` model to support partial reversals and partial confirmations.
-    - Added support for hashed PINs (via a new sub-type of `Pin` named `HashedPin`).
-- Updated Hibernate Validator version from `v5.2.2.Final` to `v5.3.5.Final`.
+
+## v3.11.0
+Released 18 September 2020
+
+- Added the following new `RequestType` values:
+    - `NOTIFY_TOKEN_PURCHASE`
+
+## v3.10.0
+Released 2 September 2020
+
+- Corrected repetition of API base path.
+  - *Note* This is breaking change to the API but is not treated as such. Previously the API defined paths to operations
+    as `/prepaidutility/v3/prepaidutility/v3/{operation}` when they should have been of the more simple form 
+    `/prepaidutility/v3/{operation}`. Changing the API base path in this manner would typically be a breaking change and 
+    would be reflected as such by bumping the major version number in the URL from `v3` to `v4`. However, all known 
+    projects depending on the Prepaid Utility Service Interface are already implemented using the simpler base path of 
+    `/prepaidutility/v3/{operation}`. Thus, the decision was made to transparently fix the base path repetition bug as a 
+    minor version update as this was deemed to be a less disruptive change to all known projects.
+- Added a new `events` resource that has a `notifyTokenPurchase` operation which should be invoked for informational 
+  purposes when a successful token purchase has taken place.
+
+## v3.9.0
+Released 13 August 2020
+
+- Added an `amounts` field to `PurchaseResponse`. This can be used for any additional amounts which don't
+  traditionally fit into dedicated amount fields.
+- Added an `arrearsAmount` `LedgerAmount` to `MeterLookupResponse` for handling customer debt payments & outstanding debt
+  balance enquiries.
+- Incorporated new interfaces from `service-interface-base`. This change affects the Java implementation of the API
+  only and does not further change the public definition of the API. The Java implementation has been updated as follows: 
+    - The following classes now implement the `HasAmounts` interface defined in the base API:
+        - `PurchaseResponse`
+    - The following classes now implement the `HasPaymentMethods` interface defined in the base API:
+        - `PurchaseRequest`
 
 ## v3.8.0
 Released 12 March 2020

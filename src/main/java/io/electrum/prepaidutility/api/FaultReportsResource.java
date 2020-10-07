@@ -35,8 +35,8 @@ public abstract class FaultReportsResource {
    public class CreateFaultReport {
       public static final String CREATE_FAULT_REPORT = "createFaultReport";
       public static final int SUCCESS = 201;
-      public static final String RELATVE_PATH = "/{" + PathParameters.REQUEST_ID + "}";
-      public static final String PATH = FaultReportsResource.PATH + RELATVE_PATH;
+      public static final String RELATIVE_PATH = "/{" + PathParameters.REQUEST_ID + "}";
+      public static final String PATH = FaultReportsResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
          public static final String REQUEST_ID = "requestId";
@@ -44,7 +44,6 @@ public abstract class FaultReportsResource {
    }
 
    @POST
-   @Path(CreateFaultReport.RELATVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = CreateFaultReport.CREATE_FAULT_REPORT, value = "Report a fault on a meter", notes = "Reports a technical fault on a specified meter. This resource is used when a customer wishes to report a technical fault to the utility with whom the meter is reqistered.")
