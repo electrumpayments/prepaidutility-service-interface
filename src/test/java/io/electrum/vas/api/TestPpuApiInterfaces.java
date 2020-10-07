@@ -1,6 +1,5 @@
 package io.electrum.vas.api;
 
-import io.electrum.prepaidutility.api.ITokenReprintsResource;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -20,6 +19,8 @@ public class TestPpuApiInterfaces {
            {IEventsResourceTestImpl.class,"notifyTokenPurchase"},
            {IFaultReportsResourceTestImpl.class,"createFaultReport"},
            {IKeyChangeTokenRequestResourceTestImpl.class,"createKeyChangeTokenRequest"},
+           {IKeyChangeTokenRequestResourceTestImpl.class,"createKeyChangeConfirmationRequest"},
+           {IKeyChangeTokenRequestResourceTestImpl.class,"createKeyChangeReversalRequest"},
            {IMeterLookupsResourceTestImpl.class,"createMeterLookup"},
            {ITokenPurchasesResourceTestImpl.class,"confirmTokenPurchase"},
            {ITokenPurchasesResourceTestImpl.class,"createTokenPurchaseRequest"},

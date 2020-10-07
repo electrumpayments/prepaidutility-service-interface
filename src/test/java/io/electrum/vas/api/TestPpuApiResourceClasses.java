@@ -26,6 +26,8 @@ public class TestPpuApiResourceClasses {
             {EventsResourceTestClass.class, "notifyTokenPurchase", IEventsResourceTestImpl.class, "notifyTokenPurchase"},
             {FaultReportsResourceTestClass.class,"createFaultReport", IFaultReportsResourceTestImpl.class,"createFaultReport"},
             {KeyChangeTokenRequestResourceTestClass.class,"createKeyChangeTokenRequest", IKeyChangeTokenRequestResourceTestImpl.class,"createKeyChangeTokenRequest"},
+            {KeyChangeTokenRequestResourceTestClass.class,"createKeyChangeConfirmationRequest", IKeyChangeTokenRequestResourceTestImpl.class,"createKeyChangeConfirmationRequest"},
+            {KeyChangeTokenRequestResourceTestClass.class,"createKeyChangeReversalRequest", IKeyChangeTokenRequestResourceTestImpl.class,"createKeyChangeReversalRequest"},
             {MeterLookupsResourceTestClass.class,"createMeterLookup", IMeterLookupsResourceTestImpl.class,"createMeterLookup"},
             {TokenPurchasesResourceTestClass.class,"confirmTokenPurchase", ITokenPurchasesResourceTestImpl.class,"confirmTokenPurchase"},
             {TokenPurchasesResourceTestClass.class,"createTokenPurchaseRequest", ITokenPurchasesResourceTestImpl.class,"createTokenPurchaseRequest"},
