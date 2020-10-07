@@ -50,6 +50,7 @@ public class FaultReportRequest extends Transaction {
    private Customer customer = null;
    private String contactNumber = null;
    private FaultType faultType = null;
+   private String faultDescription = null;
 
    public FaultReportRequest meter(Meter meter) {
       this.meter = meter;
@@ -133,6 +134,21 @@ public class FaultReportRequest extends Transaction {
       this.faultType = faultType;
    }
 
+   /**
+    * Detailed description of the fault being reported
+    *
+    * @return String
+    */
+   @ApiModelProperty(required = false)
+   @NotNull
+   public String getFaultDescription() {
+      return faultDescription;
+   }
+
+   public void setFaultDescription(String faultDescription) {
+      this.faultDescription = faultDescription;
+   }
+
    @Override
    public String toString() {
       StringBuilder sb = new StringBuilder();
@@ -149,6 +165,7 @@ public class FaultReportRequest extends Transaction {
       sb.append("    customer: ").append(Utils.toIndentedString(customer)).append("\n");
       sb.append("    contactNumber: ").append(Utils.toIndentedString(contactNumber)).append("\n");
       sb.append("    faultType: ").append(Utils.toIndentedString(faultType)).append("\n");
+      sb.append("    faultDescription: ").append(Utils.toIndentedString(faultDescription)).append("\n");
       sb.append("}");
       return sb.toString();
    }
