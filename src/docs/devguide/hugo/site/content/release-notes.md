@@ -1,13 +1,16 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
 ## v3.12.0
-Released 24 June 2020
+Released 08 October 2020
 
 - Added a new operation, `trialTokenPurchaseRequest`, which mimics a conventional `createTokenPurchaseRequest` operation with the following exceptions:
     - No tokens are returned.
     - Has no financial impact.
 - Added a new field to the `Meter` object called `blindVendCapable`.
 - Added a new `ErrorType` called `NO_FREE_UNITS_DUE`. 
+- Added two new models `KeyChangeReversal` and `KeyChangeConfirmation`, which are to be used when reversing or confirming key change requests respectively
+- Added two new operations `createKeyChangeReversalRequest` and `createKeyChangeConfirmationRequest` for the key change reversal requests and key change confirmation requests.
+
 
 ## v3.11.0
 Released 18 September 2020
