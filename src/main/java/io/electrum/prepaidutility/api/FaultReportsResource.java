@@ -44,6 +44,7 @@ public abstract class FaultReportsResource {
    }
 
    @POST
+   @Path(CreateFaultReport.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = CreateFaultReport.CREATE_FAULT_REPORT, value = "Report a fault on a meter", notes = "Reports a technical fault on a specified meter. This resource is used when a customer wishes to report a technical fault to the utility with whom the meter is reqistered.")

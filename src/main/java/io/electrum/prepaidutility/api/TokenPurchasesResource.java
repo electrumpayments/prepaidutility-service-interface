@@ -86,11 +86,11 @@ public abstract class TokenPurchasesResource {
    public class TrialTokenPurchaseRequest {
       public static final String TRIAL_TOKEN_PURCHASE_REQUEST = "trialTokenPurchaseRequest";
       public static final int SUCCESS = 200;
-      public static final String RELATIVE_PATH = "/{" + PathParameters.PURCHASE_ID + "}/trials";
+      public static final String RELATIVE_PATH =  "/trials/{"+ PathParameters.REQUEST_ID+"}";
       public static final String PATH = TokenPurchasesResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
-         public static final String PURCHASE_ID = "purchaseId";
+         public static final String REQUEST_ID = "requestId";
       }
    }
 
@@ -236,8 +236,9 @@ public abstract class TokenPurchasesResource {
    /**
     * Requests a trial token purchase for a specified meter
     * 
-    * This operation is identical to the '{@code createTokenPurchaseRequest}' operation except that no tokens are
-    * returned and this operation carries no financial impact. This operation allows the customer to make an informed
+    * This operation is identical to the '{@code createTokenPurchaseRequest}' operation except that
+    * this operation carries no financial impact. Tokens may or may not be returned for this operation,
+    * if returned then they are not valid. This operation allows the customer to make an informed
     * choice about the transaction outcome before committing to purchase electricity. This operation serves to inform a
     * customer exactly what the outcome of their purchase is: the service charges which will be levied, the debt
     * recovery charges, the number of units which will be provided etc. If a customer is dissatisfied with the details
@@ -251,7 +252,7 @@ public abstract class TokenPurchasesResource {
     * @param httpServletRequest
     * @param httpHeaders
     * @param uriInfo
-    * @since v3.9.0
+    * @since v3.12.0
     */
    @POST
    @Path(TrialTokenPurchaseRequest.RELATIVE_PATH)
@@ -268,7 +269,7 @@ public abstract class TokenPurchasesResource {
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void trialTokenPurchaseRequest(
-         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(TrialTokenPurchaseRequest.PathParameters.PURCHASE_ID) String purchaseId,
+         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(TrialTokenPurchaseRequest.PathParameters.REQUEST_ID) String purchaseId,
          @ApiParam(value = "A token purchase request.", required = true) PurchaseRequest body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,

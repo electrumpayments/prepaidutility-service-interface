@@ -136,11 +136,11 @@ public class FaultReportRequest extends Transaction {
 
    /**
     * Detailed description of the fault being reported
-    *
+    * @since v3.12.0
     * @return String
     */
    @ApiModelProperty(required = false)
-   @NotNull
+   @Length(max = 160)
    public String getFaultDescription() {
       return faultDescription;
    }

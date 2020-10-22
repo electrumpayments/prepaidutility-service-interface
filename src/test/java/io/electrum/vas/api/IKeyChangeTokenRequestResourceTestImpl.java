@@ -42,7 +42,7 @@ public class IKeyChangeTokenRequestResourceTestImpl implements IKeyChangeTokenRe
    }
 
    @Override
-   public void createKeyChangeConfirmationRequest(
+   public void confirmKeyChange(
          String requestId,
          String confirmationId,
          KeyChangeConfirmation body,
@@ -56,7 +56,7 @@ public class IKeyChangeTokenRequestResourceTestImpl implements IKeyChangeTokenRe
    }
 
    @Override
-   public void createKeyChangeReversalRequest(
+   public void reverseKeyChange(
          String requestId,
          String reversalId,
          KeyChangeReversal body,

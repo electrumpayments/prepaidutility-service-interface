@@ -45,7 +45,7 @@ public class ErrorDetail {
       AMOUNT_TOO_LOW("AMOUNT_TOO_LOW"),
       AMOUNT_TOO_HIGH("AMOUNT_TOO_HIGH"),
       /**
-       * @since v3.9.0
+       * @since v3.12.0
        */
       NO_FREE_UNITS_DUE("NO_FREE_UNITS_DUE");
 
