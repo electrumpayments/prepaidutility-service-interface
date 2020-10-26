@@ -1,10 +1,10 @@
 package io.electrum.prepaidutility;
 
-import io.electrum.prepaidutility.model.ErrorDetail;
-import io.electrum.prepaidutility.model.Token;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import io.electrum.prepaidutility.model.ErrorDetail;
+import io.electrum.prepaidutility.model.Token;
 
 public class ModelTests {
 
@@ -53,7 +53,7 @@ public class ModelTests {
 
    @Test
    public void testErrorDetail_RequestTypeEnumOrdinals() {
-      Assert.assertEquals(ErrorDetail.RequestType.values().length, 9);
+      Assert.assertEquals(ErrorDetail.RequestType.values().length, 10);
       Assert.assertEquals(ErrorDetail.RequestType.METER_LOOKUP_REQUEST.ordinal(), 0);
       Assert.assertEquals(ErrorDetail.RequestType.TOKEN_PURCHASE_REQUEST.ordinal(), 1);
       Assert.assertEquals(ErrorDetail.RequestType.TOKEN_PURCHASE_RETRY_REQUEST.ordinal(), 2);
@@ -63,5 +63,6 @@ public class ModelTests {
       Assert.assertEquals(ErrorDetail.RequestType.CONFIRMATION_ADVICE.ordinal(), 6);
       Assert.assertEquals(ErrorDetail.RequestType.REVERSAL_ADVICE.ordinal(), 7);
       Assert.assertEquals(ErrorDetail.RequestType.NOTIFY_TOKEN_PURCHASE.ordinal(), 8);
+      Assert.assertEquals(ErrorDetail.RequestType.TOKEN_PURCHASE_TRIAL_REQUEST.ordinal(), 9);
    }
 }
