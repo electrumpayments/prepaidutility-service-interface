@@ -14,17 +14,17 @@ import io.electrum.prepaidutility.model.KeyChangeTokenRequest;
 
 public interface IKeyChangeTokenRequestsResource {
 
-    void createKeyChangeTokenRequest(
-           String requestId,
-           KeyChangeTokenRequest body,
-           SecurityContext securityContext,
-           AsyncResponse asyncResponse,
-           Request request,
-           HttpServletRequest httpServletRequest,
-           HttpHeaders httpHeaders,
-           UriInfo uriInfo);
+   void createKeyChangeTokenRequest(
+         String requestId,
+         KeyChangeTokenRequest body,
+         SecurityContext securityContext,
+         AsyncResponse asyncResponse,
+         Request request,
+         HttpServletRequest httpServletRequest,
+         HttpHeaders httpHeaders,
+         UriInfo uriInfo);
 
-  default   void confirmKeyChange(
+   default void confirmKeyChange(
          String requestId,
          String confirmationId,
          KeyChangeConfirmation body,
@@ -33,11 +33,11 @@ public interface IKeyChangeTokenRequestsResource {
          Request request,
          HttpServletRequest httpServletRequest,
          HttpHeaders httpHeaders,
-         UriInfo uriInfo){
-       asyncResponse.resume(new ServerErrorException("This operation has not been implemented.", 501));
-    }
+         UriInfo uriInfo) {
+      asyncResponse.resume(new ServerErrorException("This operation has not been implemented.", 501));
+   }
 
-  default   void reverseKeyChange(
+   default void reverseKeyChange(
          String requestId,
          String reversalId,
          KeyChangeReversal body,
@@ -46,7 +46,7 @@ public interface IKeyChangeTokenRequestsResource {
          Request request,
          HttpServletRequest httpServletRequest,
          HttpHeaders httpHeaders,
-         UriInfo uriInfo){
-     asyncResponse.resume(new ServerErrorException("This operation has not been implemented.", 501));
-    }
+         UriInfo uriInfo) {
+      asyncResponse.resume(new ServerErrorException("This operation has not been implemented.", 501));
+   }
 }

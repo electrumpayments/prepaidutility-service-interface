@@ -119,7 +119,7 @@ public abstract class KeyChangeTokenRequestsResource {
          @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
-   public void createKeyChangeConfirmationRequest(
+   public void confirmKeyChange(
          @ApiParam(value = "The randomly generated UUID of the original request.", required = true) @PathParam(ConfirmKeyChange.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "The randomly generated UUID of this confirmation.", required = true) @PathParam(ConfirmKeyChange.PathParameters.CONFIRMATION_ID) String confirmationId,
          @ApiParam(value = "A key change confirmation", required = true) KeyChangeConfirmation body,
@@ -155,7 +155,7 @@ public abstract class KeyChangeTokenRequestsResource {
          @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
-   public void createKeyChangeReversalRequest(
+   public void reverseKeyChange(
          @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(ReverseKeyChange.PathParameters.REQUEST_ID) String requestId,
          @ApiParam(value = "The randomly generated UUID of this reversal.", required = true) @PathParam(ReverseKeyChange.PathParameters.REVERSAL_ID) String reversalId,
          @ApiParam(value = "A key change reversal", required = true) KeyChangeReversal body,
