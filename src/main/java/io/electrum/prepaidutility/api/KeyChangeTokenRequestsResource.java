@@ -110,7 +110,7 @@ public abstract class KeyChangeTokenRequestsResource {
    @Path(ReverseKeyChange.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
-   @ApiOperation(nickname = ConfirmKeyChange.CREATE_KEY_CHANGE_CONFIRMATION_REQUEST, value = "Confirms that a key change tokens have been provided to the customer.", notes = "Confirms that a key change tokens have been provided successfully")
+   @ApiOperation(nickname = ConfirmKeyChange.CREATE_KEY_CHANGE_CONFIRMATION_REQUEST, value = "Confirms that key change tokens have been provided to the customer.", notes = "Confirms that key change tokens have been provided successfully")
    @ApiResponses(value = {
          @ApiResponse(code = ConfirmKeyChange.SUCCESS, message = "Accepted", response = BasicAdvice.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
