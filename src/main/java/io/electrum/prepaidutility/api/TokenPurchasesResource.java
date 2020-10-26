@@ -86,11 +86,11 @@ public abstract class TokenPurchasesResource {
    public class TrialTokenPurchaseRequest {
       public static final String TRIAL_TOKEN_PURCHASE_REQUEST = "trialTokenPurchaseRequest";
       public static final int SUCCESS = 200;
-      public static final String RELATIVE_PATH =  "/trials/{"+ PathParameters.REQUEST_ID+"}";
+      public static final String RELATIVE_PATH =  "/trials/{"+ PathParameters.TRIAL_ID+"}";
       public static final String PATH = TokenPurchasesResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
-         public static final String REQUEST_ID = "requestId";
+         public static final String TRIAL_ID = "trialId";
       }
    }
 
@@ -269,7 +269,7 @@ public abstract class TokenPurchasesResource {
          @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
          @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
    public void trialTokenPurchaseRequest(
-         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(TrialTokenPurchaseRequest.PathParameters.REQUEST_ID) String purchaseId,
+         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(TrialTokenPurchaseRequest.PathParameters.TRIAL_ID) String purchaseId,
          @ApiParam(value = "A token purchase request.", required = true) PurchaseRequest body,
          @Context SecurityContext securityContext,
          @Suspended AsyncResponse asyncResponse,
