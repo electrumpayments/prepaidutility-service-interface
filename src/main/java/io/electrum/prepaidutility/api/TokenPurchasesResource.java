@@ -239,7 +239,7 @@ public abstract class TokenPurchasesResource {
     * This operation is identical to the '{@code createTokenPurchaseRequest}' operation except that
     * this operation carries no financial impact. Tokens may or may not be returned for this operation,
     * if returned then they are not valid. This operation allows the customer to make an informed
-    * choice about the transaction outcome before committing to purchase electricity. This operation serves to inform a
+    * choice regarding the purchase costs before committing to purchasing electricity. This operation serves to inform a
     * customer exactly what the outcome of their purchase is: the service charges which will be levied, the debt
     * recovery charges, the number of units which will be provided etc. If a customer is dissatisfied with the details
     * in the response, the customer may abort the transaction without any consequences.

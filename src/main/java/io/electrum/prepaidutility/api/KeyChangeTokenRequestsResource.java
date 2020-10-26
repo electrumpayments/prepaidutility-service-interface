@@ -48,7 +48,7 @@ public abstract class KeyChangeTokenRequestsResource {
    }
 
    public class ConfirmKeyChange {
-      public static final String CREATE_KEY_CHANGE_CONFIRMATION_REQUEST = "createKeyChangeConfirmationRequest";
+      public static final String CREATE_KEY_CHANGE_CONFIRMATION_REQUEST = "confirmKeyChange";
       public static final int SUCCESS = 202;
       public static final String RELATIVE_PATH =
               "/{" + PathParameters.REQUEST_ID +"}/confirmations/{" +PathParameters.CONFIRMATION_ID +"}";
@@ -61,7 +61,7 @@ public abstract class KeyChangeTokenRequestsResource {
    }
 
    public class ReverseKeyChange {
-      public static final String CREATE_KEY_CHANGE_REVERSAL_REQUEST = "createKeyChangeReversalRequest";
+      public static final String CREATE_KEY_CHANGE_REVERSAL_REQUEST = "reverseKeyChange";
       public static final int SUCCESS = 202;
       public static final String RELATIVE_PATH =
               "/{" + PathParameters.REQUEST_ID +"}/reversals/{" +PathParameters.REVERSAL_ID +"}";

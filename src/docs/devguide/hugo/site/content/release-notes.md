@@ -1,10 +1,10 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
 ## v3.12.0
-Released 08 October 2020
+Released 26 October 2020
 
 - Added a new operation, `trialTokenPurchaseRequest`, which mimics a conventional `createTokenPurchaseRequest` operation with the following exceptions:
-    - No tokens are returned.
+    - Tokens may or may not be returned. If they are returned, they will be invalid tokens.
     - Has no financial impact.
 - Added a new field to the `Meter` object called `blindVendCapable`.
 - Added a new `ErrorType` called `NO_FREE_UNITS_DUE`. 
