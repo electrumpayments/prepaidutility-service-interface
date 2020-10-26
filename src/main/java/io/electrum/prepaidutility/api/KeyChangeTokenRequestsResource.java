@@ -20,7 +20,7 @@ import io.electrum.prepaidutility.model.KeyChangeReversal;
 import io.electrum.prepaidutility.model.KeyChangeTokenRequest;
 import io.electrum.prepaidutility.model.KeyChangeTokenResponse;
 import io.electrum.vas.model.BasicAdvice;
-import io.electrum.vas.model.BasicAdviceResponse;
+import io.electrum.vas.model.BasicReversal;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -107,7 +107,7 @@ public abstract class KeyChangeTokenRequestsResource {
    }
 
    @POST
-   @Path(ReverseKeyChange.RELATIVE_PATH)
+   @Path(ConfirmKeyChange.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
    @ApiOperation(nickname = ConfirmKeyChange.CREATE_KEY_CHANGE_CONFIRMATION_REQUEST, value = "Confirms that key change tokens have been provided to the customer.", notes = "Confirms that key change tokens have been provided successfully")
@@ -148,7 +148,7 @@ public abstract class KeyChangeTokenRequestsResource {
    @Produces({ "application/json" })
    @ApiOperation(nickname = ReverseKeyChange.CREATE_KEY_CHANGE_REVERSAL_REQUEST, value = "Notifies provider that a key change was not completed successfully.", notes = "Notifies provider that a key change was not completed successfully. This can occur if the original request timed out or if the key change was unsuccessful")
    @ApiResponses(value = {
-         @ApiResponse(code = ReverseKeyChange.SUCCESS, message = "Accepted", response = BasicAdviceResponse.class),
+         @ApiResponse(code = ReverseKeyChange.SUCCESS, message = "Accepted", response = BasicReversal.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
          @ApiResponse(code = 404, message = "Not found", response = ErrorDetail.class),
          @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
