@@ -19,8 +19,6 @@ public class TestPpuApiInterfaces {
            {IEventsResourceTestImpl.class,"notifyTokenPurchase"},
            {IFaultReportsResourceTestImpl.class,"createFaultReport"},
            {IKeyChangeTokenRequestResourceTestImpl.class,"createKeyChangeTokenRequest"},
-           {IKeyChangeTokenRequestResourceTestImpl.class,"createKeyChangeConfirmationRequest"},
-           {IKeyChangeTokenRequestResourceTestImpl.class,"createKeyChangeReversalRequest"},
            {IMeterLookupsResourceTestImpl.class,"createMeterLookup"},
            {ITokenPurchasesResourceTestImpl.class,"confirmTokenPurchase"},
            {ITokenPurchasesResourceTestImpl.class,"createTokenPurchaseRequest"},

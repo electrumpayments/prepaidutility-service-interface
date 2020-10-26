@@ -24,7 +24,7 @@ import io.electrum.prepaidutility.model.KeyChangeTokenRequest;
  * <p>
  * If this class does not compile after you have changed the {@link IKeyChangeTokenRequestsResource} interface, you have likely broken
  * the {@link IKeyChangeTokenRequestsResource} interface as per the first point above.
- *
+ * This class should never be changed unless a breaking change has been made to the {@link IKeyChangeTokenRequestsResource} interface.
  */
 public class IKeyChangeTokenRequestResourceTestImpl implements IKeyChangeTokenRequestsResource {
 
@@ -32,34 +32,6 @@ public class IKeyChangeTokenRequestResourceTestImpl implements IKeyChangeTokenRe
    public void createKeyChangeTokenRequest(
          String requestId,
          KeyChangeTokenRequest body,
-         SecurityContext securityContext,
-         AsyncResponse asyncResponse,
-         Request request,
-         HttpServletRequest httpServletRequest,
-         HttpHeaders httpHeaders,
-         UriInfo uriInfo) {
-
-   }
-
-   @Override
-   public void confirmKeyChange(
-         String requestId,
-         String confirmationId,
-         KeyChangeConfirmation body,
-         SecurityContext securityContext,
-         AsyncResponse asyncResponse,
-         Request request,
-         HttpServletRequest httpServletRequest,
-         HttpHeaders httpHeaders,
-         UriInfo uriInfo) {
-
-   }
-
-   @Override
-   public void reverseKeyChange(
-         String requestId,
-         String reversalId,
-         KeyChangeReversal body,
          SecurityContext securityContext,
          AsyncResponse asyncResponse,
          Request request,
