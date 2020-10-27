@@ -7,7 +7,7 @@
   <name>Prepaid Utility Service Interface</name>
   <description>Prepaid Utility Service Interface</description>
   <url>https://electrumpayments.github.io/prepaidutility-service-interface-docs</url>
-  <version>${major-version}.${minor-version}.${patch-version}-SNAPSHOT</version>
+  <version>${major-version}.${minor-version}.${patch-version}</version>
 
   <licenses>
     <license>
