@@ -20,10 +20,10 @@ public class KeyChangeReversal extends BasicReversal {
       sb.append("    requestId: ").append(Utils.toIndentedString(requestId)).append('\n');
       sb.append("    time: ").append(Utils.toIndentedString(time)).append('\n');
       sb.append("    thirdPartyIdentifiers: ").append(Utils.toIndentedString(thirdPartyIdentifiers)).append('\n');
-      sb.append("    reversalReason=").append(Utils.toIndentedString(reversalReason)).append('\n');
-      sb.append("    stan=").append(Utils.toIndentedString(stan)).append('\n');
-      sb.append("    rrn=").append(Utils.toIndentedString(rrn)).append('\n');
-      sb.append("    amounts=").append(Utils.toIndentedString(amounts)).append('\n');
+      sb.append("    reversalReason: ").append(Utils.toIndentedString(reversalReason)).append('\n');
+      sb.append("    stan: ").append(Utils.toIndentedString(stan)).append('\n');
+      sb.append("    rrn: ").append(Utils.toIndentedString(rrn)).append('\n');
+      sb.append("    amounts: ").append(Utils.toIndentedString(amounts)).append('\n');
       sb.append("}");
       return sb.toString();
    }

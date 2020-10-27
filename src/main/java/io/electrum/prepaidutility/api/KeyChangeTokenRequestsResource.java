@@ -48,7 +48,7 @@ public abstract class KeyChangeTokenRequestsResource {
    }
 
    public class ConfirmKeyChange {
-      public static final String CREATE_KEY_CHANGE_CONFIRMATION_REQUEST = "confirmKeyChange";
+      public static final String CONFIRM_KEY_CHANGE = "confirmKeyChange";
       public static final int SUCCESS = 202;
       public static final String RELATIVE_PATH =
               "/{" + PathParameters.REQUEST_ID +"}/confirmations/{" +PathParameters.CONFIRMATION_ID +"}";
@@ -61,7 +61,7 @@ public abstract class KeyChangeTokenRequestsResource {
    }
 
    public class ReverseKeyChange {
-      public static final String CREATE_KEY_CHANGE_REVERSAL_REQUEST = "reverseKeyChange";
+      public static final String REVERSE_KEY_CHANGE = "reverseKeyChange";
       public static final int SUCCESS = 202;
       public static final String RELATIVE_PATH =
               "/{" + PathParameters.REQUEST_ID +"}/reversals/{" +PathParameters.REVERSAL_ID +"}";
@@ -110,7 +110,7 @@ public abstract class KeyChangeTokenRequestsResource {
    @Path(ConfirmKeyChange.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
-   @ApiOperation(nickname = ConfirmKeyChange.CREATE_KEY_CHANGE_CONFIRMATION_REQUEST, value = "Confirms that key change tokens have been provided to the customer.", notes = "Confirms that key change tokens have been provided successfully")
+   @ApiOperation(nickname = ConfirmKeyChange.CONFIRM_KEY_CHANGE, value = "Confirms that key change tokens have been provided to the customer.", notes = "Confirms that key change tokens have been provided successfully")
    @ApiResponses(value = {
          @ApiResponse(code = ConfirmKeyChange.SUCCESS, message = "Accepted", response = BasicAdvice.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
@@ -146,7 +146,7 @@ public abstract class KeyChangeTokenRequestsResource {
    @Path(ReverseKeyChange.RELATIVE_PATH)
    @Consumes({ "application/json" })
    @Produces({ "application/json" })
-   @ApiOperation(nickname = ReverseKeyChange.CREATE_KEY_CHANGE_REVERSAL_REQUEST, value = "Notifies provider that a key change was not completed successfully.", notes = "Notifies provider that a key change was not completed successfully. This can occur if the original request timed out or if the key change was unsuccessful")
+   @ApiOperation(nickname = ReverseKeyChange.REVERSE_KEY_CHANGE, value = "Notifies provider that a key change was not completed successfully.", notes = "Notifies provider that a key change was not completed successfully. This can occur if the original request timed out or if the key change was unsuccessful")
    @ApiResponses(value = {
          @ApiResponse(code = ReverseKeyChange.SUCCESS, message = "Accepted", response = BasicReversal.class),
          @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
