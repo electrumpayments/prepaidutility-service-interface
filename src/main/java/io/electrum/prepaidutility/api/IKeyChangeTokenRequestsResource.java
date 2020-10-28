@@ -9,7 +9,6 @@ import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
 import io.electrum.prepaidutility.model.KeyChangeConfirmation;
-import io.electrum.prepaidutility.model.KeyChangeReversal;
 import io.electrum.prepaidutility.model.KeyChangeTokenRequest;
 
 public interface IKeyChangeTokenRequestsResource {
@@ -37,16 +36,4 @@ public interface IKeyChangeTokenRequestsResource {
       asyncResponse.resume(new ServerErrorException("This operation has not been implemented.", 501));
    }
 
-   default void reverseKeyChange(
-         String requestId,
-         String reversalId,
-         KeyChangeReversal body,
-         SecurityContext securityContext,
-         AsyncResponse asyncResponse,
-         Request request,
-         HttpServletRequest httpServletRequest,
-         HttpHeaders httpHeaders,
-         UriInfo uriInfo) {
-      asyncResponse.resume(new ServerErrorException("This operation has not been implemented.", 501));
-   }
 }

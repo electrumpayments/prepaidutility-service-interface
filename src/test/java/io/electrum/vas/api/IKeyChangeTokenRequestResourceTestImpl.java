@@ -8,8 +8,6 @@ import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
 import io.electrum.prepaidutility.api.IKeyChangeTokenRequestsResource;
-import io.electrum.prepaidutility.model.KeyChangeConfirmation;
-import io.electrum.prepaidutility.model.KeyChangeReversal;
 import io.electrum.prepaidutility.model.KeyChangeTokenRequest;
 
 /**
