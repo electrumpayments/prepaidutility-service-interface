@@ -9,8 +9,7 @@ Released 27 October 2020
 - Added a new field to the `Meter` object called `blindVendCapable`.
 - Added a new `ErrorType` called `NO_FREE_UNITS_DUE`. 
 - Added two new operations to advise the outcome of key change transactions:
-     - A `createKeyChangeReversalRequest` operation which carries a `KeyChangeReversal` model to indicate a previous key change request should be reversed.
-     - A `createKeyChangeConfirmationRequest ` operation which carries a `KeyChangeConfirmation ` model to indicate a previous key change request is confirmed.
+     - A `confirmKeyChange ` operation which carries a `KeyChangeConfirmation ` model to indicate a previous key change request is confirmed.
 
 
 ## v3.11.0
