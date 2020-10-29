@@ -29,10 +29,6 @@ public class Meter {
    private String tokenTechCode = null;
    private String algorithmCode = null;
    private KeyChangeData keyChangeData = null;
-   /**
-    * @since v3.12.0
-    */
-   private Boolean blindVendCapable = null;
 
    public Meter meterId(String meterId) {
       this.meterId = meterId;
@@ -216,28 +212,6 @@ public class Meter {
       this.keyChangeData = keyChangeData;
    }
 
-   public Meter blindVendCapable(Boolean blindVendCapable) {
-      this.blindVendCapable = blindVendCapable;
-      return this;
-   }
-
-   /**
-    * Indicates whether or not a meter is capable of processing a blind vend i.e. meter fields such as {@code supplyGroupCode},
-    * {@code keyRevisionNumber} etc. may be provided in the request.
-    * 
-    * @return blindVendCapable
-    * @since v3.12.0
-    **/
-   @ApiModelProperty(value = "Indicates whether or not a meter is capable of processing a blind vend i.e. meter fields such as supplyGroupCode, keyRevisionNumber etc. may be provided in the request.")
-   @Valid
-   public Boolean getBlindVendCapable() {
-      return blindVendCapable;
-   }
-
-   public void setBlindVendCapable(Boolean blindVendCapable) {
-      this.blindVendCapable = blindVendCapable;
-   }
-
    @Override
    public boolean equals(java.lang.Object o) {
       if (this == o) {
@@ -254,8 +228,7 @@ public class Meter {
             && Objects.equals(this.tariffIndex, meter.tariffIndex)
             && Objects.equals(this.tokenTechCode, meter.tokenTechCode)
             && Objects.equals(this.algorithmCode, meter.algorithmCode)
-            && Objects.equals(this.keyChangeData, meter.keyChangeData)
-            && Objects.equals(this.blindVendCapable, meter.blindVendCapable);
+            && Objects.equals(this.keyChangeData, meter.keyChangeData);
    }
 
    @Override
@@ -269,8 +242,7 @@ public class Meter {
             tariffIndex,
             tokenTechCode,
             algorithmCode,
-            keyChangeData,
-            blindVendCapable);
+            keyChangeData);
    }
 
    @Override
@@ -287,7 +259,6 @@ public class Meter {
       sb.append("    tokenTechCode: ").append(Utils.toIndentedString(tokenTechCode)).append('\n');
       sb.append("    algorithmCode: ").append(Utils.toIndentedString(algorithmCode)).append('\n');
       sb.append("    keyChangeData: ").append(Utils.toIndentedString(keyChangeData)).append('\n');
-      sb.append("    blindVendCapable: ").append(Utils.toIndentedString(blindVendCapable)).append('\n');
       sb.append('}');
       return sb.toString();
    }
