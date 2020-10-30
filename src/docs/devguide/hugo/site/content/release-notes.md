@@ -8,7 +8,7 @@ Released 30 October 2020
     - Has no financial impact.
 - Added a new `ErrorType` called `NO_FREE_UNITS_DUE`. 
 - Added two new operations to advise the outcome of key change transactions:
-     - A `confirmKeyChange ` operation which carries a `KeyChangeConfirmation` model to indicate a previous key change request is confirmed.
+     - A `confirmKeyChange` operation which carries a `KeyChangeConfirmation` model to indicate a previous key change request is confirmed.
 
 
 ## v3.11.0
