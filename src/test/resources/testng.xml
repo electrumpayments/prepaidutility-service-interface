@@ -10,7 +10,7 @@
     </groups>
     <packages>
       <package name="io.electrum.prepaidutility.*"/>
-      <package name="io.electrum.vas.*"/>
+      <package name="io.electrum.vas.api.*"/>
     </packages>
   </test>
 </suite>

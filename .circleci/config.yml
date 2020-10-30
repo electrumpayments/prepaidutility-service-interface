@@ -14,8 +14,8 @@ jobs:
       - restore_cache:
           # if you ever need to invalidate the cache, simply bump the version number
           keys:
-            - v1-maven-{{ .Branch }}-{{ checksum "pom.xml" }}
-            - v1-maven-{{ .Branch }}
+            - v2-maven-{{ .Branch }}-{{ checksum "pom.xml" }}
+            - v2-maven-{{ .Branch }}
       - run:
           name: Download dependencies
           command: mvn dependency:resolve-plugins dependency:go-offline -B -Dstyle.color=always
