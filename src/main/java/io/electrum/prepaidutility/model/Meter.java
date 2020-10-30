@@ -250,16 +250,16 @@ public class Meter {
       StringBuilder sb = new StringBuilder();
       sb.append("class Meter {\n");
 
-      sb.append("    meterId: ").append(Utils.toIndentedString(meterId)).append("\n");
-      sb.append("    track2Data: ").append(Utils.toIndentedString(track2Data)).append("\n");
-      sb.append("    serviceType: ").append(Utils.toIndentedString(serviceType)).append("\n");
-      sb.append("    supplyGroupCode: ").append(Utils.toIndentedString(supplyGroupCode)).append("\n");
-      sb.append("    keyRevisionNum: ").append(Utils.toIndentedString(keyRevisionNum)).append("\n");
-      sb.append("    tariffIndex: ").append(Utils.toIndentedString(tariffIndex)).append("\n");
-      sb.append("    tokenTechCode: ").append(Utils.toIndentedString(tokenTechCode)).append("\n");
-      sb.append("    algorithmCode: ").append(Utils.toIndentedString(algorithmCode)).append("\n");
-      sb.append("    keyChangeData: ").append(Utils.toIndentedString(keyChangeData)).append("\n");
-      sb.append("}");
+      sb.append("    meterId: ").append(Utils.toIndentedString(meterId)).append('\n');
+      sb.append("    track2Data: ").append(Utils.toIndentedString(track2Data)).append('\n');
+      sb.append("    serviceType: ").append(Utils.toIndentedString(serviceType)).append('\n');
+      sb.append("    supplyGroupCode: ").append(Utils.toIndentedString(supplyGroupCode)).append('\n');
+      sb.append("    keyRevisionNum: ").append(Utils.toIndentedString(keyRevisionNum)).append('\n');
+      sb.append("    tariffIndex: ").append(Utils.toIndentedString(tariffIndex)).append('\n');
+      sb.append("    tokenTechCode: ").append(Utils.toIndentedString(tokenTechCode)).append('\n');
+      sb.append("    algorithmCode: ").append(Utils.toIndentedString(algorithmCode)).append('\n');
+      sb.append("    keyChangeData: ").append(Utils.toIndentedString(keyChangeData)).append('\n');
+      sb.append('}');
       return sb.toString();
    }
 }

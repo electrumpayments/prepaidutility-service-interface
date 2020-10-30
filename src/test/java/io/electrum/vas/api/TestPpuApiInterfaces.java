@@ -1,6 +1,5 @@
 package io.electrum.vas.api;
 
-import io.electrum.prepaidutility.api.ITokenReprintsResource;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

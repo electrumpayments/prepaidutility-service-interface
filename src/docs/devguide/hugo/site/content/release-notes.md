@@ -1,5 +1,16 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.12.0
+Released 30 October 2020
+
+- Added a new operation, `trialTokenPurchaseRequest`, which mimics a conventional `createTokenPurchaseRequest` operation with the following exceptions:
+    - Tokens may or may not be returned. If they are returned, they will be invalid tokens.
+    - Has no financial impact.
+- Added a new `ErrorType` called `NO_FREE_UNITS_DUE`. 
+- Added two new operations to advise the outcome of key change transactions:
+     - A `confirmKeyChange` operation which carries a `KeyChangeConfirmation` model to indicate a previous key change request is confirmed.
+
+
 ## v3.11.0
 Released 18 September 2020
 
@@ -23,11 +34,11 @@ Released 2 September 2020
 ## v3.9.0
 Released 13 August 2020
 
-- Added an ```amounts``` field to ```PurchaseResponse```. This can be used for any additional amounts which don't
+- Added an `amounts` field to `PurchaseResponse`. This can be used for any additional amounts which don't
   traditionally fit into dedicated amount fields.
-- Added an arrearsAmount LedgerAmount to MeterLookupResponse for handling customer debt payments & outstanding debt
+- Added an `arrearsAmount` `LedgerAmount` to `MeterLookupResponse` for handling customer debt payments & outstanding debt
   balance enquiries.
-- Incorporated new interfaces from ``service-interface-base``. This change affects the Java implementation of the API
+- Incorporated new interfaces from `service-interface-base`. This change affects the Java implementation of the API
   only and does not further change the public definition of the API. The Java implementation has been updated as follows: 
     - The following classes now implement the `HasAmounts` interface defined in the base API:
         - `PurchaseResponse`

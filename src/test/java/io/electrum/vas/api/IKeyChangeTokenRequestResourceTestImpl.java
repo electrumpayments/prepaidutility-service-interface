@@ -1,15 +1,14 @@
 package io.electrum.vas.api;
 
-import io.electrum.prepaidutility.api.IEventsResource;
-import io.electrum.prepaidutility.api.IKeyChangeTokenRequestsResource;
-import io.electrum.prepaidutility.model.KeyChangeTokenRequest;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
+
+import io.electrum.prepaidutility.api.IKeyChangeTokenRequestsResource;
+import io.electrum.prepaidutility.model.KeyChangeTokenRequest;
 
 /**
  * This class provides an implementation of the {@link IKeyChangeTokenRequestsResource} interface for testing purposes.
@@ -23,7 +22,7 @@ import javax.ws.rs.core.UriInfo;
  * <p>
  * If this class does not compile after you have changed the {@link IKeyChangeTokenRequestsResource} interface, you have likely broken
  * the {@link IKeyChangeTokenRequestsResource} interface as per the first point above.
- *
+ * This class should never be changed unless a breaking change has been made to the {@link IKeyChangeTokenRequestsResource} interface.
  */
 public class IKeyChangeTokenRequestResourceTestImpl implements IKeyChangeTokenRequestsResource {
 

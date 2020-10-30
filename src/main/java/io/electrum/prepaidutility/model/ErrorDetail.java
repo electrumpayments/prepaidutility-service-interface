@@ -43,7 +43,11 @@ public class ErrorDetail {
       SYSTEM_MALFUNCTION("SYSTEM_MALFUNCTION"),
       METER_KEY_INVALID("METER_KEY_INVALID"),
       AMOUNT_TOO_LOW("AMOUNT_TOO_LOW"),
-      AMOUNT_TOO_HIGH("AMOUNT_TOO_HIGH");
+      AMOUNT_TOO_HIGH("AMOUNT_TOO_HIGH"),
+      /**
+       * @since v3.12.0
+       */
+      NO_FREE_UNITS_DUE("NO_FREE_UNITS_DUE");
 
       private String value;
 
@@ -73,7 +77,11 @@ public class ErrorDetail {
       /**
        * @since 3.11.0
        */
-      NOTIFY_TOKEN_PURCHASE("NOTIFY_TOKEN_PURCHASE");
+      NOTIFY_TOKEN_PURCHASE("NOTIFY_TOKEN_PURCHASE"),
+      /**
+       * @since 3.12.0
+       */
+      TOKEN_PURCHASE_TRIAL_REQUEST("TOKEN_PURCHASE_TRIAL_REQUEST");
 
       private String value;
 

@@ -39,7 +39,7 @@ public abstract class TokenPurchasesResource {
       public static final String CONFIRM_TOKEN_PURCHASE = "confirmTokenPurchase";
       public static final int SUCCESS = 202;
       public static final String RELATIVE_PATH =
-              "/{" + PathParameters.PURCHASE_ID + "}/confirmations/{" + PathParameters.CONFIRMATION_ID + "}";
+            "/{" + PathParameters.PURCHASE_ID + "}/confirmations/{" + PathParameters.CONFIRMATION_ID + "}";
       public static final String PATH = TokenPurchasesResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
@@ -74,12 +74,23 @@ public abstract class TokenPurchasesResource {
       public static final String REVERSE_TOKEN_PURCHASE = "reverseTokenPurchase";
       public static final int SUCCESS = 202;
       public static final String RELATIVE_PATH =
-              "/{" + PathParameters.PURCHASE_ID + "}/reversals/{" + PathParameters.REVERSAL_ID + "}";
+            "/{" + PathParameters.PURCHASE_ID + "}/reversals/{" + PathParameters.REVERSAL_ID + "}";
       public static final String PATH = TokenPurchasesResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {
          public static final String REVERSAL_ID = "reversalId";
          public static final String PURCHASE_ID = "purchaseId";
+      }
+   }
+
+   public class TrialTokenPurchaseRequest {
+      public static final String TRIAL_TOKEN_PURCHASE_REQUEST = "trialTokenPurchaseRequest";
+      public static final int SUCCESS = 200;
+      public static final String RELATIVE_PATH =  "/trials/{"+ PathParameters.TRIAL_ID+"}";
+      public static final String PATH = TokenPurchasesResource.PATH + RELATIVE_PATH;
+
+      public class PathParameters {
+         public static final String TRIAL_ID = "trialId";
       }
    }
 
@@ -213,6 +224,62 @@ public abstract class TokenPurchasesResource {
       getResourceImplementation().reverseTokenPurchase(
             purchaseId,
             reversalId,
+            body,
+            securityContext,
+            asyncResponse,
+            request,
+            httpServletRequest,
+            httpHeaders,
+            uriInfo);
+   }
+
+   /**
+    * Requests a trial token purchase for a specified meter
+    * 
+    * This operation is identical to the '{@code createTokenPurchaseRequest}' operation except that
+    * this operation carries no financial impact. Tokens may or may not be returned for this operation,
+    * if returned then they are not valid. This operation allows the customer to make an informed
+    * choice regarding the purchase costs before committing to purchasing electricity. This operation serves to inform a
+    * customer exactly what the outcome of their purchase is: the service charges which will be levied, the debt
+    * recovery charges, the number of units which will be provided etc. If a customer is dissatisfied with the details
+    * in the response, the customer may abort the transaction without any consequences.
+    * 
+    * @param purchaseId
+    * @param body
+    * @param securityContext
+    * @param asyncResponse
+    * @param request
+    * @param httpServletRequest
+    * @param httpHeaders
+    * @param uriInfo
+    * @since v3.12.0
+    */
+   @POST
+   @Path(TrialTokenPurchaseRequest.RELATIVE_PATH)
+   @Consumes({ "application/json" })
+   @Produces({ "application/json" })
+   @ApiOperation(nickname = TrialTokenPurchaseRequest.TRIAL_TOKEN_PURCHASE_REQUEST, value = "Requests a trial token purchase for a specified meter.", notes = "This operation is identical to the '"
+         + CreateTokenPurchaseRequest.CREATE_TOKEN_PURCHASE_REQUEST
+         + "' operation except that no tokens are returned and this operation carries no financial impact. This operation allows the customer to make an informed choice about the transaction outcome before committing to purchase electricity. This operation serves to inform a customer exactly what the outcome of their purchase is: the service charges which will be levied, the debt recovery charges, the number of units which will be provided etc. If a customer is dissatisfied with the details in the response, the customer may abort the transaction without any consequences.")
+   @ApiResponses(value = {
+         @ApiResponse(code = TrialTokenPurchaseRequest.SUCCESS, message = "OK", response = PurchaseResponse.class),
+         @ApiResponse(code = 400, message = "Bad request", response = ErrorDetail.class),
+         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorDetail.class),
+         @ApiResponse(code = 501, message = "Not implemented", response = ErrorDetail.class),
+         @ApiResponse(code = 503, message = "Service Unavailable", response = ErrorDetail.class),
+         @ApiResponse(code = 504, message = "Gateway Timeout", response = ErrorDetail.class) })
+   public void trialTokenPurchaseRequest(
+         @ApiParam(value = "The randomly generated UUID of this request.", required = true) @PathParam(TrialTokenPurchaseRequest.PathParameters.TRIAL_ID) String purchaseId,
+         @ApiParam(value = "A token purchase request.", required = true) PurchaseRequest body,
+         @Context SecurityContext securityContext,
+         @Suspended AsyncResponse asyncResponse,
+         @Context Request request,
+         @Context HttpServletRequest httpServletRequest,
+         @Context HttpHeaders httpHeaders,
+         @Context UriInfo uriInfo) {
+
+      getResourceImplementation().trialTokenPurchaseRequest(
+            purchaseId,
             body,
             securityContext,
             asyncResponse,
