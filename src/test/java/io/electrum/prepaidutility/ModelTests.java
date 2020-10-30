@@ -27,7 +27,7 @@ public class ModelTests {
 
    @Test
    public void testErrorDetail_ErrorTypeEnumOrdinals() {
-      Assert.assertEquals(ErrorDetail.ErrorType.values().length, 21);
+      Assert.assertEquals(ErrorDetail.ErrorType.values().length, 22);
       Assert.assertEquals(ErrorDetail.ErrorType.DUPLICATE_RECORD.ordinal(), 0);
       Assert.assertEquals(ErrorDetail.ErrorType.FORMAT_ERROR.ordinal(), 1);
       Assert.assertEquals(ErrorDetail.ErrorType.FUNCTION_NOT_SUPPORTED.ordinal(), 2);
