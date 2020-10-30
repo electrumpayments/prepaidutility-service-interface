@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import io.electrum.prepaidutility.model.ErrorDetail;
 import io.electrum.prepaidutility.model.Token;
 
-public class ModelTests {
+public class ModelTest {
 
    @Test
    public void testTokenTypeEnumOrdinals() {
