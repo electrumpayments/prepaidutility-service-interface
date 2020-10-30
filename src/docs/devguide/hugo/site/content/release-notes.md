@@ -1,14 +1,14 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
 ## v3.12.0
-Released 29 October 2020
+Released 30 October 2020
 
 - Added a new operation, `trialTokenPurchaseRequest`, which mimics a conventional `createTokenPurchaseRequest` operation with the following exceptions:
     - Tokens may or may not be returned. If they are returned, they will be invalid tokens.
     - Has no financial impact.
 - Added a new `ErrorType` called `NO_FREE_UNITS_DUE`. 
 - Added two new operations to advise the outcome of key change transactions:
-     - A `confirmKeyChange ` operation which carries a `KeyChangeConfirmation` model to indicate a previous key change request is confirmed.
+     - A `confirmKeyChange` operation which carries a `KeyChangeConfirmation` model to indicate a previous key change request is confirmed.
 
 
 ## v3.11.0
