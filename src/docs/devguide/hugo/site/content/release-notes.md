@@ -1,6 +1,10 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
-## v3.12.0
+## v3.12.0 - Deprecated
+This version of the Prepaid Utility Service Interface has been deprecated and should not be used. Version 3.11.0 should be used currently until v3.13.0 is released in future.
+
+This version of the Prepaid Utility Service Interface was deprecated because the path of the new `trialTokenPurchaseRequest` operation introduced in v3.12.0 was incorrect.
+
 Released 30 October 2020
 
 - Added a new operation, `trialTokenPurchaseRequest`, which mimics a conventional `createTokenPurchaseRequest` operation with the following exceptions:
