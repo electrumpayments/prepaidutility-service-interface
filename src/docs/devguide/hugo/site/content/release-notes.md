@@ -3,7 +3,7 @@ This page describes changes to the Prepaid Utility Service Interface implemented
 ## v3.12.1
 Released 03 November 2020
 
-- correct the `RELATIVE_PATH` path of the `trialTokenPurchaseRequest` operation.
+- corrected the `RELATIVE_PATH` path of the `trialTokenPurchaseRequest` operation.
 
 ## v3.12.0
 Released 30 October 2020
