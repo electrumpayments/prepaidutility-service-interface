@@ -86,7 +86,7 @@ public abstract class TokenPurchasesResource {
    public class TrialTokenPurchaseRequest {
       public static final String TRIAL_TOKEN_PURCHASE_REQUEST = "trialTokenPurchaseRequest";
       public static final int SUCCESS = 200;
-      public static final String RELATIVE_PATH =  "/trials/{"+ PathParameters.TRIAL_ID+"}";
+      public static final String RELATIVE_PATH =  "/{" + PathParameters.TRIAL_ID+"}/trial/";
       public static final String PATH = TokenPurchasesResource.PATH + RELATIVE_PATH;
 
       public class PathParameters {

@@ -1,9 +1,17 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+
+## v3.12.1
+Released 03 November 2020
+
+- corrected the `RELATIVE_PATH` of the `trialTokenPurchaseRequest` operation.
+
+
 ## v3.12.0 - Deprecated
-This version of the Prepaid Utility Service Interface has been deprecated and should not be used. Version 3.11.0 should be used currently until v3.13.0 is released in future.
+This version of the Prepaid Utility Service Interface has been deprecated and should not be used. Version 3.11.0 should be used currently until v3.12.1 is released in future.
 
 This version of the Prepaid Utility Service Interface was deprecated because the path of the new `trialTokenPurchaseRequest` operation introduced in v3.12.0 was incorrect.
+
 
 Released 30 October 2020
 
@@ -11,7 +19,7 @@ Released 30 October 2020
     - Tokens may or may not be returned. If they are returned, they will be invalid tokens.
     - Has no financial impact.
 - Added a new `ErrorType` called `NO_FREE_UNITS_DUE`. 
-- Added two new operations to advise the outcome of key change transactions:
+- Added a new operation to advise the outcome of key change transactions:
      - A `confirmKeyChange` operation which carries a `KeyChangeConfirmation` model to indicate a previous key change request is confirmed.
 
 
