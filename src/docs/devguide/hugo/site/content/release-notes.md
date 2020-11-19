@@ -1,5 +1,12 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.13.0
+Released 20 November 2020
+
+- Added a new `ErrorType` called `INSUFFICIENT_FUNDS`. 
+- Added a new `ErrorType` called `LIMIT_EXCEEDED`. 
+- Added a new `ErrorType` called `METER_ID_BLOCKED`. 
+- Added a new `ErrorType` called `OUTCOME_UNKNOWN`. 
 
 ## v3.12.1
 Released 03 November 2020
