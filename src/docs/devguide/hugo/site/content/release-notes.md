@@ -4,10 +4,8 @@ This page describes changes to the Prepaid Utility Service Interface implemented
 Released 20 November 2020
 
 ### Breaking changes
-- Note that this is technically a breaking change, however v3.12.1 was never implemented before it was deprecated hence the major version will not be changed. 
-- As result this will not break any existing implementations of the API.
-
 - Removed trailing slash from the `RELATIVE_PATH` of the `trialTokenPurchaseRequest` operation.
+- Note that this is technically a breaking change. However, v3.12.1 has no known implementations while a change to the major version number would necessitate a change to API URLs in known implementations. Therefore the major version number has not been updated.
 
 ## v3.12.1 - Deprecated
 Released 03 November 2020
