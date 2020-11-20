@@ -3,7 +3,7 @@ This page describes changes to the Prepaid Utility Service Interface implemented
 ## v3.12.2
 Released 20 November 2020
 
-- removed trailing slash from the `RELATIVE_PATH` of the `trialTokenPurchaseRequest` operation.
+- Removed trailing slash from the `RELATIVE_PATH` of the `trialTokenPurchaseRequest` operation.
    
 
 ## v3.12.1
