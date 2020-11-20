@@ -2,6 +2,8 @@ This page describes changes to the Prepaid Utility Service Interface implemented
 
 ## v3.12.2
 Released 20 November 2020
+
+- Note that this is technically a breaking change, however there are no known implementations of v3.12.1 hence the major version will not be changed.
 - Note that this is technically a breaking change, however there are no known implementations of v3.12.1 hence the major version will not be changed.
 
 ### Breaking changes
