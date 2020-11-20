@@ -18,7 +18,7 @@ This version of the Prepaid Utility Service Interface was deprecated because the
 
 ## v3.12.0 - Deprecated
 Released 30 October 2020
-This version of the Prepaid Utility Service Interface has been deprecated and should not be used. Version 3.11.0 should be used currently until v3.12.2 is released in the future.
+This version of the Prepaid Utility Service Interface has been deprecated and should not be used. Version 3.12.2 should be used instead.
 
 This version of the Prepaid Utility Service Interface was deprecated because the path of the new `trialTokenPurchaseRequest` operation introduced in v3.12.0 was incorrect.
 
