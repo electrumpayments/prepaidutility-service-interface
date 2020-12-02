@@ -47,7 +47,14 @@ public class ErrorDetail {
       /**
        * @since v3.12.0
        */
-      NO_FREE_UNITS_DUE("NO_FREE_UNITS_DUE");
+      NO_FREE_UNITS_DUE("NO_FREE_UNITS_DUE"),
+      /**
+       * @since v3.13.0
+       */
+      INSUFFICIENT_FUNDS("INSUFFICIENT_FUNDS"),
+      LIMIT_EXCEEDED("LIMIT_EXCEEDED"),
+      METER_ID_BLOCKED("METER_ID_BLOCKED"),
+      OUTCOME_UNKNOWN("OUTCOME_UNKNOWN");
 
       private String value;
 

@@ -1,10 +1,19 @@
 package io.electrum.prepaidutility;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import io.electrum.prepaidutility.model.ErrorDetail;
 import io.electrum.prepaidutility.model.Token;
+import io.electrum.vas.JsonUtil;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.UUID;
+
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 public class ModelTest {
 
@@ -25,9 +34,28 @@ public class ModelTest {
       Assert.assertEquals(Token.TokenTypeEnum.PWRLMT.ordinal(), pwrlmt_ordinal);
    }
 
+   @Test(description = "Test we can deserialise what we serialised and get back to where we started.", dataProvider = "serialiseDeserialiseObjectDataProvider")
+   public void testSerialiseDeserialiseObject(Object testObject) throws IOException {
+      Assert.assertEquals(JsonUtil.deserialize(JsonUtil.serialize(testObject), testObject.getClass()), testObject);
+   }
+
+   @DataProvider(name = "serialiseDeserialiseObjectDataProvider")
+   public Iterator<Object[]> serialiseDeserialiseObjectDataProvider() {
+      List<Object> objectsToCheck = new ArrayList<>();
+
+      // Add ErrorDetails
+      Arrays.stream(ErrorDetail.RequestType.values()).forEach(r -> {
+         Arrays.stream(ErrorDetail.ErrorType.values()).forEach(e -> {
+            objectsToCheck.add(new ErrorDetail().requestType(r).errorType(e).id(UUID.randomUUID().toString()));
+         });
+      });
+
+      return objectsToCheck.stream().map(o -> new Object[] { o }).iterator();
+   }
+
    @Test
    public void testErrorDetail_ErrorTypeEnumOrdinals() {
-      Assert.assertEquals(ErrorDetail.ErrorType.values().length, 22);
+      Assert.assertEquals(ErrorDetail.ErrorType.values().length, 26);
       Assert.assertEquals(ErrorDetail.ErrorType.DUPLICATE_RECORD.ordinal(), 0);
       Assert.assertEquals(ErrorDetail.ErrorType.FORMAT_ERROR.ordinal(), 1);
       Assert.assertEquals(ErrorDetail.ErrorType.FUNCTION_NOT_SUPPORTED.ordinal(), 2);
@@ -49,6 +77,11 @@ public class ModelTest {
       Assert.assertEquals(ErrorDetail.ErrorType.METER_KEY_INVALID.ordinal(), 18);
       Assert.assertEquals(ErrorDetail.ErrorType.AMOUNT_TOO_LOW.ordinal(), 19);
       Assert.assertEquals(ErrorDetail.ErrorType.AMOUNT_TOO_HIGH.ordinal(), 20);
+      Assert.assertEquals(ErrorDetail.ErrorType.NO_FREE_UNITS_DUE.ordinal(), 21);
+      Assert.assertEquals(ErrorDetail.ErrorType.INSUFFICIENT_FUNDS.ordinal(), 22);
+      Assert.assertEquals(ErrorDetail.ErrorType.LIMIT_EXCEEDED.ordinal(), 23);
+      Assert.assertEquals(ErrorDetail.ErrorType.METER_ID_BLOCKED.ordinal(), 24);
+      Assert.assertEquals(ErrorDetail.ErrorType.OUTCOME_UNKNOWN.ordinal(), 25);
    }
 
    @Test
