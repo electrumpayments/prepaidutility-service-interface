@@ -2,9 +2,9 @@ version: 2
 jobs:
   build-and-release:
     docker:
-      - image: electrum-docker.jfrog.io/circleci-openjdk
+      - image: ${ARTIFACTORY_DOCKER_URL}/circleci-openjdk
         auth:
-          username: circleci-reader
+          username: $ARTIFACTORY_READER_USERNAME
           password: $ARTIFACTORY_READER_PASSWORD
     steps:
       - setup_remote_docker
@@ -59,9 +59,9 @@ jobs:
           destination: release
   code-coverage-report:
     docker:
-      - image: electrum-docker.jfrog.io/circleci-openjdk
+      - image: ${ARTIFACTORY_DOCKER_URL}/circleci-openjdk
         auth:
-          username: circleci-reader
+          username: $ARTIFACTORY_READER_USERNAME
           password: $ARTIFACTORY_READER_PASSWORD
     steps:
       - setup_remote_docker
@@ -84,9 +84,9 @@ jobs:
           destination: coverage
   build-with-latest-deps:
     docker:
-      - image: electrum-docker.jfrog.io/circleci-openjdk
+      - image: ${ARTIFACTORY_DOCKER_URL}/circleci-openjdk
         auth:
-          username: circleci-reader
+          username: $ARTIFACTORY_READER_USERNAME
           password: $ARTIFACTORY_READER_PASSWORD
     steps:
       - checkout
