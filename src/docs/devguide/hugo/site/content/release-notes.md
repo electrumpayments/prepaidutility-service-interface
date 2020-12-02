@@ -8,19 +8,28 @@ Released 20 November 2020
 - Added a new `ErrorType` called `METER_ID_BLOCKED`. 
 - Added a new `ErrorType` called `OUTCOME_UNKNOWN`. 
 
-## v3.12.1
-Released 03 November 2020
+## v3.12.2
+Released 20 November 2020
 
-- corrected the `RELATIVE_PATH` of the `trialTokenPurchaseRequest` operation.
+### Breaking changes
+- Removed trailing slash from the `RELATIVE_PATH` of the `trialTokenPurchaseRequest` operation.
+- Note that this is technically a breaking change. However, v3.12.1 has no known implementations while a change to the major version number would necessitate a change to API URLs in known implementations. Therefore the major version number has not been updated.
+
+## v3.12.1 - Deprecated
+Released 03 November 2020
+This version of the Prepaid Utility Service Interface has been deprecated and should not be used. Version 3.11.0 should be used currently until v3.12.2 is released in the future.
+
+This version of the Prepaid Utility Service Interface was deprecated because the path of the new `trialTokenPurchaseRequest` operation introduced in v3.12.1 was incorrect.
+
+- Corrected the `RELATIVE_PATH` of the `trialTokenPurchaseRequest` operation.
 
 
 ## v3.12.0 - Deprecated
-This version of the Prepaid Utility Service Interface has been deprecated and should not be used. Version 3.11.0 should be used currently until v3.12.1 is released in future.
+Released 30 October 2020
+This version of the Prepaid Utility Service Interface has been deprecated and should not be used. Version 3.12.2 should be used instead.
 
 This version of the Prepaid Utility Service Interface was deprecated because the path of the new `trialTokenPurchaseRequest` operation introduced in v3.12.0 was incorrect.
 
-
-Released 30 October 2020
 
 - Added a new operation, `trialTokenPurchaseRequest`, which mimics a conventional `createTokenPurchaseRequest` operation with the following exceptions:
     - Tokens may or may not be returned. If they are returned, they will be invalid tokens.
