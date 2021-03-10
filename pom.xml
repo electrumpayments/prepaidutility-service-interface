@@ -37,7 +37,7 @@
     <service-interface-base-version>3.28.0</service-interface-base-version>
     <joda-time-version>2.9.4</joda-time-version>
     <swagger-version>1.5.16</swagger-version>
-    <jetty-version>9.4.17.v20190418</jetty-version>
+    <jetty-version>9.4.38.v20210224</jetty-version>
     <jersey-version>2.22.1</jersey-version>
     <hibernate-validator-version>5.3.6.Final</hibernate-validator-version>
     <el-version>2.2.4</el-version>
