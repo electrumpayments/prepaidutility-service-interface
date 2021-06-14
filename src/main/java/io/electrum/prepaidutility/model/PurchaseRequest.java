@@ -2,6 +2,7 @@ package io.electrum.prepaidutility.model;
 
 import io.electrum.vas.Utils;
 import io.electrum.vas.interfaces.HasPaymentMethods;
+import io.electrum.vas.interfaces.HasTenders;
 import io.electrum.vas.model.LedgerAmount;
 import io.electrum.vas.model.PaymentMethod;
 import io.electrum.vas.model.Tender;
@@ -25,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @ApiModel(description = "Represents a token purchase request")
 @JsonInclude(Include.NON_NULL)
-public class PurchaseRequest extends Transaction implements HasPaymentMethods {
+public class PurchaseRequest extends Transaction implements HasPaymentMethods, HasTenders {
 
    private Meter meter;
    private LedgerAmount purchaseAmount;

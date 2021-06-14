@@ -1,5 +1,13 @@
 This page describes changes to the Prepaid Utility Service Interface implemented across different releases of the interface.
 
+## v3.14.0
+Released __ June 2021
+
+- Incorporated a new interface from ``service-interface-base``. This change affects the Java implementation of the API
+  only and does not further change the public definition of the API. The Java implementation has been updated as follows:
+  - The following classes now implement the `HasTenders` interface defined in the base API:
+    - `PurchaseRequest`
+
 ## v3.13.0
 Released 20 November 2020
 
