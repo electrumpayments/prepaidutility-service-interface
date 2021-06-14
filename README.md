@@ -12,12 +12,12 @@ To include the service interface into your maven project, include the below depe
 <dependency>
     <groupId>io.electrum</groupId>
     <artifactId>prepaidutility-service-interface</artifactId>
-    <version>3.13.0</version>
+    <version>3.14.0</version>
 </dependency>
 <dependency>
    <groupId>io.electrum</groupId>
    <artifactId>service-interface-base</artifactId>
-   <version>3.28.0</version>
+   <version>3.32.0-RC1</version>
    <scope>provided</scope>
  </dependency>
 ```
